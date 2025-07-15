@@ -8,5 +8,9 @@ find_package(SFML 2.5 REQUIRED COMPONENTS graphics window system)
 
 add_executable(Gengine main.cpp
         Engine/Engine.cpp
-        Engine/Input/Input.cpp)
+        Engine/Input/Input.cpp
+        Engine/Entity/Entity.cpp
+        Engine/Entity/EntityType/ControllableEntity.cpp
+        Engine/Entity/EntityType/StaticEntity.cpp
+        Engine/System/Collision.cpp)
 target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)

@@ -3,16 +3,44 @@
 //
 
 #include "Engine.h"
+#include "Entity/EntityType/ControllableEntity.h"
+#include "Entity/EntityType/StaticEntity.h"
+#include "System/Collision.h"
+#include <iostream>
 
 Engine::Engine(unsigned int width, unsigned int height)
-    : window(sf::VideoMode(width, height), "SFML Test"),
-      circle(100.f)
+    : window(sf::VideoMode(width, height), "SFML Test")
 {
-    circle.setFillColor(sf::Color::Red);
-    circle.setPointCount(100);
-    circle.setPosition(0.f, 400.f);
     input.bindAction("RIGHT",sf::Keyboard::Right);
     input.bindAction("LEFT",sf::Keyboard::Left);
+    input.bindAction("UP",sf::Keyboard::Up);
+    input.bindAction("DOWN",sf::Keyboard::Down);
+
+    std::vector<std::string> actions = {
+        "UP", "DOWN", "LEFT", "RIGHT"
+    };
+
+    auto player = std::make_unique<ControllableEntity>(
+        150.f,
+        sf::Vector2f(100, 100),
+        window.getSize(),
+        sf::Color::Red,
+        actions,
+        true
+    );
+
+    entities.push_back(std::move(player));
+
+    auto wall1 = std::make_unique<StaticEntity>(
+        sf::Vector2f(0, 300),
+        sf::Vector2f(800, 50),
+        sf::Color::Green
+    );
+
+    entities.push_back(std::move(wall1));
+
+    setMovableEntities();
+
 }
 
 void Engine::run() {
@@ -45,23 +73,27 @@ void Engine::processEvents() {
 }
 
 void Engine::update(float dt) {
-
-    sf::Vector2f pos = circle.getPosition();
-    const float speed = 200.f;
-
-    if (input.isActionHeld("RIGHT")) {
-        pos.x += speed * dt;
+    for (auto* entity : movableEntities) {
+            entity->update(dt, input);
     }
-    if (input.isActionHeld("LEFT")) {
-        pos.x -= speed * dt;
-    }
-
-    circle.setPosition(pos);
     input.reset();
+
+    Collision::detectCollision(entities, movableEntities);
 }
 
 void Engine::render() {
     window.clear(sf::Color::Black);
-    window.draw(circle);
+
+    for (auto& entity : entities)
+        entity->render(window);
+
     window.display();
+}
+
+void Engine::setMovableEntities() {
+    for (auto& entity : entities) {
+        if (entity->isMovable) {
+            movableEntities.push_back(entity.get());
+        }
+    }
 }

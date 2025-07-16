@@ -5,7 +5,7 @@
 #include "StaticEntity.h"
 
 StaticEntity::StaticEntity(const sf::Vector2f &position, const sf::Vector2f &size, const sf::Color &color):
-    Entity(0.0f, position, false, true), color(color){
+    Entity(0.0f, position, false, true, false), color(color){
     shape.setFillColor(color);
     shape.setPosition(position);
     setPreviousPosition(position);
@@ -18,6 +18,14 @@ void StaticEntity::render(sf::RenderWindow& window) {
 
 void StaticEntity::update(float dt, Input& input) {
 
+}
+
+void StaticEntity::applyGravity(float dt) {
+    if ( gravityEnabled ) {
+        velocity += gravity * dt;
+        position += velocity * dt;
+        shape.setPosition(position);
+    }
 }
 
 sf::FloatRect StaticEntity::getBounds() const {

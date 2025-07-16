@@ -12,7 +12,7 @@ using namespace std;
 
 class Input {
 public:
-    void updateEvent(const vector<sf::Event>& events);
+    void updateEvent(const vector<sf::Event>& events, float dt);
 
     void reset();
 
@@ -27,6 +27,7 @@ private:
     unordered_map<sf::Keyboard::Key, bool> keyHeld;
     unordered_map<sf::Keyboard::Key, bool> keyPressed;
     unordered_map<sf::Keyboard::Key, bool> keyReleased;
+    std::unordered_map<sf::Keyboard::Key, float> keyHoldDuration;
 
     unordered_map<string, sf::Keyboard::Key> actionBindings;
     unordered_map<sf::Keyboard::Key, string> keyBindings;

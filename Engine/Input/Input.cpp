@@ -4,6 +4,8 @@
 
 #include "Input.h"
 
+#include <iostream>
+
 void Input::bindAction(const string& action, sf::Keyboard::Key key) {
         actionBindings.insert({action, key});
         keyBindings.insert({key, action});
@@ -11,6 +13,7 @@ void Input::bindAction(const string& action, sf::Keyboard::Key key) {
         keyHeld.insert({key, false});
         keyPressed.insert({key, false});
         keyReleased.insert({key, false});
+        keyHoldDuration.insert({key, 0.0f});
 }
 
 sf::Keyboard::Key Input::getKeyForAction(const string& action) const {
@@ -49,13 +52,19 @@ bool Input::wasActionReleased(const string& action) const {
 }
 
 void Input::reset() {
+        for (auto & key : keyReleased) {
+                if ( key.second) {
+                        keyHoldDuration[key.first] = 0.0f;
+                }
+        }
+
         for (auto & keyBinding : keyBindings) {
                 keyPressed[keyBinding.first] = false;
                 keyReleased[keyBinding.first] = false;
         }
 }
 
-void Input::updateEvent(const vector<sf::Event>& events) {
+void Input::updateEvent(const vector<sf::Event>& events, float dt) {
         for (auto & event : events) {
                 if (event.type == sf::Event::KeyPressed) {
                         keyPressed[event.key.code] = true;
@@ -65,6 +74,12 @@ void Input::updateEvent(const vector<sf::Event>& events) {
                 if (event.type == sf::Event::KeyReleased) {
                         keyReleased[event.key.code] = true;
                         keyHeld[event.key.code] = false;
+                }
+        }
+
+        for (auto& key : keyHeld) {
+                if (key.second) {
+                        keyHoldDuration[key.first] += dt;
                 }
         }
 }

@@ -5,6 +5,8 @@
 #include "Collision.h"
 #include <iostream>
 
+#include "../Actions/CollisionBehaviour.h"
+
 void Collision::detectCollision(const std::vector<std::unique_ptr<Entity>>& entities,const std::vector<Entity*>& movableEntities) {
     for (auto* entityA : movableEntities) {
         for (auto& entityB : entities ) {
@@ -19,13 +21,13 @@ void Collision::detectCollision(const std::vector<std::unique_ptr<Entity>>& enti
 
 void Collision::handleCollision(Entity* a, Entity* b) {
     if (a->isMovable && !b->isMovable) {
-        a->setPosition(a->getPreviousPosition());
-    } else if (!a->isMovable && b->isMovable) {
-        b->setPosition(b->getPreviousPosition());
+
+        CollisionBehaviour::ControllableToStaticCollision(a, b);
+
     } else if (a->isMovable && b->isMovable) {
-        // Both movable: for now, just push both back
-        a->setPosition(a->getPreviousPosition());
-        b->setPosition(b->getPreviousPosition());
+
+        CollisionBehaviour::ControllableToControllableCollision(a, b);
+
     }
 }
 

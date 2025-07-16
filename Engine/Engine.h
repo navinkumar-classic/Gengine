@@ -14,7 +14,7 @@ public:
     void run();
 
 private:
-    void processEvents();
+    void processEvents(float dt);
     void update(float dt);
     void render();
     void setMovableEntities();

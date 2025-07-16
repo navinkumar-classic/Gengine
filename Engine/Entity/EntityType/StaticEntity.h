@@ -11,6 +11,8 @@ public:
 
     void update(float dt, Input& input) override;
     void render(sf::RenderWindow& window) override;
+    void applyGravity(float dt) override;
+
     sf::FloatRect getBounds() const override;
 
 private:

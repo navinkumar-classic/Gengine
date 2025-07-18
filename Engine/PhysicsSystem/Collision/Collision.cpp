@@ -5,7 +5,7 @@
 #include "Collision.h"
 #include <iostream>
 
-#include "../Actions/CollisionBehaviour.h"
+#include "../../Actions/CollisionBehaviour.h"
 
 void Collision::detectCollision(const std::vector<std::unique_ptr<Entity>>& entities,const std::vector<Entity*>& movableEntities) {
     for (auto* entityA : movableEntities) {

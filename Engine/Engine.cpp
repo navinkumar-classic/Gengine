@@ -4,9 +4,9 @@
 
 #include "Engine.h"
 #include "Entity/Entity.h"
-#include "System/Collision.h"
+#include "PhysicsSystem/Collision/Collision.h"
 #include <iostream>
-#include "System/EntityInitializer.h"
+#include "GameInitializer/EntityInitializer.h"
 
 Engine::Engine(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "SFML Test")
@@ -17,18 +17,17 @@ Engine::Engine(unsigned int width, unsigned int height)
 
     entities = EntityInitializer::CreateEntityInitialization(window.getSize());
     setMovableEntities();
-
 }
 
 void Engine::run() {
-
     while (isRunning) {
         float dt = clock.restart().asSeconds();
         processEvents(dt);
         update(dt);
         render();
-    }
 
+        input.reset();
+    }
 }
 
 void Engine::processEvents(float dt) {
@@ -54,9 +53,14 @@ void Engine::update(float dt) {
             entity->setPreviousPosition(entity->getPosition());
             entity->update(dt, input);
     }
-    input.reset();
-
     Collision::detectCollision(entities, movableEntities);
+    /*
+    for (auto* entity : movableEntities) {
+        entity->applyMovement(dt);
+        entity->applyMovementToShape();
+    }
+    */
+
 }
 
 void Engine::render() {

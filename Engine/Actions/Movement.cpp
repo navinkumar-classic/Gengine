@@ -3,49 +3,33 @@
 //
 
 #include "Movement .h"
+#include <iostream>
 
-void Movement::moveLeft(sf::Vector2f& position, sf::Vector2f& velocity, float dt, float maxSpeed, float acceleration, float deacceleration, bool& onGround, float jumpStrength,  Input& input, string action){
+void Movement::moveLeft(ControllableEntity& entity, Input& input, string action, float dt){
     if (input.isActionHeld(action)) {
-        velocity.x -= acceleration * dt;
-        if (velocity.x < -maxSpeed)
-            velocity.x = -maxSpeed;
+        entity.setHorizontalVelocity(entity.getVelocity().x - entity.getAcceleration() * dt);
+        if (entity.getVelocity().x < -entity.getMaxSpeed())
+            entity.setHorizontalVelocity(-entity.getMaxSpeed());
     }
 }
 
-void Movement::moveRight(sf::Vector2f& position, sf::Vector2f& velocity, float dt, float maxSpeed, float acceleration, float deacceleration, bool& onGround, float jumpStrength,  Input& input, string action) {
+void Movement::moveRight(ControllableEntity& entity, Input& input, string action, float dt) {
     if (input.isActionHeld(action)) {
-        velocity.x += acceleration * dt;
-        if (velocity.x > maxSpeed)
-            velocity.x = maxSpeed;
+        entity.setHorizontalVelocity(entity.getVelocity().x + entity.getAcceleration() * dt);
+        if (entity.getVelocity().x > entity.getMaxSpeed())
+            entity.setHorizontalVelocity(entity.getMaxSpeed());
     }
 }
 
-void Movement::moveJump(sf::Vector2f& position, sf::Vector2f& velocity, float dt, float maxSpeed, float acceleration, float deacceleration, bool& onGround, float jumpStrength,  Input& input, string action) {
-    if (input.isActionHeld(action)) {
-        if (onGround == true) {
-            velocity.y = jumpStrength;
-            onGround = false;
-        }
+void Movement::moveJump(ControllableEntity& entity, Input& input, string action, float dt) {
+    cout << entity.getOnGround() << endl;
+    if (input.wasActionPressed(action) && entity.getOnGround()) {
+        entity.setVerticalVelocity(entity.getJumpStrength());
+        entity.setOnGround(false);
+        entity.setJump(true);
     }
-}
-
-void Movement::applyDeacceleration(sf::Vector2f& velocity, float dt, float deacceleration, bool& onGround, Input& input, string action1, string action2) {
-    bool movingLeft = input.isActionHeld(action1);
-    bool movingRight = input.isActionHeld(action2);
-
-    if (!movingLeft && !movingRight && onGround) {
-        if (velocity.x > 0) {
-            velocity.x -= deacceleration * dt;
-            if (velocity.x < 0)
-                velocity.x = 0;
-        } else if (velocity.x < 0) {
-            velocity.x += deacceleration * dt;
-            if (velocity.x > 0)
-                velocity.x = 0;
-        }
+    if (entity.getOnGround() == false && entity.getJump() && !input.isActionHeld(action)) {
+        entity.setVerticalVelocity(entity.getVelocity().y * 0.5f);
+        entity.setJump(false);
     }
-}
-
-void Movement::applyMovement(sf::Vector2f& position, sf::Vector2f& velocity, float dt) {
-    position += velocity * dt;
 }

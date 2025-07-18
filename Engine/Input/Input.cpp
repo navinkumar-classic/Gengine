@@ -51,35 +51,42 @@ bool Input::wasActionReleased(const string& action) const {
         return false;
 }
 
+float Input::getHoldDuration(const string& action) const {
+        if (actionBindings.contains(action)) {
+                return keyHoldDuration.at(actionBindings.at(action));
+        }
+        return 0.0f;
+}
+
 void Input::reset() {
         for (auto & key : keyReleased) {
                 if ( key.second) {
                         keyHoldDuration[key.first] = 0.0f;
+                        keyReleased[key.first] = false;
                 }
         }
 
-        for (auto & keyBinding : keyBindings) {
-                keyPressed[keyBinding.first] = false;
-                keyReleased[keyBinding.first] = false;
+        for (auto & key : keyBindings) {
+                keyPressed[key.first] = false;
+                keyReleased[key.first] = false;
         }
 }
 
 void Input::updateEvent(const vector<sf::Event>& events, float dt) {
+        for (auto& key : keyHeld) {
+                if (key.second) {
+                        keyHoldDuration[key.first] += dt;
+                }
+        }
         for (auto & event : events) {
-                if (event.type == sf::Event::KeyPressed) {
+                if (event.type == sf::Event::KeyPressed && keyHeld[event.key.code] == false) {
                         keyPressed[event.key.code] = true;
                         keyHeld[event.key.code] = true;
                 }
 
-                if (event.type == sf::Event::KeyReleased) {
-                        keyReleased[event.key.code] = true;
+                if (event.type == sf::Event::KeyReleased && keyHeld[event.key.code] == true) {
                         keyHeld[event.key.code] = false;
-                }
-        }
-
-        for (auto& key : keyHeld) {
-                if (key.second) {
-                        keyHoldDuration[key.first] += dt;
+                        keyReleased[event.key.code] = true;
                 }
         }
 }

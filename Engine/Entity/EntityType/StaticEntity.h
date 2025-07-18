@@ -7,11 +7,22 @@
 
 class StaticEntity : public Entity {
 public:
-    StaticEntity(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color = sf::Color::Red);
+    StaticEntity(
+        bool isMovable,
+        const sf::Vector2f& position,
+        const sf::Vector2f& velocity,
+        const sf::Vector2f& gravity,
+        float maxSpeed,
+        float terminalVelocity,
+        float jumpStrength,
+        float acceleration,
+        float deacceleration,
+        const sf::Vector2f& size,
+        const sf::Color& color = sf::Color::Red);
 
     void update(float dt, Input& input) override;
     void render(sf::RenderWindow& window) override;
-    void applyGravity(float dt) override;
+    void applyMovementToShape() override;
 
     sf::FloatRect getBounds() const override;
 

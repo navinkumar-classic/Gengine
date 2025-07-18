@@ -10,22 +10,33 @@
 
 class ControllableEntity : public Entity {
 public:
-    ControllableEntity(float speed, const sf::Vector2f& position, sf::Vector2u windowSize,
-        vector<std::pair<string, function<void(sf::Vector2f&, sf::Vector2f&, float, float, float, float, bool&, float, Input& input, string action)>>> actions,
-        const sf::Color& color = sf::Color::Green );
+    ControllableEntity(
+        bool isMovable,
+        const sf::Vector2f& position,
+        const sf::Vector2f& velocity,
+        const sf::Vector2f& gravity,
+        float maxSpeed,
+        float terminalVelocity,
+        float jumpStrength,
+        float acceleration,
+        float deacceleration,
+        sf::Vector2u windowSize,
+        vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> actions,
+        const sf::Color& color = sf::Color::Green
+        );
 
     void update(float dt, Input& input) override;
     void render(sf::RenderWindow& window) override;
-    void applyGravity(float dt) override;
+    void applyMovementToShape() override;
 
     sf::FloatRect getBounds() const override;
 
-    void addAction(string& action, function<void(sf::Vector2f&, sf::Vector2f&, float, float, float, float, bool&, float, Input& input, string action)>& func);
+    void addAction(string& action, function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func);
     void clearActions();
 
 private:
 
-    std::vector<std::pair<string, function<void(sf::Vector2f&, sf::Vector2f&, float, float, float, float, bool&, float, Input& input, string action)>>> action;
+    std::vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> action;
     sf::RectangleShape shape;
     sf::Color color;
     sf::Vector2u windowSize;

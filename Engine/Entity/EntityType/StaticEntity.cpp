@@ -4,8 +4,21 @@
 
 #include "StaticEntity.h"
 
-StaticEntity::StaticEntity(const sf::Vector2f &position, const sf::Vector2f &size, const sf::Color &color):
-    Entity(0.0f, position, false, true, false), color(color){
+StaticEntity::StaticEntity(
+        bool isMovable,
+        const sf::Vector2f& position,
+        const sf::Vector2f& velocity,
+        const sf::Vector2f& gravity,
+        float maxSpeed,
+        float terminalVelocity,
+        float jumpStrength,
+        float acceleration,
+        float deacceleration,
+        const sf::Vector2f& size,
+        const sf::Color& color):
+        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
+        color(color)
+{
     shape.setFillColor(color);
     shape.setPosition(position);
     setPreviousPosition(position);
@@ -20,12 +33,8 @@ void StaticEntity::update(float dt, Input& input) {
 
 }
 
-void StaticEntity::applyGravity(float dt) {
-    if ( gravityEnabled ) {
-        velocity += gravity * dt;
-        position += velocity * dt;
-        shape.setPosition(position);
-    }
+void StaticEntity::applyMovementToShape() {
+    shape.setPosition(position);
 }
 
 sf::FloatRect StaticEntity::getBounds() const {

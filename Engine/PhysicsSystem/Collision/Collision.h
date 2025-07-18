@@ -5,7 +5,7 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include "../Entity/Entity.h"
+#include "../../Entity/Entity.h"
 #include <SFML/System/Vector2.hpp>
 
 class Collision {

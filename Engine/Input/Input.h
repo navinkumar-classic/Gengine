@@ -19,6 +19,7 @@ public:
     bool isActionHeld(const string& action) const;
     bool wasActionPressed(const string& action) const;
     bool wasActionReleased(const string& action) const;
+    float getHoldDuration(const string& action) const;
 
     void bindAction(const string& action, sf::Keyboard::Key key);
     sf::Keyboard::Key getKeyForAction(const string& action) const;

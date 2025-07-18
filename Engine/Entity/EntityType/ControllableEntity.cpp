@@ -4,13 +4,29 @@
 
 #include "ControllableEntity.h"
 #include <utility>
-#include <iostream>
 
 #include "../../Actions/Movement .h"
+#include "../../PhysicsSystem/EntityPhysics/EntityPhysics.h"
 
-ControllableEntity::ControllableEntity(float speed, const sf::Vector2f &position, sf::Vector2u windowSize,
-    vector<std::pair<string, function<void(sf::Vector2f&, sf::Vector2f&, float, float, float, float, bool&, float, Input& input, string action)>>> actions, const sf::Color &color):
-Entity(speed, position, true, true, true), color(color), action(std::move(actions)), windowSize(windowSize) {
+ControllableEntity::ControllableEntity(
+        bool isMovable,
+        const sf::Vector2f& position,
+        const sf::Vector2f& velocity,
+        const sf::Vector2f& gravity,
+        float maxSpeed,
+        float terminalVelocity,
+        float jumpStrength,
+        float acceleration,
+        float deacceleration,
+        sf::Vector2u windowSize,
+        vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> actions,
+        const sf::Color& color
+        ):
+        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
+        color(color),
+        action(std::move(actions)),
+        windowSize(windowSize)
+{
     shape.setSize({32, 32});
     shape.setFillColor(color);
     shape.setPosition(position);
@@ -19,41 +35,25 @@ Entity(speed, position, true, true, true), color(color), action(std::move(action
 void ControllableEntity::update(float dt, Input& input) {
 
     for (const auto& action : action) {
-        action.second(position, velocity, dt, maxSpeed, acceleration, deacceleration, onGround, jumpStrength, input, action.first);
+        action.second(*this, input, action.first, dt);
     }
 
+    EntityPhysics::applyDeacceleration(*this, input, dt, "LEFT", "RIGHT");
+    EntityPhysics::applyGravity(*this, input, dt);
 
-    Movement::applyDeacceleration(velocity, dt, deacceleration, onGround, input, "LEFT", "RIGHT");
-
-    applyGravity(dt);
-    Movement::applyMovement(position, velocity, dt);
-    shape.setPosition(position);
+    applyMovement(dt);
+    applyMovementToShape();
 }
 
 void ControllableEntity::render(sf::RenderWindow& window) {
     window.draw(shape);
 }
 
-void ControllableEntity::applyGravity(float dt) {
-    if ( gravityEnabled ) {
-
-        if (onGround == false) {
-
-            if (velocity.y < 0) {
-                velocity.y += 2*gravity.y * dt;
-            }
-            else {
-                velocity.y += gravity.y * dt;
-            }
-        }
-        else {
-            velocity.y = 0;
-        }
-        onGround = false;
-    }
+void ControllableEntity::applyMovementToShape() {
+    shape.setPosition(position);
 }
 
-void ControllableEntity::addAction(string& action, function<void(sf::Vector2f&, sf::Vector2f&, float, float, float, float, bool&, float, Input& input, string action)>& func) {
+void ControllableEntity::addAction(string& action, function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func) {
     ControllableEntity::action.emplace_back(action, func);
 }
 

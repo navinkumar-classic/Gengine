@@ -21,13 +21,13 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
 
     if (groundCollision) {
         a->setOnGround(true);
+        a->setJump(false);
         a->setVerticalVelocity(0);
         a->setPosition({aCurr.x, aPrev.y});
     }
     else if (ceilingCollision) {
         a->setPosition({aCurr.x, aPrev.y});
         a->setVerticalVelocity(-1.0f * a->getVelocity().y);
-        std::cout << "Vertical collision (ceiling)\n";
     }
     else {
         a->setPosition({aPrev.x, aCurr.y});

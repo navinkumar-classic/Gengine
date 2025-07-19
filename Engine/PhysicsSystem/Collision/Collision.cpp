@@ -26,7 +26,7 @@ void Collision::handleCollision(Entity* a, Entity* b) {
 
     } else if (a->isMovable && b->isMovable) {
 
-        CollisionBehaviour::ControllableToControllableCollision(a, b);
+        CollisionBehaviour::ControllableToStaticCollision(a, b);
 
     }
 }

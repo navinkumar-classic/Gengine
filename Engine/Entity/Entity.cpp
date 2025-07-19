@@ -4,6 +4,8 @@
 
 #include "Entity.h"
 
+#include <utility>
+
 Entity::Entity(
        bool isMovable,
        const sf::Vector2f& position,
@@ -123,6 +125,10 @@ void Entity::setJump(bool jump) {
 
 void Entity::applyMovement(float dt) {
     position += velocity * dt;
+}
+
+void Entity::addPhysics(function<void(Entity& entity, Input& input, float dt)> function) {
+    physics.emplace_back(function);
 }
 
 

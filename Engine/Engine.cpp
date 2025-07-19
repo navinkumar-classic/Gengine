@@ -6,17 +6,16 @@
 #include "Entity/Entity.h"
 #include "PhysicsSystem/Collision/Collision.h"
 #include <iostream>
-#include "GameInitializer/EntityInitializer.h"
+#include "CameraSystem/CameraBehaviour.h"
 
 Engine::Engine(unsigned int width, unsigned int height)
-    : window(sf::VideoMode(width, height), "SFML Test")
+    : window(sf::VideoMode(width, height), "SFML Test"),
+        camera(sf::FloatRect(0, 0, width, height))
 {
+    window.setFramerateLimit(120);
     input.bindAction("RIGHT",sf::Keyboard::D);
     input.bindAction("LEFT",sf::Keyboard::A);
     input.bindAction("UP",sf::Keyboard::Space);
-
-    entities = EntityInitializer::CreateEntityInitialization(window.getSize());
-    setMovableEntities();
 }
 
 void Engine::run() {
@@ -27,6 +26,8 @@ void Engine::run() {
         render();
 
         input.reset();
+        cameraBehaviour::cameraTracking(*entities[0], camera, 200.0f, 2000.0f);
+        window.setView(camera);
     }
 }
 
@@ -54,13 +55,6 @@ void Engine::update(float dt) {
             entity->update(dt, input);
     }
     Collision::detectCollision(entities, movableEntities);
-    /*
-    for (auto* entity : movableEntities) {
-        entity->applyMovement(dt);
-        entity->applyMovementToShape();
-    }
-    */
-
 }
 
 void Engine::render() {
@@ -72,10 +66,9 @@ void Engine::render() {
     window.display();
 }
 
-void Engine::setMovableEntities() {
-    for (auto& entity : entities) {
-        if (entity->isMovable) {
-            movableEntities.push_back(entity.get());
-        }
+void Engine::addEntity(std::unique_ptr<Entity> entity) {
+    if (entity->isMovable) {
+        movableEntities.push_back(entity.get());
     }
+    entities.push_back(std::move(entity));
 }

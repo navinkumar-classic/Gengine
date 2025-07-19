@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include <functional>
 #include <SFML/Graphics.hpp>
 #include "../Input/Input.h"
 
@@ -53,9 +54,13 @@ public:
 
     void applyMovement(float dt);
 
+    void addPhysics(function<void(Entity&, Input&, float)> function);
+
     const bool isMovable;
 
 protected:
+    vector<function<void(Entity&, Input&, float)>> physics;
+
     sf::Vector2f position;
     sf::Vector2f previousPosition;
 

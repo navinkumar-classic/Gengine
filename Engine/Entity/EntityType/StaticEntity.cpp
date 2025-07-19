@@ -30,7 +30,12 @@ void StaticEntity::render(sf::RenderWindow& window) {
 }
 
 void StaticEntity::update(float dt, Input& input) {
+    for (const auto& physicsFunction : physics) {
+        physicsFunction(*this, input, dt);
+    }
 
+    applyMovement(dt);
+    applyMovementToShape();
 }
 
 void StaticEntity::applyMovementToShape() {

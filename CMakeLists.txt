@@ -13,8 +13,8 @@ add_executable(Gengine main.cpp
         Engine/Entity/EntityType/ControllableEntity.cpp
         Engine/Entity/EntityType/StaticEntity.cpp
         Engine/PhysicsSystem/Collision/Collision.cpp
-        Engine/GameInitializer/EntityInitializer.cpp
         Engine/Actions/Movement.cpp
         Engine/Actions/CollisionBehaviour.cpp
-        Engine/PhysicsSystem/EntityPhysics/EntityPhysics.cpp)
+        Engine/PhysicsSystem/EntityPhysics/EntityPhysics.cpp
+        Engine/CameraSystem/CameraBehaviour.cpp)
 target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)

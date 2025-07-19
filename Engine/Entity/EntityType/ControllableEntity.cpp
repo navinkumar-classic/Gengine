@@ -5,7 +5,7 @@
 #include "ControllableEntity.h"
 #include <utility>
 
-#include "../../Actions/Movement .h"
+#include "../../Actions/Movement.h"
 #include "../../PhysicsSystem/EntityPhysics/EntityPhysics.h"
 
 ControllableEntity::ControllableEntity(
@@ -19,12 +19,10 @@ ControllableEntity::ControllableEntity(
         float acceleration,
         float deacceleration,
         sf::Vector2u windowSize,
-        vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> actions,
         const sf::Color& color
         ):
         Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
         color(color),
-        action(std::move(actions)),
         windowSize(windowSize)
 {
     shape.setSize({32, 32});
@@ -38,8 +36,9 @@ void ControllableEntity::update(float dt, Input& input) {
         action.second(*this, input, action.first, dt);
     }
 
-    EntityPhysics::applyDeacceleration(*this, input, dt, "LEFT", "RIGHT");
-    EntityPhysics::applyGravity(*this, input, dt);
+    for (const auto& physicsFunction : physics) {
+        physicsFunction(*this, input, dt);
+    }
 
     applyMovement(dt);
     applyMovementToShape();
@@ -53,7 +52,7 @@ void ControllableEntity::applyMovementToShape() {
     shape.setPosition(position);
 }
 
-void ControllableEntity::addAction(string& action, function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func) {
+void ControllableEntity::addAction(string action, const function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func) {
     ControllableEntity::action.emplace_back(action, func);
 }
 

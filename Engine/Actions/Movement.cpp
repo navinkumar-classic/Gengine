@@ -2,7 +2,7 @@
 // Created by navin on 7/15/25.
 //
 
-#include "Movement .h"
+#include "Movement.h"
 #include <iostream>
 
 void Movement::moveLeft(ControllableEntity& entity, Input& input, string action, float dt){
@@ -22,7 +22,6 @@ void Movement::moveRight(ControllableEntity& entity, Input& input, string action
 }
 
 void Movement::moveJump(ControllableEntity& entity, Input& input, string action, float dt) {
-    cout << entity.getOnGround() << endl;
     if (input.wasActionPressed(action) && entity.getOnGround()) {
         entity.setVerticalVelocity(entity.getJumpStrength());
         entity.setOnGround(false);

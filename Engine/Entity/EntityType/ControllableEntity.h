@@ -21,7 +21,6 @@ public:
         float acceleration,
         float deacceleration,
         sf::Vector2u windowSize,
-        vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> actions,
         const sf::Color& color = sf::Color::Green
         );
 
@@ -31,7 +30,7 @@ public:
 
     sf::FloatRect getBounds() const override;
 
-    void addAction(string& action, function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func);
+    void addAction(string action, const function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func);
     void clearActions();
 
 private:

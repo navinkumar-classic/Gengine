@@ -8,6 +8,8 @@
 #include "../Entity.h"
 #include <vector>
 
+#include "../../Sprite/SpriteManager/AnimatedSprite.h"
+
 class ControllableEntity : public Entity {
 public:
     ControllableEntity(
@@ -20,8 +22,7 @@ public:
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        sf::Vector2u windowSize,
-        const sf::Color& color = sf::Color::Green
+        sf::Vector2u windowSize
         );
 
     void update(float dt, Input& input) override;
@@ -33,10 +34,11 @@ public:
     void addAction(string action, const function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func);
     void clearActions();
 
+    AnimatedSprite Sprite;
+
 private:
 
     std::vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> action;
-    sf::RectangleShape shape;
-    sf::Color color;
     sf::Vector2u windowSize;
+
 };

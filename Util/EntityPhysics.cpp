@@ -3,6 +3,7 @@
 //
 
 #include "EntityPhysics.h"
+#include "../Engine/Entity/EntityType/ControllableEntity.h"
 
 void EntityPhysics::applyGravity(Entity& entity, Input& input, float dt) {
     if (entity.getVelocity().y < 0) {
@@ -28,5 +29,14 @@ void EntityPhysics::applyDeacceleration(Entity& entity, Input& input, float dt, 
             if (entity.getVelocity().x > 0)
                 entity.setHorizontalVelocity(0);
         }
+
+        if (ControllableEntity* controllable = dynamic_cast<ControllableEntity*>(&entity)) {
+
+            if (controllable->Sprite.getCurrentAction() != "DEFAULT") {
+                controllable->Sprite.setTextureToSprite("DEFAULT");
+            }
+
+        }
+
     }
 }

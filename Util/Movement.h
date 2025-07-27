@@ -4,8 +4,8 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Input/Input.h"
-#include "../Entity/EntityType/ControllableEntity.h"
+#include "../Engine/Input/Input.h"
+#include "../Engine/Entity/EntityType/ControllableEntity.h"
 
 namespace Movement {
     void moveLeft(ControllableEntity& entity, Input& input, string action, float dt);

@@ -4,9 +4,9 @@
 
 #include "Engine.h"
 #include "Entity/Entity.h"
-#include "PhysicsSystem/Collision/Collision.h"
+#include "Physics/Collision/Collision.h"
 #include <iostream>
-#include "CameraSystem/CameraBehaviour.h"
+#include "Camera/CameraBehaviour.h"
 
 Engine::Engine(unsigned int width, unsigned int height)
     : window(sf::VideoMode(width, height), "SFML Test"),
@@ -54,7 +54,7 @@ void Engine::update(float dt) {
             entity->setPreviousPosition(entity->getPosition());
             entity->update(dt, input);
     }
-    Collision::detectCollision(entities, movableEntities);
+    Collision::collisionManager(entities, movableEntities);
 }
 
 void Engine::render() {

@@ -5,8 +5,8 @@
 #include "ControllableEntity.h"
 #include <utility>
 
-#include "../../Actions/Movement.h"
-#include "../../PhysicsSystem/EntityPhysics/EntityPhysics.h"
+#include "../../../Util/Movement.h"
+#include "../../../Util/EntityPhysics.h"
 
 ControllableEntity::ControllableEntity(
         bool isMovable,
@@ -18,17 +18,14 @@ ControllableEntity::ControllableEntity(
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        sf::Vector2u windowSize,
-        const sf::Color& color
+        sf::Vector2u windowSize
         ):
         Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
-        color(color),
-        windowSize(windowSize)
+        windowSize(windowSize),
+        Sprite(32, 32, 0.1)
 {
-    shape.setSize({32, 32});
-    shape.setFillColor(color);
-    shape.setPosition(position);
     setPreviousPosition(position);
+
 }
 void ControllableEntity::update(float dt, Input& input) {
 
@@ -42,14 +39,17 @@ void ControllableEntity::update(float dt, Input& input) {
 
     applyMovement(dt);
     applyMovementToShape();
+    Sprite.update(dt);
 }
 
 void ControllableEntity::render(sf::RenderWindow& window) {
-    window.draw(shape);
+
+    Sprite.draw(window);
 }
 
 void ControllableEntity::applyMovementToShape() {
-    shape.setPosition(position);
+
+    Sprite.setPosition(position);
 }
 
 void ControllableEntity::addAction(string action, const function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func) {
@@ -61,5 +61,5 @@ void ControllableEntity::clearActions() {
 }
 
 sf::FloatRect ControllableEntity::getBounds() const {
-    return shape.getGlobalBounds();
+    return Sprite.getBounds();
 }

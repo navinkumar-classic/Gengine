@@ -2,9 +2,9 @@
 #include <functional>
 #include "Engine/Entity/EntityType/ControllableEntity.h"
 #include "Engine/Entity/EntityType/StaticEntity.h"
-#include "Engine/Actions/Movement.h"
+#include "Util/Movement.h"
 #include "Engine/Engine.h"
-#include "Engine/PhysicsSystem/EntityPhysics/EntityPhysics.h"
+#include "Util/EntityPhysics.h"
 
 
 int main() {
@@ -20,12 +20,14 @@ int main() {
         -900.0f,
         750.0f,
         3000.0f,
-        sf::Vector2u(800.0f, 600.0f),
-        sf::Color::Red
+        sf::Vector2u(800.0f, 600.0f)
     );
     player->addAction("UP", Movement::moveJump);
     player->addAction("RIGHT", Movement::moveRight);
     player->addAction("LEFT", Movement::moveLeft);
+
+    player->Sprite.addTexture("DEFAULT","/home/navin/CLionProjects/Gengine/Assets/Pink_Monster/Pink_Monster_Idle_4.png",4 );
+    player->Sprite.addTexture("WALK","/home/navin/CLionProjects/Gengine/Assets/Pink_Monster/Pink_Monster_Walk_6.png",6 );
 
     player->addPhysics(EntityPhysics::applyGravity);
     player->addPhysics([](Entity& entity, Input& input, float dt){EntityPhysics::applyDeacceleration(entity, input, dt, "RIGHT", "LEFT");});

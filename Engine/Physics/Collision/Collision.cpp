@@ -5,9 +5,9 @@
 #include "Collision.h"
 #include <iostream>
 
-#include "../../Actions/CollisionBehaviour.h"
+#include "../../../Util/CollisionBehaviour.h"
 
-void Collision::detectCollision(const std::vector<std::unique_ptr<Entity>>& entities,const std::vector<Entity*>& movableEntities) {
+void Collision::collisionManager(const std::vector<std::unique_ptr<Entity>>& entities,const std::vector<Entity*>& movableEntities) {
     for (auto* entityA : movableEntities) {
         for (auto& entityB : entities ) {
             if (entityA == entityB.get()) continue;

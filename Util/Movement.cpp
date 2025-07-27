@@ -10,6 +10,10 @@ void Movement::moveLeft(ControllableEntity& entity, Input& input, string action,
         entity.setHorizontalVelocity(entity.getVelocity().x - entity.getAcceleration() * dt);
         if (entity.getVelocity().x < -entity.getMaxSpeed())
             entity.setHorizontalVelocity(-entity.getMaxSpeed());
+
+        if (entity.Sprite.getCurrentAction() != "WALK") {
+            entity.Sprite.setTextureToSprite("WALK");
+        }
     }
 }
 
@@ -18,6 +22,10 @@ void Movement::moveRight(ControllableEntity& entity, Input& input, string action
         entity.setHorizontalVelocity(entity.getVelocity().x + entity.getAcceleration() * dt);
         if (entity.getVelocity().x > entity.getMaxSpeed())
             entity.setHorizontalVelocity(entity.getMaxSpeed());
+
+        if (entity.Sprite.getCurrentAction() != "WALK") {
+            entity.Sprite.setTextureToSprite("WALK");
+        }
     }
 }
 

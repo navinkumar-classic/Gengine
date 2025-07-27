@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include "../../Entity/Entity.h"
+#include "../Engine/Entity/Entity.h"
 
 namespace EntityPhysics {
     void applyGravity(Entity& entity, Input& input, float dt);

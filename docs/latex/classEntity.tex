@@ -1,0 +1,150 @@
+\doxysection{Entity Class Reference}
+\hypertarget{classEntity}{}\label{classEntity}\index{Entity@{Entity}}
+
+
+Inheritance diagram for Entity\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEntity_ae9d2d39d62a7991c30d945d22308ef71}\label{classEntity_ae9d2d39d62a7991c30d945d22308ef71} 
+{\bfseries Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration)
+\item 
+\Hypertarget{classEntity_aff0bfb1615d07eb866c22972dca75d6a}\label{classEntity_aff0bfb1615d07eb866c22972dca75d6a} 
+virtual void {\bfseries update} (float dt, \mbox{\hyperlink{classInput}{Input}} \&input)=0
+\item 
+\Hypertarget{classEntity_a72987d370ecd59d57972060aa8f37c4c}\label{classEntity_a72987d370ecd59d57972060aa8f37c4c} 
+virtual void {\bfseries render} (sf\+::\+Render\+Window \&window)=0
+\item 
+\Hypertarget{classEntity_ae848006241491396f18721432174659d}\label{classEntity_ae848006241491396f18721432174659d} 
+virtual sf\+::\+Float\+Rect {\bfseries get\+Bounds} () const =0
+\item 
+\Hypertarget{classEntity_a6ab283755fadf9e08eec70fd30c5f024}\label{classEntity_a6ab283755fadf9e08eec70fd30c5f024} 
+virtual void {\bfseries apply\+Movement\+To\+Shape} ()=0
+\item 
+\Hypertarget{classEntity_a11d7f8fde1e714c76a20b69793fa157c}\label{classEntity_a11d7f8fde1e714c76a20b69793fa157c} 
+sf\+::\+Vector2f {\bfseries get\+Position} () const
+\item 
+\Hypertarget{classEntity_a621e7204c25ef547c4e245f07aef76aa}\label{classEntity_a621e7204c25ef547c4e245f07aef76aa} 
+sf\+::\+Vector2f {\bfseries get\+Previous\+Position} () const
+\item 
+\Hypertarget{classEntity_ae7518a0181de088e0de2eacd1a13d656}\label{classEntity_ae7518a0181de088e0de2eacd1a13d656} 
+sf\+::\+Vector2f {\bfseries get\+Velocity} () const
+\item 
+\Hypertarget{classEntity_ae0a01ccf249cb355279729c2da5ab671}\label{classEntity_ae0a01ccf249cb355279729c2da5ab671} 
+sf\+::\+Vector2f {\bfseries get\+Gravity} () const
+\item 
+\Hypertarget{classEntity_ae632d5c25b5f94998a56b8414e7a6aad}\label{classEntity_ae632d5c25b5f94998a56b8414e7a6aad} 
+float {\bfseries get\+Max\+Speed} () const
+\item 
+\Hypertarget{classEntity_a93be71e5675ad1339add862c449a634c}\label{classEntity_a93be71e5675ad1339add862c449a634c} 
+float {\bfseries get\+Terminal\+Velocity} () const
+\item 
+\Hypertarget{classEntity_aee1db8a823492ab5861ddaa9b6396b33}\label{classEntity_aee1db8a823492ab5861ddaa9b6396b33} 
+float {\bfseries get\+Jump\+Strength} () const
+\item 
+\Hypertarget{classEntity_a4563f0c4b78033cfb5401eb6354b7dbb}\label{classEntity_a4563f0c4b78033cfb5401eb6354b7dbb} 
+float {\bfseries get\+Acceleration} () const
+\item 
+\Hypertarget{classEntity_a34ee8786ee5de0db3479dc7432319ea0}\label{classEntity_a34ee8786ee5de0db3479dc7432319ea0} 
+float {\bfseries get\+Deacceleration} () const
+\item 
+\Hypertarget{classEntity_a4567008f2a9be9d8062ec87b7e5a39e7}\label{classEntity_a4567008f2a9be9d8062ec87b7e5a39e7} 
+bool {\bfseries get\+On\+Ground} () const
+\item 
+\Hypertarget{classEntity_a941084fb686ea0eaedf4e60463a8ad22}\label{classEntity_a941084fb686ea0eaedf4e60463a8ad22} 
+bool {\bfseries get\+Jump} () const
+\item 
+\Hypertarget{classEntity_a5000a9a577ead655c7ff89afe6eb9f04}\label{classEntity_a5000a9a577ead655c7ff89afe6eb9f04} 
+void {\bfseries set\+Position} (const sf\+::\+Vector2f \&pos)
+\item 
+\Hypertarget{classEntity_a4d9ad033749d45801fa5dbba7e6b2f77}\label{classEntity_a4d9ad033749d45801fa5dbba7e6b2f77} 
+void {\bfseries set\+Previous\+Position} (const sf\+::\+Vector2f \&pos)
+\item 
+\Hypertarget{classEntity_aceb7f48399cf952db09f9f4ed2c820f2}\label{classEntity_aceb7f48399cf952db09f9f4ed2c820f2} 
+void {\bfseries set\+Vertical\+Velocity} (float velocity)
+\item 
+\Hypertarget{classEntity_a2f9b874e1ceebe297396d51665187063}\label{classEntity_a2f9b874e1ceebe297396d51665187063} 
+void {\bfseries set\+Horizontal\+Velocity} (float velocity)
+\item 
+\Hypertarget{classEntity_a07a8201858ad069ab309dfefe60d91e3}\label{classEntity_a07a8201858ad069ab309dfefe60d91e3} 
+void {\bfseries set\+Gravity} (const sf\+::\+Vector2f \&gravity)
+\item 
+\Hypertarget{classEntity_a30a6a1c9680df76d6ac1b2fd77497527}\label{classEntity_a30a6a1c9680df76d6ac1b2fd77497527} 
+void {\bfseries set\+Max\+Speed} (float max\+Speed)
+\item 
+\Hypertarget{classEntity_a8344e9890247a4d225c59187304a28d4}\label{classEntity_a8344e9890247a4d225c59187304a28d4} 
+void {\bfseries set\+Terminal\+Velocity} (float terminal\+Velocity)
+\item 
+\Hypertarget{classEntity_a9dd56c49e8e1508ec76d74b3dc36ef91}\label{classEntity_a9dd56c49e8e1508ec76d74b3dc36ef91} 
+void {\bfseries set\+Jump\+Strength} (float jump\+Strength)
+\item 
+\Hypertarget{classEntity_a0832ad7033681cd3a632ad0d8fe3a51b}\label{classEntity_a0832ad7033681cd3a632ad0d8fe3a51b} 
+void {\bfseries set\+Acceleration} (float acceleration)
+\item 
+\Hypertarget{classEntity_a206f552885a9ee33a390b471d136e406}\label{classEntity_a206f552885a9ee33a390b471d136e406} 
+void {\bfseries set\+Deacceleration} (float deacceleration)
+\item 
+\Hypertarget{classEntity_a879f75bf05bbe7772c91e951ec78d2ab}\label{classEntity_a879f75bf05bbe7772c91e951ec78d2ab} 
+void {\bfseries set\+On\+Ground} (bool on\+Ground)
+\item 
+\Hypertarget{classEntity_ab11bc8b701a833e324981f59df63956b}\label{classEntity_ab11bc8b701a833e324981f59df63956b} 
+void {\bfseries set\+Jump} (bool jump)
+\item 
+\Hypertarget{classEntity_a8073690324409ca2e05516388ed8d542}\label{classEntity_a8073690324409ca2e05516388ed8d542} 
+void {\bfseries apply\+Movement} (float dt)
+\item 
+\Hypertarget{classEntity_aac0fcd66b308d9812d7cc9250e723f8d}\label{classEntity_aac0fcd66b308d9812d7cc9250e723f8d} 
+void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ function)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEntity_a902c584c5bc5a55daf6986018cac4b2e}\label{classEntity_a902c584c5bc5a55daf6986018cac4b2e} 
+const bool {\bfseries is\+Movable}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEntity_a2147cde6c845ba96f245b0138b3b0bbe}\label{classEntity_a2147cde6c845ba96f245b0138b3b0bbe} 
+vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ $>$ {\bfseries physics}
+\item 
+\Hypertarget{classEntity_afc349ec89c2bffef70bf6a1d95603154}\label{classEntity_afc349ec89c2bffef70bf6a1d95603154} 
+sf\+::\+Vector2f {\bfseries position}
+\item 
+\Hypertarget{classEntity_a012d5a8fdb0496dd40c6bff390202e0f}\label{classEntity_a012d5a8fdb0496dd40c6bff390202e0f} 
+sf\+::\+Vector2f {\bfseries previous\+Position}
+\item 
+\Hypertarget{classEntity_ad2fafaf6e73fbfb6a88ada38319dd924}\label{classEntity_ad2fafaf6e73fbfb6a88ada38319dd924} 
+sf\+::\+Vector2f {\bfseries velocity}
+\item 
+\Hypertarget{classEntity_a5afc1e37d2623f2919e661fd68f50fa5}\label{classEntity_a5afc1e37d2623f2919e661fd68f50fa5} 
+sf\+::\+Vector2f {\bfseries gravity}
+\item 
+\Hypertarget{classEntity_a73fafc743f63a3412c20144011eee683}\label{classEntity_a73fafc743f63a3412c20144011eee683} 
+float {\bfseries max\+Speed}
+\item 
+\Hypertarget{classEntity_aba5d1a1c23c3f182a853b278d195c577}\label{classEntity_aba5d1a1c23c3f182a853b278d195c577} 
+float {\bfseries terminal\+Velocity}
+\item 
+\Hypertarget{classEntity_a8dfd520f807d4965a6680c21a6672f56}\label{classEntity_a8dfd520f807d4965a6680c21a6672f56} 
+float {\bfseries jump\+Strength}
+\item 
+\Hypertarget{classEntity_a677aa4645f0eac72384a1bb1474261d5}\label{classEntity_a677aa4645f0eac72384a1bb1474261d5} 
+float {\bfseries acceleration}
+\item 
+\Hypertarget{classEntity_a207cb6945a76cc030fa6a1b72c6e6a68}\label{classEntity_a207cb6945a76cc030fa6a1b72c6e6a68} 
+float {\bfseries deacceleration}
+\item 
+\Hypertarget{classEntity_aaea9f07bff66b8596dc389c0a5355bfe}\label{classEntity_aaea9f07bff66b8596dc389c0a5355bfe} 
+bool {\bfseries on\+Ground} = false
+\item 
+\Hypertarget{classEntity_acf4f533113701385a2dde3b5302d63e2}\label{classEntity_acf4f533113701385a2dde3b5302d63e2} 
+bool {\bfseries jump} = false
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Engine/\+Entity/Entity.\+h\item 
+Engine/\+Entity/Entity.\+cpp\end{DoxyCompactItemize}

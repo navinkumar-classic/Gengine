@@ -1,0 +1,161 @@
+\doxysection{Static\+Entity Class Reference}
+\hypertarget{classStaticEntity}{}\label{classStaticEntity}\index{StaticEntity@{StaticEntity}}
+
+
+Inheritance diagram for Static\+Entity\+:
+% FIG 0
+
+
+Collaboration diagram for Static\+Entity\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStaticEntity_ae8f7e586fac20cc5cbb5836ad3082465}\label{classStaticEntity_ae8f7e586fac20cc5cbb5836ad3082465} 
+{\bfseries Static\+Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration, const sf\+::\+Vector2f \&size, const sf\+::\+Color \&color=sf\+::\+Color\+::\+Red)
+\item 
+void \mbox{\hyperlink{classStaticEntity_a30b363942fe72d23dd0db0ff08110d8c}{update}} (float dt, \mbox{\hyperlink{classInput}{Input}} \&input) override
+\item 
+void \mbox{\hyperlink{classStaticEntity_aef111c93baa30489323daff2a0be8a75}{render}} (sf\+::\+Render\+Window \&window) override
+\item 
+void \mbox{\hyperlink{classStaticEntity_adcff3de09b9048bc27fba8de54b7d996}{apply\+Movement\+To\+Shape}} () override
+\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{classStaticEntity_ac48632dcbceb4567c60770eaa8d52b09}{get\+Bounds}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration)
+\item 
+sf\+::\+Vector2f {\bfseries get\+Position} () const
+\item 
+sf\+::\+Vector2f {\bfseries get\+Previous\+Position} () const
+\item 
+sf\+::\+Vector2f {\bfseries get\+Velocity} () const
+\item 
+sf\+::\+Vector2f {\bfseries get\+Gravity} () const
+\item 
+float {\bfseries get\+Max\+Speed} () const
+\item 
+float {\bfseries get\+Terminal\+Velocity} () const
+\item 
+float {\bfseries get\+Jump\+Strength} () const
+\item 
+float {\bfseries get\+Acceleration} () const
+\item 
+float {\bfseries get\+Deacceleration} () const
+\item 
+bool {\bfseries get\+On\+Ground} () const
+\item 
+bool {\bfseries get\+Jump} () const
+\item 
+void {\bfseries set\+Position} (const sf\+::\+Vector2f \&pos)
+\item 
+void {\bfseries set\+Previous\+Position} (const sf\+::\+Vector2f \&pos)
+\item 
+void {\bfseries set\+Vertical\+Velocity} (float velocity)
+\item 
+void {\bfseries set\+Horizontal\+Velocity} (float velocity)
+\item 
+void {\bfseries set\+Gravity} (const sf\+::\+Vector2f \&gravity)
+\item 
+void {\bfseries set\+Max\+Speed} (float max\+Speed)
+\item 
+void {\bfseries set\+Terminal\+Velocity} (float terminal\+Velocity)
+\item 
+void {\bfseries set\+Jump\+Strength} (float jump\+Strength)
+\item 
+void {\bfseries set\+Acceleration} (float acceleration)
+\item 
+void {\bfseries set\+Deacceleration} (float deacceleration)
+\item 
+void {\bfseries set\+On\+Ground} (bool on\+Ground)
+\item 
+void {\bfseries set\+Jump} (bool jump)
+\item 
+void {\bfseries apply\+Movement} (float dt)
+\item 
+void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ function)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+const bool {\bfseries is\+Movable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ $>$ {\bfseries physics}
+\item 
+sf\+::\+Vector2f {\bfseries position}
+\item 
+sf\+::\+Vector2f {\bfseries previous\+Position}
+\item 
+sf\+::\+Vector2f {\bfseries velocity}
+\item 
+sf\+::\+Vector2f {\bfseries gravity}
+\item 
+float {\bfseries max\+Speed}
+\item 
+float {\bfseries terminal\+Velocity}
+\item 
+float {\bfseries jump\+Strength}
+\item 
+float {\bfseries acceleration}
+\item 
+float {\bfseries deacceleration}
+\item 
+bool {\bfseries on\+Ground} = false
+\item 
+bool {\bfseries jump} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStaticEntity_adcff3de09b9048bc27fba8de54b7d996}\label{classStaticEntity_adcff3de09b9048bc27fba8de54b7d996} 
+\index{StaticEntity@{StaticEntity}!applyMovementToShape@{applyMovementToShape}}
+\index{applyMovementToShape@{applyMovementToShape}!StaticEntity@{StaticEntity}}
+\doxysubsubsection{\texorpdfstring{applyMovementToShape()}{applyMovementToShape()}}
+{\footnotesize\ttfamily void Static\+Entity\+::apply\+Movement\+To\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+\Hypertarget{classStaticEntity_ac48632dcbceb4567c60770eaa8d52b09}\label{classStaticEntity_ac48632dcbceb4567c60770eaa8d52b09} 
+\index{StaticEntity@{StaticEntity}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!StaticEntity@{StaticEntity}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Static\+Entity\+::get\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+\Hypertarget{classStaticEntity_aef111c93baa30489323daff2a0be8a75}\label{classStaticEntity_aef111c93baa30489323daff2a0be8a75} 
+\index{StaticEntity@{StaticEntity}!render@{render}}
+\index{render@{render}!StaticEntity@{StaticEntity}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Static\+Entity\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+\Hypertarget{classStaticEntity_a30b363942fe72d23dd0db0ff08110d8c}\label{classStaticEntity_a30b363942fe72d23dd0db0ff08110d8c} 
+\index{StaticEntity@{StaticEntity}!update@{update}}
+\index{update@{update}!StaticEntity@{StaticEntity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Static\+Entity\+::update (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\mbox{\hyperlink{classInput}{Input}} \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Engine/\+Entity/\+Entity\+Type/Static\+Entity.\+h\item 
+Engine/\+Entity/\+Entity\+Type/Static\+Entity.\+cpp\end{DoxyCompactItemize}

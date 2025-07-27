@@ -1,0 +1,26 @@
+\doxysection{Collision.\+h}
+\hypertarget{Collision_8h_source}{}\label{Collision_8h_source}\index{Engine/PhysicsSystem/Collision/Collision.h@{Engine/PhysicsSystem/Collision/Collision.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ navin\ on\ 7/15/25.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../../Entity/Entity.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <SFML/System/Vector2.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollision}{Collision}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCollision_a6b2b1bb5fe6cc1359e2f478d31ce73e7}{detectCollision}}(\textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Entity>>\&\ entities,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Entity*>\&\ movableEntities);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ checkCollision(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity}{Entity}}*\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity}{Entity}}*\ b);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ handleCollision(\mbox{\hyperlink{classEntity}{Entity}}*\ a,\ \mbox{\hyperlink{classEntity}{Entity}}*\ b);}
+\DoxyCodeLine{00053\ \};}
+
+\end{DoxyCode}

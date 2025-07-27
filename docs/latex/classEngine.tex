@@ -1,0 +1,79 @@
+\doxysection{Engine Class Reference}
+\hypertarget{classEngine}{}\label{classEngine}\index{Engine@{Engine}}
+
+
+Central class that drives the game loop, rendering, and input/event handling.  
+
+
+
+
+{\ttfamily \#include $<$Engine.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEngine_a801405dfa82b992c4bcbaf7a881f6d72}{Engine}} (unsigned int width=800, unsigned int height=600)
+\begin{DoxyCompactList}\small\item\em Creates a game engine with a given window size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc}{run}} ()
+\begin{DoxyCompactList}\small\item\em Starts and runs the main game loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_a1dba6509783a9a6522e19d936e921b83}{add\+Entity}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ entity)
+\begin{DoxyCompactList}\small\item\em Adds a new entity to the engine\textquotesingle{}s world. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Central class that drives the game loop, rendering, and input/event handling. 
+
+The \doxylink{classEngine}{Engine} coordinates core subsystems\+: window creation, input processing, entity updates, and rendering. It serves as the main runtime environment for the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEngine_a801405dfa82b992c4bcbaf7a881f6d72}\label{classEngine_a801405dfa82b992c4bcbaf7a881f6d72} 
+\index{Engine@{Engine}!Engine@{Engine}}
+\index{Engine@{Engine}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{Engine()}{Engine()}}
+{\footnotesize\ttfamily Engine\+::\+Engine (\begin{DoxyParamCaption}\item[{unsigned int}]{width = {\ttfamily 800},  }\item[{unsigned int}]{height = {\ttfamily 600} }\end{DoxyParamCaption})}
+
+
+
+Creates a game engine with a given window size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width of the window in pixels. \\
+\hline
+{\em height} & Height of the window in pixels. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEngine_a1dba6509783a9a6522e19d936e921b83}\label{classEngine_a1dba6509783a9a6522e19d936e921b83} 
+\index{Engine@{Engine}!addEntity@{addEntity}}
+\index{addEntity@{addEntity}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{addEntity()}{addEntity()}}
+{\footnotesize\ttfamily void Engine\+::add\+Entity (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$}]{entity }\end{DoxyParamCaption})}
+
+
+
+Adds a new entity to the engine\textquotesingle{}s world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & A unique pointer to the entity to be added. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc}\label{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc} 
+\index{Engine@{Engine}!run@{run}}
+\index{run@{run}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Engine\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts and runs the main game loop. 
+
+Continuously processes events, updates entity state, and renders frames until the engine is stopped. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Engine/Engine.\+h\item 
+Engine/Engine.\+cpp\end{DoxyCompactItemize}

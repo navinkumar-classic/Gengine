@@ -1,0 +1,180 @@
+\doxysection{Input Class Reference}
+\hypertarget{classInput}{}\label{classInput}\index{Input@{Input}}
+
+
+Handles user input and maps key events to high-\/level actions.  
+
+
+
+
+{\ttfamily \#include $<$Input.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classInput_a154547c6bf2191c4a12a8f42483ed046}{update\+Event}} (const vector$<$ sf\+::\+Event $>$ \&events, float dt)
+\begin{DoxyCompactList}\small\item\em Updates input state based on a list of SFML events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInput_a8bec96dd53baf5ec754c199af3c957c8}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Resets all key state (pressed/released/held) for a new frame. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInput_ab4a3c022e314396feb0160e01aa54d32}{is\+Action\+Held}} (const string \&action) const
+\begin{DoxyCompactList}\small\item\em Checks if an action is currently being held down. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInput_a14d850948cfa441b4e3bc689dada4207}{was\+Action\+Pressed}} (const string \&action) const
+\begin{DoxyCompactList}\small\item\em Checks if an action was pressed in the current frame. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInput_aacab10fd1942519e13554a95e5bdb389}{was\+Action\+Released}} (const string \&action) const
+\begin{DoxyCompactList}\small\item\em Checks if an action was released in the current frame. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInput_a2b40b82e03d265ebcefa402c112be2e9}{get\+Hold\+Duration}} (const string \&action) const
+\begin{DoxyCompactList}\small\item\em Returns how long a key has been held down for an action. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInput_a9c4542b7c7dbdce22dd06e74b490976e}{bind\+Action}} (const string \&action, sf\+::\+Keyboard\+::\+Key key)
+\begin{DoxyCompactList}\small\item\em Binds a key to a named action. \end{DoxyCompactList}\item 
+sf\+::\+Keyboard\+::\+Key \mbox{\hyperlink{classInput_ae3e3e78583b08463bf460abaa929c119}{get\+Key\+For\+Action}} (const string \&action) const
+\begin{DoxyCompactList}\small\item\em Gets the key bound to a given action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles user input and maps key events to high-\/level actions. 
+
+The \doxylink{classInput}{Input} class maintains state for keyboard input, such as whether a key is pressed, released, or held. It also allows mapping strings (actions) to specific keys, enabling flexible control schemes. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classInput_a9c4542b7c7dbdce22dd06e74b490976e}\label{classInput_a9c4542b7c7dbdce22dd06e74b490976e} 
+\index{Input@{Input}!bindAction@{bindAction}}
+\index{bindAction@{bindAction}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{bindAction()}{bindAction()}}
+{\footnotesize\ttfamily void Input\+::bind\+Action (\begin{DoxyParamCaption}\item[{const string \&}]{action,  }\item[{sf\+::\+Keyboard\+::\+Key}]{key }\end{DoxyParamCaption})}
+
+
+
+Binds a key to a named action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The name of the action. \\
+\hline
+{\em key} & The keyboard key to bind. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInput_a2b40b82e03d265ebcefa402c112be2e9}\label{classInput_a2b40b82e03d265ebcefa402c112be2e9} 
+\index{Input@{Input}!getHoldDuration@{getHoldDuration}}
+\index{getHoldDuration@{getHoldDuration}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{getHoldDuration()}{getHoldDuration()}}
+{\footnotesize\ttfamily float Input\+::get\+Hold\+Duration (\begin{DoxyParamCaption}\item[{const string \&}]{action }\end{DoxyParamCaption}) const}
+
+
+
+Returns how long a key has been held down for an action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The name of the action. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Hold duration in seconds. 
+\end{DoxyReturn}
+\Hypertarget{classInput_ae3e3e78583b08463bf460abaa929c119}\label{classInput_ae3e3e78583b08463bf460abaa929c119} 
+\index{Input@{Input}!getKeyForAction@{getKeyForAction}}
+\index{getKeyForAction@{getKeyForAction}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{getKeyForAction()}{getKeyForAction()}}
+{\footnotesize\ttfamily sf\+::\+Keyboard\+::\+Key Input\+::get\+Key\+For\+Action (\begin{DoxyParamCaption}\item[{const string \&}]{action }\end{DoxyParamCaption}) const}
+
+
+
+Gets the key bound to a given action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The name of the action. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The associated SFML keyboard key. 
+\end{DoxyReturn}
+\Hypertarget{classInput_ab4a3c022e314396feb0160e01aa54d32}\label{classInput_ab4a3c022e314396feb0160e01aa54d32} 
+\index{Input@{Input}!isActionHeld@{isActionHeld}}
+\index{isActionHeld@{isActionHeld}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{isActionHeld()}{isActionHeld()}}
+{\footnotesize\ttfamily bool Input\+::is\+Action\+Held (\begin{DoxyParamCaption}\item[{const string \&}]{action }\end{DoxyParamCaption}) const}
+
+
+
+Checks if an action is currently being held down. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The name of the action. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the associated key is held, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classInput_a8bec96dd53baf5ec754c199af3c957c8}\label{classInput_a8bec96dd53baf5ec754c199af3c957c8} 
+\index{Input@{Input}!reset@{reset}}
+\index{reset@{reset}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Input\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets all key state (pressed/released/held) for a new frame. 
+
+Should be called at the end of each frame to prepare for fresh input. \Hypertarget{classInput_a154547c6bf2191c4a12a8f42483ed046}\label{classInput_a154547c6bf2191c4a12a8f42483ed046} 
+\index{Input@{Input}!updateEvent@{updateEvent}}
+\index{updateEvent@{updateEvent}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{updateEvent()}{updateEvent()}}
+{\footnotesize\ttfamily void Input\+::update\+Event (\begin{DoxyParamCaption}\item[{const vector$<$ sf\+::\+Event $>$ \&}]{events,  }\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+Updates input state based on a list of SFML events. 
+
+This method should be called every frame to track input state changes, such as presses, releases, and duration for held keys.
+
+
+\begin{DoxyParams}{Parameters}
+{\em events} & A list of SFML events polled from the window. \\
+\hline
+{\em dt} & Delta time in seconds since the last frame. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classInput_a14d850948cfa441b4e3bc689dada4207}\label{classInput_a14d850948cfa441b4e3bc689dada4207} 
+\index{Input@{Input}!wasActionPressed@{wasActionPressed}}
+\index{wasActionPressed@{wasActionPressed}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{wasActionPressed()}{wasActionPressed()}}
+{\footnotesize\ttfamily bool Input\+::was\+Action\+Pressed (\begin{DoxyParamCaption}\item[{const string \&}]{action }\end{DoxyParamCaption}) const}
+
+
+
+Checks if an action was pressed in the current frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The name of the action. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the key was pressed, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classInput_aacab10fd1942519e13554a95e5bdb389}\label{classInput_aacab10fd1942519e13554a95e5bdb389} 
+\index{Input@{Input}!wasActionReleased@{wasActionReleased}}
+\index{wasActionReleased@{wasActionReleased}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{wasActionReleased()}{wasActionReleased()}}
+{\footnotesize\ttfamily bool Input\+::was\+Action\+Released (\begin{DoxyParamCaption}\item[{const string \&}]{action }\end{DoxyParamCaption}) const}
+
+
+
+Checks if an action was released in the current frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & The name of the action. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the key was released, false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Engine/\+Input/Input.\+h\item 
+Engine/\+Input/Input.\+cpp\end{DoxyCompactItemize}

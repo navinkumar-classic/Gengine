@@ -1,0 +1,167 @@
+\doxysection{Controllable\+Entity Class Reference}
+\hypertarget{classControllableEntity}{}\label{classControllableEntity}\index{ControllableEntity@{ControllableEntity}}
+
+
+Inheritance diagram for Controllable\+Entity\+:
+% FIG 0
+
+
+Collaboration diagram for Controllable\+Entity\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classControllableEntity_a4c2379cc0c9d4f96ea63a65c43c12a8b}\label{classControllableEntity_a4c2379cc0c9d4f96ea63a65c43c12a8b} 
+{\bfseries Controllable\+Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration, sf\+::\+Vector2u window\+Size, const sf\+::\+Color \&color=sf\+::\+Color\+::\+Green)
+\item 
+void \mbox{\hyperlink{classControllableEntity_a513a852a1c60fa61a150f16042c2889a}{update}} (float dt, \mbox{\hyperlink{classInput}{Input}} \&input) override
+\item 
+void \mbox{\hyperlink{classControllableEntity_ad2e8df9760d2096a7a8ef0590e0b22d1}{render}} (sf\+::\+Render\+Window \&window) override
+\item 
+void \mbox{\hyperlink{classControllableEntity_ada3ae83bfb03fdce35f778c66870bdfa}{apply\+Movement\+To\+Shape}} () override
+\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{classControllableEntity_a7dc41844352c1771c0df42ab3e872323}{get\+Bounds}} () const override
+\item 
+\Hypertarget{classControllableEntity_a6c349863974a883a5660e8a08978da30}\label{classControllableEntity_a6c349863974a883a5660e8a08978da30} 
+void {\bfseries add\+Action} (string action, const function$<$ void(\mbox{\hyperlink{classControllableEntity}{Controllable\+Entity}} \&entity, \mbox{\hyperlink{classInput}{Input}} \&input, string action, float dt)$>$ \&func)
+\item 
+\Hypertarget{classControllableEntity_aa58c6d22acd03827f46c2146998fcf32}\label{classControllableEntity_aa58c6d22acd03827f46c2146998fcf32} 
+void {\bfseries clear\+Actions} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration)
+\item 
+sf\+::\+Vector2f {\bfseries get\+Position} () const
+\item 
+sf\+::\+Vector2f {\bfseries get\+Previous\+Position} () const
+\item 
+sf\+::\+Vector2f {\bfseries get\+Velocity} () const
+\item 
+sf\+::\+Vector2f {\bfseries get\+Gravity} () const
+\item 
+float {\bfseries get\+Max\+Speed} () const
+\item 
+float {\bfseries get\+Terminal\+Velocity} () const
+\item 
+float {\bfseries get\+Jump\+Strength} () const
+\item 
+float {\bfseries get\+Acceleration} () const
+\item 
+float {\bfseries get\+Deacceleration} () const
+\item 
+bool {\bfseries get\+On\+Ground} () const
+\item 
+bool {\bfseries get\+Jump} () const
+\item 
+void {\bfseries set\+Position} (const sf\+::\+Vector2f \&pos)
+\item 
+void {\bfseries set\+Previous\+Position} (const sf\+::\+Vector2f \&pos)
+\item 
+void {\bfseries set\+Vertical\+Velocity} (float velocity)
+\item 
+void {\bfseries set\+Horizontal\+Velocity} (float velocity)
+\item 
+void {\bfseries set\+Gravity} (const sf\+::\+Vector2f \&gravity)
+\item 
+void {\bfseries set\+Max\+Speed} (float max\+Speed)
+\item 
+void {\bfseries set\+Terminal\+Velocity} (float terminal\+Velocity)
+\item 
+void {\bfseries set\+Jump\+Strength} (float jump\+Strength)
+\item 
+void {\bfseries set\+Acceleration} (float acceleration)
+\item 
+void {\bfseries set\+Deacceleration} (float deacceleration)
+\item 
+void {\bfseries set\+On\+Ground} (bool on\+Ground)
+\item 
+void {\bfseries set\+Jump} (bool jump)
+\item 
+void {\bfseries apply\+Movement} (float dt)
+\item 
+void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ function)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+const bool {\bfseries is\+Movable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ $>$ {\bfseries physics}
+\item 
+sf\+::\+Vector2f {\bfseries position}
+\item 
+sf\+::\+Vector2f {\bfseries previous\+Position}
+\item 
+sf\+::\+Vector2f {\bfseries velocity}
+\item 
+sf\+::\+Vector2f {\bfseries gravity}
+\item 
+float {\bfseries max\+Speed}
+\item 
+float {\bfseries terminal\+Velocity}
+\item 
+float {\bfseries jump\+Strength}
+\item 
+float {\bfseries acceleration}
+\item 
+float {\bfseries deacceleration}
+\item 
+bool {\bfseries on\+Ground} = false
+\item 
+bool {\bfseries jump} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classControllableEntity_ada3ae83bfb03fdce35f778c66870bdfa}\label{classControllableEntity_ada3ae83bfb03fdce35f778c66870bdfa} 
+\index{ControllableEntity@{ControllableEntity}!applyMovementToShape@{applyMovementToShape}}
+\index{applyMovementToShape@{applyMovementToShape}!ControllableEntity@{ControllableEntity}}
+\doxysubsubsection{\texorpdfstring{applyMovementToShape()}{applyMovementToShape()}}
+{\footnotesize\ttfamily void Controllable\+Entity\+::apply\+Movement\+To\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+\Hypertarget{classControllableEntity_a7dc41844352c1771c0df42ab3e872323}\label{classControllableEntity_a7dc41844352c1771c0df42ab3e872323} 
+\index{ControllableEntity@{ControllableEntity}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!ControllableEntity@{ControllableEntity}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Controllable\+Entity\+::get\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+\Hypertarget{classControllableEntity_ad2e8df9760d2096a7a8ef0590e0b22d1}\label{classControllableEntity_ad2e8df9760d2096a7a8ef0590e0b22d1} 
+\index{ControllableEntity@{ControllableEntity}!render@{render}}
+\index{render@{render}!ControllableEntity@{ControllableEntity}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void Controllable\+Entity\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+\Hypertarget{classControllableEntity_a513a852a1c60fa61a150f16042c2889a}\label{classControllableEntity_a513a852a1c60fa61a150f16042c2889a} 
+\index{ControllableEntity@{ControllableEntity}!update@{update}}
+\index{update@{update}!ControllableEntity@{ControllableEntity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Controllable\+Entity\+::update (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\mbox{\hyperlink{classInput}{Input}} \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classEntity}{Entity}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Engine/\+Entity/\+Entity\+Type/Controllable\+Entity.\+h\item 
+Engine/\+Entity/\+Entity\+Type/Controllable\+Entity.\+cpp\end{DoxyCompactItemize}

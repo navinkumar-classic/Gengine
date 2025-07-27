@@ -1,0 +1,40 @@
+\doxysection{Engine.\+h}
+\hypertarget{Engine_8h_source}{}\label{Engine_8h_source}\index{Engine/Engine.h@{Engine/Engine.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ navin\ on\ 7/14/25.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Input/Input.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Entity/Entity.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEngine}{Engine}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classEngine}{Engine}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width\ =\ 800,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height\ =\ 600);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc}{run}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEngine_a1dba6509783a9a6522e19d936e921b83}{addEntity}}(std::unique\_ptr<Entity>\ entity);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ processEvents(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRunning\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ sf::RenderWindow\ window;}
+\DoxyCodeLine{00067\ \ \ \ \ sf::View\ camera;}
+\DoxyCodeLine{00068\ \ \ \ \ sf::Clock\ clock;}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classInput}{Input}}\ input;}
+\DoxyCodeLine{00070\ \ \ \ \ std::vector<std::unique\_ptr<Entity>>\ entities;}
+\DoxyCodeLine{00071\ \ \ \ \ std::vector<Entity*>\ movableEntities;}
+\DoxyCodeLine{00072\ \};}
+
+\end{DoxyCode}

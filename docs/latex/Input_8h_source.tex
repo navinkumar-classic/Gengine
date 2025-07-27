@@ -1,0 +1,45 @@
+\doxysection{Input.\+h}
+\hypertarget{Input_8h_source}{}\label{Input_8h_source}\index{Engine/Input/Input.h@{Engine/Input/Input.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ navin\ on\ 7/14/25.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <SFML/Window.hpp>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classInput}{Input}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInput_a154547c6bf2191c4a12a8f42483ed046}{updateEvent}}(\textcolor{keyword}{const}\ vector<sf::Event>\&\ events,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInput_a8bec96dd53baf5ec754c199af3c957c8}{reset}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInput_ab4a3c022e314396feb0160e01aa54d32}{isActionHeld}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInput_a14d850948cfa441b4e3bc689dada4207}{wasActionPressed}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classInput_aacab10fd1942519e13554a95e5bdb389}{wasActionReleased}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classInput_a2b40b82e03d265ebcefa402c112be2e9}{getHoldDuration}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classInput_a9c4542b7c7dbdce22dd06e74b490976e}{bindAction}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ action,\ sf::Keyboard::Key\ key);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \ \ sf::Keyboard::Key\ \mbox{\hyperlink{classInput_ae3e3e78583b08463bf460abaa929c119}{getKeyForAction}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ action)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \ \ unordered\_map<sf::Keyboard::Key,\ bool>\ keyHeld;}
+\DoxyCodeLine{00090\ \ \ \ \ unordered\_map<sf::Keyboard::Key,\ bool>\ keyPressed;}
+\DoxyCodeLine{00091\ \ \ \ \ unordered\_map<sf::Keyboard::Key,\ bool>\ keyReleased;}
+\DoxyCodeLine{00092\ \ \ \ \ unordered\_map<sf::Keyboard::Key,\ float>\ keyHoldDuration;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ unordered\_map<string,\ sf::Keyboard::Key>\ actionBindings;}
+\DoxyCodeLine{00095\ \ \ \ \ unordered\_map<sf::Keyboard::Key,\ string>\ keyBindings;}
+\DoxyCodeLine{00096\ \};}
+
+\end{DoxyCode}

@@ -26,8 +26,9 @@ int main() {
     player->addAction("RIGHT", Movement::moveRight);
     player->addAction("LEFT", Movement::moveLeft);
 
-    player->Sprite.addTexture("DEFAULT","/home/navin/CLionProjects/Gengine/Assets/Pink_Monster/Pink_Monster_Idle_4.png",4 );
-    player->Sprite.addTexture("WALK","/home/navin/CLionProjects/Gengine/Assets/Pink_Monster/Pink_Monster_Walk_6.png",6 );
+    player->Sprite.addTexture("DEFAULT","/home/navin/CLionProjects/Gengine/Assets/pinkMonster/Pink_Monster_Idle_4.png",4 );
+    player->Sprite.addTexture("WALK","/home/navin/CLionProjects/Gengine/Assets/pinkMonster/Pink_Monster_Walk_6.png",6 );
+    player->Sprite.addTexture("JUMP","/home/navin/CLionProjects/Gengine/Assets/pinkMonster/Pink_Monster_Jump_8.png",8 );
 
     player->addPhysics(EntityPhysics::applyGravity);
     player->addPhysics([](Entity& entity, Input& input, float dt){EntityPhysics::applyDeacceleration(entity, input, dt, "RIGHT", "LEFT");});
@@ -44,9 +45,17 @@ int main() {
         0.0f,
         0.0f,
         0.0f,
-        sf::Vector2f(1500, 190),
-        sf::Color::Green
+        sf::Vector2f(640, 192)
     );
+    std::vector<std::vector<int>> mat = {
+        {0,0,0,0,0,0,0,0,0,0},
+        {1,1,1,1,1,1,1,1,1,1},
+        {1,1,1,1,1,1,1,1,1,1}
+    };
+    wall1->tileMap.loadTexture(0, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/2.png");
+    wall1->tileMap.loadTexture(1, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/5.png");
+    wall1->tileMap.loadTexture(2, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/3.png");
+    wall1->tileMap.setMatrix(mat);
 
     engine.addEntity(std::move(wall1));
 
@@ -60,9 +69,13 @@ int main() {
         0.0f,
         0.0f,
         0.0f,
-        sf::Vector2f(60, 60),
-        sf::Color::Yellow
+        sf::Vector2f(64, 64)
     );
+    std::vector<std::vector<int>> mat1 = {
+        {0}
+    };
+    wall2->tileMap.loadTexture(0, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Object/Crate.png");
+    wall2->tileMap.setMatrix(mat1);
 
     wall2->addPhysics(EntityPhysics::applyGravity);
 

@@ -35,66 +35,91 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
     }
 }
 */
+
 void CollisionBehaviour::ControllableToControllableCollision(Entity *a, Entity *b) {
     a->setPosition(a->getPreviousPosition());
     b->setPosition(b->getPreviousPosition());
 }
 
 void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
+    // Current global bounds (SFML accounts for scale/flip here)
     sf::FloatRect aBounds = a->getBounds();
     sf::FloatRect bBounds = b->getBounds();
 
+    // Positions & velocity
     sf::Vector2f aPrev = a->getPreviousPosition();
     sf::Vector2f aCurr = a->getPosition();
     sf::Vector2f aVel  = a->getVelocity();
 
-    const float epsilon = 1.0f; // small margin for float comparisons
+    const float epsilon = 1.0f;
 
-    // Vertical Collision: Ground
-    bool isFalling = aVel.y >= 0;
-    bool wasAbove = aPrev.y + aBounds.height <= bBounds.top + epsilon;
-    bool nowOverlapsY = aCurr.y + aBounds.height > bBounds.top;
-    bool overlapsX = aCurr.x + aBounds.width > bBounds.left &&
-                     aCurr.x < bBounds.left + bBounds.width;
+    // Width/height from current bounds
+    float aw = aBounds.width;
+    float ah = aBounds.height;
 
-    if (isFalling && wasAbove && nowOverlapsY && overlapsX) {
+    // Edges for current position (origin.x is centered, origin.y is top)
+    float aCurrLeft   = aCurr.x - aw / 2.0f;
+    float aCurrRight  = aCurr.x + aw / 2.0f;
+    float aCurrTop    = aCurr.y;
+    float aCurrBottom = aCurr.y + ah;
+
+    // Edges for previous position (compute using same size)
+    float aPrevLeft   = aPrev.x - aw / 2.0f;
+    float aPrevRight  = aPrev.x + aw / 2.0f;
+    float aPrevTop    = aPrev.y;
+    float aPrevBottom = aPrev.y + ah;
+
+    // Static block edges
+    float bLeft   = bBounds.left;
+    float bRight  = bBounds.left + bBounds.width;
+    float bTop    = bBounds.top;
+    float bBottom = bBounds.top + bBounds.height;
+
+    // Overlaps (using current position)
+    bool overlapsX = (aCurrRight > bLeft) && (aCurrLeft < bRight);
+    bool overlapsY = (aCurrBottom > bTop) && (aCurrTop < bBottom);
+
+    // --- VERTICAL COLLISIONS ---
+    bool isFalling  = aVel.y >= 0;
+    bool isMovingUp = aVel.y < 0;
+
+    // Ground (came from above)
+    bool wasAbove = (aPrevBottom <= bTop + epsilon);
+    bool nowOverlapsTop = (aCurrBottom > bTop);
+
+    if (isFalling && wasAbove && nowOverlapsTop && overlapsX) {
         a->setOnGround(true);
         a->setJump(false);
         a->setVerticalVelocity(0);
-        // Snap to top of static block
-        a->setPosition({aCurr.x, bBounds.top - aBounds.height});
+        // Snap using center-x, top-y convention
+        a->setPosition({ aCurr.x, bTop - ah });
         return;
     }
 
-    // Vertical Collision: Ceiling
-    bool isMovingUp = aVel.y < 0;
-    bool wasBelow = aPrev.y >= bBounds.top + bBounds.height - epsilon;
-    bool nowHitsCeiling = aCurr.y < bBounds.top + bBounds.height;
+    // Ceiling (came from below)
+    bool wasBelow = (aPrevTop >= bBottom - epsilon);
+    bool nowHitsCeiling = (aCurrTop < bBottom);
+
     if (isMovingUp && wasBelow && nowHitsCeiling && overlapsX) {
         a->setVerticalVelocity(0);
-        // Snap below the ceiling
-        a->setPosition({aCurr.x, bBounds.top + bBounds.height});
+        a->setPosition({ aCurr.x, bBottom });
         return;
     }
 
-    // Horizontal Collision: From Left or Right
-    bool wasLeft = aPrev.x + aBounds.width <= bBounds.left + epsilon;
-    bool wasRight = aPrev.x >= bBounds.left + bBounds.width - epsilon;
-    bool overlapsY = aCurr.y + aBounds.height > bBounds.top &&
-                     aCurr.y < bBounds.top + bBounds.height;
-
-    if (wasLeft && aCurr.x + aBounds.width > bBounds.left && overlapsY) {
-        // Collided from left
-        a->setPosition({bBounds.left - aBounds.width, aCurr.y});
+    // --- HORIZONTAL COLLISIONS (use crossing detection) ---
+    // Collided from left: previously right edge was <= block left, now right edge > block left
+    if ((aPrevRight <= bLeft + epsilon) && (aCurrRight > bLeft) && overlapsY) {
+        // Snap so entity's right edge sits flush with block left edge
+        a->setPosition({ bLeft - aw / 2.0f, aCurr.y });
         a->setHorizontalVelocity(0);
         return;
     }
-    if (wasRight && aCurr.x < bBounds.left + bBounds.width && overlapsY) {
-        // Collided from right
-        a->setPosition({bBounds.left + bBounds.width, aCurr.y});
+
+    // Collided from right: previously left edge was >= block right, now left edge < block right
+    if ((aPrevLeft >= bRight - epsilon) && (aCurrLeft < bRight) && overlapsY) {
+        // Snap so entity's left edge sits flush with block right edge
+        a->setPosition({ bRight + aw / 2.0f, aCurr.y });
         a->setHorizontalVelocity(0);
+        return;
     }
 }
-
-
-

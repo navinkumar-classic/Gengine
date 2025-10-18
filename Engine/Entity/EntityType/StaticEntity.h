@@ -4,6 +4,7 @@
 #pragma once
 
 #include "../Entity.h"
+#include "../../Sprite/SpriteManager/TileManager.h"
 
 class StaticEntity : public Entity {
 public:
@@ -17,17 +18,15 @@ public:
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        const sf::Vector2f& size,
-        const sf::Color& color = sf::Color::Red);
+        const sf::Vector2f& size);
 
     void update(float dt, Input& input) override;
     void render(sf::RenderWindow& window) override;
     void applyMovementToShape() override;
 
     sf::FloatRect getBounds() const override;
-
+    TileMap tileMap;
 private:
-    sf::RectangleShape shape;
-    sf::Color color;
+
 };
 

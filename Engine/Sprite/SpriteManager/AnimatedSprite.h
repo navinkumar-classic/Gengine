@@ -5,7 +5,6 @@
 #pragma once
 #include "../SpriteBase.h"
 #include <memory>
-#include <vector>
 
 class AnimatedSprite : public SpriteBase {
 
@@ -26,7 +25,8 @@ public:
     sf::FloatRect getBounds() const override;
     std::string getCurrentAction();
 
-
+    void flipToLeft();
+    void flipToRight();
 
 private:
     sf::Sprite sprite;

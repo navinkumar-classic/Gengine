@@ -17,5 +17,7 @@ add_executable(Gengine main.cpp
         Util/CollisionBehaviour.cpp
         Util/EntityPhysics.cpp
         Engine/Camera/CameraBehaviour.cpp
-        Engine/Sprite/SpriteManager/AnimatedSprite.cpp)
+        Engine/Sprite/SpriteManager/AnimatedSprite.cpp
+        Engine/Sprite/SpriteManager/TileManager.h
+        Engine/Sprite/SpriteManager/TileManager.cpp)
 target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)

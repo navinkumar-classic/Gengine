@@ -57,11 +57,10 @@ public:
     void addPhysics(function<void(Entity&, Input&, float)> function);
 
     const bool isMovable;
+    sf::Vector2f position;
 
 protected:
     vector<function<void(Entity&, Input&, float)>> physics;
-
-    sf::Vector2f position;
     sf::Vector2f previousPosition;
 
     sf::Vector2f velocity;

@@ -11,9 +11,9 @@ void Movement::moveLeft(ControllableEntity& entity, Input& input, string action,
         if (entity.getVelocity().x < -entity.getMaxSpeed())
             entity.setHorizontalVelocity(-entity.getMaxSpeed());
 
-        if (entity.Sprite.getCurrentAction() != "WALK") {
+        entity.Sprite.flipToLeft();
+        if (entity.Sprite.getCurrentAction() != "WALK" && entity.getOnGround())
             entity.Sprite.setTextureToSprite("WALK");
-        }
     }
 }
 
@@ -23,9 +23,10 @@ void Movement::moveRight(ControllableEntity& entity, Input& input, string action
         if (entity.getVelocity().x > entity.getMaxSpeed())
             entity.setHorizontalVelocity(entity.getMaxSpeed());
 
-        if (entity.Sprite.getCurrentAction() != "WALK") {
+        entity.Sprite.flipToRight();
+        if (entity.Sprite.getCurrentAction() != "WALK" && entity.getOnGround())
             entity.Sprite.setTextureToSprite("WALK");
-        }
+
     }
 }
 
@@ -34,6 +35,8 @@ void Movement::moveJump(ControllableEntity& entity, Input& input, string action,
         entity.setVerticalVelocity(entity.getJumpStrength());
         entity.setOnGround(false);
         entity.setJump(true);
+        if (entity.Sprite.getCurrentAction() != "JUMP")
+            entity.Sprite.setTextureToSprite("JUMP");
     }
     if (entity.getOnGround() == false && entity.getJump() && !input.isActionHeld(action)) {
         entity.setVerticalVelocity(entity.getVelocity().y * 0.5f);

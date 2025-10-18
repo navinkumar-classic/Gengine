@@ -14,19 +14,17 @@ StaticEntity::StaticEntity(
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        const sf::Vector2f& size,
-        const sf::Color& color):
+        const sf::Vector2f& size
+        ):
         Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
-        color(color)
+        tileMap(64,64)
 {
-    shape.setFillColor(color);
-    shape.setPosition(position);
     setPreviousPosition(position);
-    shape.setSize(size);
+    tileMap.setPosition(position);
 }
 
 void StaticEntity::render(sf::RenderWindow& window) {
-    window.draw(shape);
+    tileMap.draw(window);
 }
 
 void StaticEntity::update(float dt, Input& input) {
@@ -39,9 +37,9 @@ void StaticEntity::update(float dt, Input& input) {
 }
 
 void StaticEntity::applyMovementToShape() {
-    shape.setPosition(position);
+    tileMap.setPosition(position);
 }
 
 sf::FloatRect StaticEntity::getBounds() const {
-    return shape.getGlobalBounds();
+    return tileMap.getBounds();
 }

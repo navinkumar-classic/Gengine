@@ -34,6 +34,10 @@ void AnimatedSprite::setTextureToSprite(std::string action) {
     sprite.setTexture(*textureMap[action].first);
     sprite.setTextureRect(sf::IntRect(0, 0, frameSize.x, frameSize.y));
 
+    //changes centre
+    sf::FloatRect bounds = sprite.getLocalBounds();
+    sprite.setOrigin(bounds.width / 2.f, 0.f);
+
     frameTimer = 0;
     totalFrames = textureMap[action].second;
     currentFrame = 0;
@@ -66,7 +70,16 @@ sf::FloatRect AnimatedSprite::getBounds() const {
 }
 
 std::string AnimatedSprite::getCurrentAction() {
+
     return currentAction;
+}
+
+void AnimatedSprite::flipToLeft() {
+    sprite.setScale(-2.f, 2.f);
+}
+
+void AnimatedSprite::flipToRight() {
+    sprite.setScale(2.f, 2.f);
 }
 
 

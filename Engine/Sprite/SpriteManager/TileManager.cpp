@@ -38,14 +38,23 @@ void TileMap::setPosition(const sf::Vector2f& pos) {
 
 sf::FloatRect TileMap::getBounds() const {
     if (m_matrix.empty() || m_matrix[0].empty()) return sf::FloatRect();
-    return sf::FloatRect(m_position.x, m_position.y,
-                         m_matrix[0].size() * m_tileWidth,
-                         m_matrix.size() * m_tileHeight);
+    float width  = m_matrix[0].size() * m_tileWidth;
+    float height = m_matrix.size() * m_tileHeight;
+
+    // The top-left corner should be the position minus the origin offset
+    float left = m_position.x;
+    float top  = m_position.y;
+
+    return sf::FloatRect(left, top, width, height);
+
 }
 
 // TileMap-specific
 void TileMap::setMatrix(const std::vector<std::vector<int>>& mat) {
     m_matrix = mat;
+
+    float width  = m_matrix[0].size() * m_tileWidth;
+    setOrgin(width/2.f, 0.f);
 }
 
 void TileMap::loadTexture(int id, const std::string& filename) {
@@ -56,3 +65,6 @@ void TileMap::loadTexture(int id, const std::string& filename) {
     m_textures[id] = tex;
 }
 
+void TileMap::setOrgin(float a, float b) {
+    m_origin = sf::Vector2f(a,b);
+}

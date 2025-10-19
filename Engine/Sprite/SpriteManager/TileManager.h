@@ -22,12 +22,14 @@ public:
     // TileMap-specific
     void setMatrix(const std::vector<std::vector<int>>& mat);
     void loadTexture(int id, const std::string& filename);
+    void setOrgin(float x, float y);
 
 private:
     float m_tileWidth;
     float m_tileHeight;
     sf::VertexArray m_vertices;
     sf::Vector2f m_position {0.f, 0.f};
+    sf::Vector2f m_origin;
 
     std::vector<std::vector<int>> m_matrix;
 

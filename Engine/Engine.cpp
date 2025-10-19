@@ -8,15 +8,10 @@
 #include <iostream>
 #include "Camera/CameraBehaviour.h"
 
-Engine::Engine(unsigned int width, unsigned int height)
-    : window(sf::VideoMode(width, height), "SFML Test"),
-        camera(sf::FloatRect(0, 0, width, height))
-{
-    window.setFramerateLimit(120);
-    input.bindAction("RIGHT",sf::Keyboard::D);
-    input.bindAction("LEFT",sf::Keyboard::A);
-    input.bindAction("UP",sf::Keyboard::Space);
-}
+Engine::Engine(unsigned int width, unsigned int height):
+    window(sf::VideoMode(width, height), "SFML Test"),
+    camera(sf::FloatRect(0, 0, width, height))
+{}
 
 void Engine::run() {
     while (isRunning) {
@@ -54,7 +49,7 @@ void Engine::update(float dt) {
             entity->setPreviousPosition(entity->getPosition());
             entity->update(dt, input);
     }
-    Collision::collisionManager(entities, movableEntities);
+    collision.collisionManager(entities, movableEntities);
 }
 
 void Engine::render() {
@@ -71,4 +66,16 @@ void Engine::addEntity(std::unique_ptr<Entity> entity) {
         movableEntities.push_back(entity.get());
     }
     entities.push_back(std::move(entity));
+}
+
+void Engine::bindAction(const string& action, sf::Keyboard::Key key) {
+    input.bindAction(action, key);
+}
+
+void Engine::setFrameRate(int frameRate) {
+    window.setFramerateLimit(frameRate);
+}
+
+void Engine::addEntryToCollisionHandler(const string &a, const string &b, const std::function<void(Entity *a, Entity *b)> &handler) {
+    collision.addEntryToCollisionHandler(a, b, handler);
 }

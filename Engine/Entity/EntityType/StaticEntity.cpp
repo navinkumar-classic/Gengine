@@ -14,13 +14,16 @@ StaticEntity::StaticEntity(
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        const sf::Vector2f& size
+        const sf::Vector2f& tileSize,
+        const std::vector<std::vector<int>>& tilemat,
+        const string& entityTag
         ):
-        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
-        tileMap(64,64)
+        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
+        tileMap(tileSize.x,tileSize.y)
 {
     setPreviousPosition(position);
     tileMap.setPosition(position);
+    tileMap.setMatrix(tilemat);
 }
 
 void StaticEntity::render(sf::RenderWindow& window) {

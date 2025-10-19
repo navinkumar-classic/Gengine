@@ -18,7 +18,9 @@ public:
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        const sf::Vector2f& size);
+        const sf::Vector2f& tileSize,
+        const std::vector<std::vector<int>>& tilemat,
+        const string& entityTag);
 
     void update(float dt, Input& input) override;
     void render(sf::RenderWindow& window) override;
@@ -27,6 +29,7 @@ public:
     sf::FloatRect getBounds() const override;
     TileMap tileMap;
 private:
+    const sf::Vector2f tileSize;
 
 };
 

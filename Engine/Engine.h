@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "Input/Input.h"
 #include "Entity/Entity.h"
+#include "Physics/Collision/Collision.h"
 
 /**
  * @class Engine
@@ -39,6 +40,12 @@ public:
      */
     void addEntity(std::unique_ptr<Entity> entity);
 
+    void bindAction(const string& action, sf::Keyboard::Key key);
+
+    void setFrameRate(int frameRate);
+
+    void addEntryToCollisionHandler(const string& a, const string& b, const std::function<void(Entity* a, Entity* b)>& handler);
+
 private:
     /**
      * @brief Handles input events and stores the input state to be used in the update().
@@ -69,4 +76,5 @@ private:
     Input input;
     std::vector<std::unique_ptr<Entity>> entities;
     std::vector<Entity*> movableEntities;
+    Collision collision;
 };

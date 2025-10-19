@@ -57,15 +57,23 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
     float aw = aBounds.width;
     float ah = aBounds.height;
 
+    // ---- ADD THIS ----
+    // Narrow the X hitbox to allow visual overlap.
+    // Example: sprite is 64x64, but real body is 48px wide.
+    const float hitboxNarrowing = 40.0f;   // total reduction (8px each side)
+    float effectiveWidth = aw - hitboxNarrowing;
+    float halfWidth = effectiveWidth / 2.0f;
+    // ------------------
+
     // Edges for current position (origin.x is centered, origin.y is top)
-    float aCurrLeft   = aCurr.x - aw / 2.0f;
-    float aCurrRight  = aCurr.x + aw / 2.0f;
+    float aCurrLeft   = aCurr.x - halfWidth;
+    float aCurrRight  = aCurr.x + halfWidth;
     float aCurrTop    = aCurr.y;
     float aCurrBottom = aCurr.y + ah;
 
-    // Edges for previous position (compute using same size)
-    float aPrevLeft   = aPrev.x - aw / 2.0f;
-    float aPrevRight  = aPrev.x + aw / 2.0f;
+    // Edges for previous position (use same narrowed size)
+    float aPrevLeft   = aPrev.x - halfWidth;
+    float aPrevRight  = aPrev.x + halfWidth;
     float aPrevTop    = aPrev.y;
     float aPrevBottom = aPrev.y + ah;
 
@@ -83,7 +91,6 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
     bool isFalling  = aVel.y >= 0;
     bool isMovingUp = aVel.y < 0;
 
-    // Ground (came from above)
     bool wasAbove = (aPrevBottom <= bTop + epsilon);
     bool nowOverlapsTop = (aCurrBottom > bTop);
 
@@ -91,12 +98,10 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
         a->setOnGround(true);
         a->setJump(false);
         a->setVerticalVelocity(0);
-        // Snap using center-x, top-y convention
         a->setPosition({ aCurr.x, bTop - ah });
         return;
     }
 
-    // Ceiling (came from below)
     bool wasBelow = (aPrevTop >= bBottom - epsilon);
     bool nowHitsCeiling = (aCurrTop < bBottom);
 
@@ -106,20 +111,17 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
         return;
     }
 
-    // --- HORIZONTAL COLLISIONS (use crossing detection) ---
-    // Collided from left: previously right edge was <= block left, now right edge > block left
+    // --- HORIZONTAL COLLISIONS ---
     if ((aPrevRight <= bLeft + epsilon) && (aCurrRight > bLeft) && overlapsY) {
-        // Snap so entity's right edge sits flush with block left edge
-        a->setPosition({ bLeft - aw / 2.0f, aCurr.y });
+        a->setPosition({ bLeft - halfWidth, aCurr.y });
         a->setHorizontalVelocity(0);
         return;
     }
 
-    // Collided from right: previously left edge was >= block right, now left edge < block right
     if ((aPrevLeft >= bRight - epsilon) && (aCurrLeft < bRight) && overlapsY) {
-        // Snap so entity's left edge sits flush with block right edge
-        a->setPosition({ bRight + aw / 2.0f, aCurr.y });
+        a->setPosition({ bRight + halfWidth, aCurr.y });
         a->setHorizontalVelocity(0);
         return;
     }
 }
+

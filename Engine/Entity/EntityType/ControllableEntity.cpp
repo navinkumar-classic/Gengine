@@ -18,11 +18,16 @@ ControllableEntity::ControllableEntity(
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        sf::Vector2u windowSize
+        sf::Vector2u windowSize,
+        int frameWidth,
+        int frameHeight,
+        float frameDuration,
+        const sf::Vector2f& scale,
+        const string& entityTag
         ):
-        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration),
+        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
         windowSize(windowSize),
-        Sprite(32, 32, 0.1)
+        Sprite(frameWidth, frameHeight, frameDuration, scale)
 {
     setPreviousPosition(position);
 

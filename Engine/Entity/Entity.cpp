@@ -15,7 +15,8 @@ Entity::Entity(
        float terminalVelocity,
        float jumpStrength,
        float acceleration,
-       float deacceleration
+       float deacceleration,
+       const string& entityTag
        ):
     isMovable(isMovable),
     position(position),
@@ -26,7 +27,8 @@ Entity::Entity(
     terminalVelocity(terminalVelocity),
     jumpStrength(jumpStrength),
     acceleration(acceleration),
-    deacceleration(deacceleration){
+    deacceleration(deacceleration),
+    entityTag(entityTag){
 }
 
 //getters
@@ -72,6 +74,10 @@ bool Entity::getOnGround() const {
 
 bool Entity::getJump() const {
     return jump;
+}
+
+string Entity::getEntityTag() const {
+    return entityTag;
 }
 
 // setters

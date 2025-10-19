@@ -18,7 +18,8 @@ public:
         float terminalVelocity,
         float jumpStrength,
         float acceleration,
-        float deacceleration
+        float deacceleration,
+        const string& entityTag
         );
     virtual ~Entity() = default;
 
@@ -38,6 +39,7 @@ public:
     [[nodiscard]] float getDeacceleration() const;
     [[nodiscard]] bool getOnGround() const;
     [[nodiscard]] bool getJump() const;
+    [[nodiscard]] string getEntityTag() const;
 
     void setPosition(const sf::Vector2f& pos);
     void setPreviousPosition(const sf::Vector2f& pos);
@@ -74,5 +76,6 @@ protected:
 
     bool onGround = false;
     bool jump = false;
+    string entityTag;
 };
 

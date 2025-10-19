@@ -25,8 +25,12 @@ public:
      * @param entities All entities present in the scene.
      * @param movableEntities Subset of entities that can move and are considered for collision resolution.
      */
-    static void collisionManager(const std::vector<std::unique_ptr<Entity>>& entities,
+    void collisionManager(const std::vector<std::unique_ptr<Entity>>& entities,
                                 const std::vector<Entity*>& movableEntities);
+
+    static string makeKey(const string& a, const string& b);
+
+    void addEntryToCollisionHandler(const string& a, const string& b, const std::function<void(Entity*, Entity*)>& handler);
 
 private:
     /**
@@ -49,5 +53,7 @@ private:
      * @param a First entity (usually movable).
      * @param b Second entity.
      */
-    static void handleCollision(Entity* a, Entity* b);
+    void handleCollision(Entity* a, Entity* b);
+
+    std::unordered_map<std::string, std::function<void(Entity*, Entity*)>> collisionHandlerMap;
 };

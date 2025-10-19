@@ -22,7 +22,12 @@ public:
         float jumpStrength,
         float acceleration,
         float deacceleration,
-        sf::Vector2u windowSize
+        sf::Vector2u windowSize,
+        int frameWidth,
+        int frameHeight,
+        float frameDuration,
+        const sf::Vector2f& scale,
+        const string& entityTag
         );
 
     void update(float dt, Input& input) override;

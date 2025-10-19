@@ -8,12 +8,15 @@
 AnimatedSprite::AnimatedSprite(
     int frameWidth,
     int frameHeight,
-    float frameDuration
+    float frameDuration,
+    const sf::Vector2f& scale
     ):
     frameSize(sf::Vector2i(frameWidth,frameHeight)),
-    frameDuration(frameDuration)
+    frameDuration(frameDuration),
+    scale(scale)
 {
-    sprite.setScale(2.f, 2.f);
+
+    sprite.setScale(scale.x, scale.y);
 }
 
 void AnimatedSprite::addTexture(std::string action, std::string texturePath, int totalFrames) {
@@ -75,11 +78,11 @@ std::string AnimatedSprite::getCurrentAction() {
 }
 
 void AnimatedSprite::flipToLeft() {
-    sprite.setScale(-2.f, 2.f);
+    sprite.setScale(-1*scale.x, scale.y);
 }
 
 void AnimatedSprite::flipToRight() {
-    sprite.setScale(2.f, 2.f);
+    sprite.setScale(scale.x, scale.y);
 }
 
 

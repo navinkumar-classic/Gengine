@@ -12,8 +12,8 @@ public:
     AnimatedSprite(
         int frameWidth,
         int frameHeight,
-        float frameDuration
-        );
+        float frameDuration,
+        const sf::Vector2f& scale);
 
     void update(float dt) override;
     void draw(sf::RenderWindow& window) override;
@@ -39,4 +39,5 @@ private:
 
     sf::Vector2i frameSize;
     std::string currentAction;
+    sf::Vector2f scale;
 };

@@ -20,17 +20,25 @@ void Collision::collisionManager(const std::vector<std::unique_ptr<Entity>>& ent
 }
 
 void Collision::handleCollision(Entity* a, Entity* b) {
-    if (a->isMovable && !b->isMovable) {
 
-        CollisionBehaviour::ControllableToStaticCollision(a, b);
+    string handlerKey = makeKey(a->getEntityTag(), b->getEntityTag());
+    collisionHandlerMap[handlerKey](a, b);
 
-    } else if (a->isMovable && b->isMovable) {
-
-        CollisionBehaviour::ControllableToStaticCollision(a, b);
-
-    }
 }
 
 bool Collision::checkCollision(const Entity* a, const Entity* b) {
     return a->getBounds().intersects(b->getBounds());
+}
+
+string Collision::makeKey(const string& a, const string& b) {
+    if (a >= b) {
+        return a + "|" + b;
+    }
+    return b + "|" + a;
+}
+
+void Collision::addEntryToCollisionHandler(const string& a, const string& b, const std::function<void(Entity*, Entity*)>& handler) {
+
+    collisionHandlerMap[makeKey(a, b)] = handler;
+
 }

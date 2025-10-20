@@ -16,13 +16,39 @@ StaticEntity::StaticEntity(
         float deacceleration,
         const sf::Vector2f& tileSize,
         const std::vector<std::vector<int>>& tilemat,
-        const string& entityTag
+        const string& entityTag,
+        const std::unordered_map<int, std::string>& ref_texture
         ):
         Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
-        tileMap(tileSize.x,tileSize.y)
+        tileMap(tileSize.x, tileSize.y, ref_texture)
 {
-    setPreviousPosition(position);
-    tileMap.setPosition(position);
+    const float new_x = position.x + tilemat[0].size()*tileSize.x/2.f;
+    const float new_y = position.y + tilemat.size()*tileSize.y/2.f;
+
+    const sf::Vector2f adjPosition = sf::Vector2f(new_x,new_y);
+    setPreviousPosition(adjPosition);
+    tileMap.setPosition(adjPosition);
+
+    tileMap.setMatrix(tilemat);
+}
+
+StaticEntity::StaticEntity(
+        const sf::Vector2f& position,
+        const sf::Vector2f& tileSize,
+        const std::vector<std::vector<int>>& tilemat,
+        const string& entityTag,
+        const std::unordered_map<int, std::string>& ref_texture
+        ):
+        Entity(false, position, sf::Vector2f(0.f,0.f), sf::Vector2f(0.f,0.f), 0.f, 0.f, 0.f, 0.f, 0.f, entityTag),
+        tileMap(tileSize.x, tileSize.y, ref_texture)
+{
+    const float new_x = position.x + tilemat[0].size()*tileSize.x/2.f;
+    const float new_y = position.y + tilemat.size()*tileSize.y/2.f;
+
+    const sf::Vector2f adjPosition = sf::Vector2f(new_x,new_y);
+    setPreviousPosition(adjPosition);
+    tileMap.setPosition(adjPosition);
+
     tileMap.setMatrix(tilemat);
 }
 

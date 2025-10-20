@@ -46,6 +46,12 @@ public:
 
     void addEntryToCollisionHandler(const string& a, const string& b, const std::function<void(Entity* a, Entity* b)>& handler);
 
+    void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, int entity_id);
+
+    void setBackgroundTexture(const string& texturePath);
+
+    void removeBackgroundTexture();
+
 private:
     /**
      * @brief Handles input events and stores the input state to be used in the update().
@@ -77,4 +83,11 @@ private:
     std::vector<std::unique_ptr<Entity>> entities;
     std::vector<Entity*> movableEntities;
     Collision collision;
+
+    sf::Texture backgroundTexture;
+    sf::Sprite backgroundSprite;
+    bool backgroundSet = false;
+
+    std::function<void(Entity&, sf::View&)> cameraFunction;
+    Entity* trackingEntity;
 };

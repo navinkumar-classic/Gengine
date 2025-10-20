@@ -20,7 +20,15 @@ public:
         float deacceleration,
         const sf::Vector2f& tileSize,
         const std::vector<std::vector<int>>& tilemat,
-        const string& entityTag);
+        const string& entityTag,
+        const std::unordered_map<int, std::string>& ref_texture);
+
+    StaticEntity(
+        const sf::Vector2f& position,
+        const sf::Vector2f& tileSize,
+        const std::vector<std::vector<int>>& tilemat,
+        const string& entityTag,
+        const std::unordered_map<int, std::string>& ref_texture);
 
     void update(float dt, Input& input) override;
     void render(sf::RenderWindow& window) override;

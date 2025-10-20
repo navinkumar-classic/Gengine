@@ -6,12 +6,12 @@
 #include "Entity/Entity.h"
 #include "Physics/Collision/Collision.h"
 #include <iostream>
+#include <utility>
 #include "Camera/CameraBehaviour.h"
 
 Engine::Engine(unsigned int width, unsigned int height):
     window(sf::VideoMode(width, height), "SFML Test"),
-    camera(sf::FloatRect(0, 0, width, height))
-{}
+    camera(sf::FloatRect(0, 0, width, height)) {}
 
 void Engine::run() {
     while (isRunning) {
@@ -21,8 +21,10 @@ void Engine::run() {
         render();
 
         input.reset();
-        cameraBehaviour::cameraTracking(*entities[0], camera, 200.0f, 2000.0f);
-        window.setView(camera);
+
+        if (cameraFunction) {
+            cameraFunction(*trackingEntity, camera);
+        }
     }
 }
 
@@ -53,8 +55,16 @@ void Engine::update(float dt) {
 }
 
 void Engine::render() {
-    window.clear(sf::Color::Black);
 
+    if (backgroundSet) {
+        window.clear();
+        window.setView(window.getDefaultView());
+        window.draw(backgroundSprite);
+    } else {
+        window.clear(sf::Color::Black);
+    }
+
+    window.setView(camera);
     for (auto& entity : entities)
         entity->render(window);
 
@@ -78,4 +88,29 @@ void Engine::setFrameRate(int frameRate) {
 
 void Engine::addEntryToCollisionHandler(const string &a, const string &b, const std::function<void(Entity *a, Entity *b)> &handler) {
     collision.addEntryToCollisionHandler(a, b, handler);
+}
+
+void Engine::addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, int entity_id) {
+    cameraFunction = std::move(inputCameraFunction);
+    trackingEntity = entities[entity_id].get();
+}
+
+void Engine::setBackgroundTexture(const string& texturePath) {
+    if (!backgroundTexture.loadFromFile(texturePath)) {
+        std::cerr << "Failed to load background.png\n";
+    } else {
+        backgroundSprite.setTexture(backgroundTexture);
+
+        sf::Vector2u texSize = backgroundTexture.getSize();
+        backgroundSprite.setScale(
+            float(window.getSize().x) / texSize.x,
+            float(window.getSize().y) / texSize.y
+        );
+    }
+
+    backgroundSet = true;
+}
+
+void Engine::removeBackgroundTexture() {
+    backgroundSet = false;
 }

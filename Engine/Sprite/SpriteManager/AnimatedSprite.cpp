@@ -39,7 +39,7 @@ void AnimatedSprite::setTextureToSprite(std::string action) {
 
     //changes centre
     sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, 0.f);
+    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
 
     frameTimer = 0;
     totalFrames = textureMap[action].second;

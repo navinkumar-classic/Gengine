@@ -1,30 +1,195 @@
 
 #include <functional>
+#include <sstream>
+#include <iomanip>
 #include "Engine/Entity/EntityType/ControllableEntity.h"
 #include "Engine/Entity/EntityType/StaticEntity.h"
 #include "Util/Movement.h"
 #include "Engine/Engine.h"
 #include "Util/CollisionBehaviour.h"
 #include "Util/EntityPhysics.h"
+#include "Util/CameraBehaviour.h"
+#include "Engine/Entity/EntityType/AnimatedStaticEntity.h"
+#include "Engine/UIElement/UIElementType/TextUIElement.h"
 
+std::unordered_map<int, std::string> ref_texture = {
+    {64, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Boxes/4.png"},
+    {71, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Willows/1.png"},
+{81, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/1.png"},
+{82, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/2.png"},
+{83, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/3.png"},
+{84, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/4.png"},
+{85, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/5.png"},
+{86, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/6.png"},
+{87, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/7.png"},
+{88, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/8.png"},
+{89, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Bushes/9.png"},
+{91, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Fence/1.png"},
+{92, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Fence/2.png"},
+{93, "/home/navin/CLionProjects/Gengine/Assets/swamp/Objects/Fence/3.png"}
+};
 
 int main() {
-    Engine engine(1200,800);
+    std::string basePath = "/home/navin/CLionProjects/Gengine/Assets/swamp/Tiles/Tile_";
+
+    for (int i = 1; i <= 60; ++i) {
+        std::ostringstream oss;
+        oss << basePath << std::setw(2) << std::setfill('0') << i << ".png";
+        ref_texture[i] = oss.str();
+    }
+
+    Engine engine("/home/navin/CLionProjects/Gengine/Assets/font/Pixellari.ttf",1200,800);
 
     engine.setFrameRate(120);
+    engine.setBackgroundTexture("/home/navin/CLionProjects/Gengine/Assets/swamp/Background/Background.png");
 
     engine.bindAction("RIGHT",sf::Keyboard::D);
     engine.bindAction("LEFT",sf::Keyboard::A);
     engine.bindAction("UP",sf::Keyboard::Space);
 
+    engine.gameState.set<int>("score", 100);
+
+    engine.addUIElement(std::move(
+        std::make_unique<TextUIElement>(
+                sf::Vector2f(100.f, 100.f),
+                32,
+                "Score: <score>",
+                engine.fetchFont("DEFAULT"),
+                sf::Color::White,
+                true
+            )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<AnimatedStaticEntity>(
+            sf::Vector2f(600, 550),
+            "coin",
+            sf::Vector2i(10,10),
+            0.1,
+            sf::Vector2f(5.f,5.f),
+            "/home/navin/CLionProjects/Gengine/Assets/swamp/AnimatedObjects/Coin.png",
+            4
+            )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<AnimatedStaticEntity>(
+            sf::Vector2f(700, 550),
+            "coin",
+            sf::Vector2i(10,10),
+            0.1,
+            sf::Vector2f(5.f,5.f),
+            "/home/navin/CLionProjects/Gengine/Assets/swamp/AnimatedObjects/Coin.png",
+            4
+            )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<AnimatedStaticEntity>(
+            sf::Vector2f(890, 350),
+            "coin",
+            sf::Vector2i(10,10),
+            0.1,
+            sf::Vector2f(5.f,5.f),
+            "/home/navin/CLionProjects/Gengine/Assets/swamp/AnimatedObjects/Coin.png",
+            4
+            )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<AnimatedStaticEntity>(
+            sf::Vector2f(775, 450),
+            "coin",
+            sf::Vector2i(10,10),
+            0.1,
+            sf::Vector2f(5.f,5.f),
+            "/home/navin/CLionProjects/Gengine/Assets/swamp/AnimatedObjects/Coin.png",
+            4
+            )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(0, 600),
+            sf::Vector2f(80, 80),
+            std::vector<std::vector<int>>{
+                {1,28,28,2,2,2,10,2,28,3},
+                {11,12,12,12,12,12,12,12,12,13},
+                {11,12,12,12,12,12,12,12,12,13}
+                },"ground", ref_texture
+            )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(900, 400),
+            sf::Vector2f(80, 80),
+            std::vector<std::vector<int>>{
+            {1,2,2,2,2,2,2,2,2,3},
+            {17,12,12,12,12,12,12,12,12,13},
+            {21,22,22,22,22,22,22,22,22,23}
+            },"ground",ref_texture
+        )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(400, 332),
+            sf::Vector2f(208, 270),
+            std::vector<std::vector<int>>{
+            {71}
+            },"tree",ref_texture
+        )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(355, 570),
+            sf::Vector2f(62, 30),
+            std::vector<std::vector<int>>{
+            {81}
+            },"bush",ref_texture
+        )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(290, 580),
+            sf::Vector2f(60, 20),
+            std::vector<std::vector<int>>{
+            {82}
+            },"bush",ref_texture
+        )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(520, 572),
+            sf::Vector2f(60, 30),
+            std::vector<std::vector<int>>{
+            {83}
+            },"bush",ref_texture
+        )
+    ));
+
+    engine.addEntity(std::move(
+        std::make_unique<StaticEntity>(
+            sf::Vector2f(860, 750),
+            sf::Vector2f(80, 80),
+            std::vector<std::vector<int>>{
+                {32,33,33,33,33,33,33,33,33,34}
+            },"ground", ref_texture
+        )
+    ));
+
     auto player = std::make_unique<ControllableEntity>(
         true,
         sf::Vector2f(200.0f, 150.0f),
         sf::Vector2f(0.0f, 0.0f),
-        sf::Vector2f(0.0f, 1100.0f),
+        sf::Vector2f(0.0f, 1200.0f),
         300.0f,
         900.0f,
-        -900.0f,
+        -1100.0f,
         750.0f,
         3000.0f,
         sf::Vector2u(800.0f, 600.0f),
@@ -47,45 +212,9 @@ int main() {
 
     engine.addEntity(std::move(player));
 
-    std::vector<std::vector<int>> wall1_tilemat = {
-        {1,2,2,2,2,2,2,2,2,2,2,3},
-        {4,5,5,5,5,5,5,5,5,5,5,6},
-        {12,9,9,9,9,9,9,9,9,9,9,16}
-    };
-    auto wall1 = std::make_unique<StaticEntity>(
-        false,
-        sf::Vector2f(50, 500),
-        sf::Vector2f(0.0f, 0.0f),
-        sf::Vector2f(0.0f, 0.0f),
-        0.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        0.0f,
-        sf::Vector2f(96, 96),
-        wall1_tilemat,
-        "ground"
-    );
-
-    wall1->tileMap.loadTexture(1, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/1.png");
-    wall1->tileMap.loadTexture(2, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/2.png");
-    wall1->tileMap.loadTexture(3, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/3.png");
-    wall1->tileMap.loadTexture(4, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/4.png");
-    wall1->tileMap.loadTexture(5, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/5.png");
-    wall1->tileMap.loadTexture(6, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/6.png");
-    wall1->tileMap.loadTexture(12, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/12.png");
-    wall1->tileMap.loadTexture(9, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/9.png");
-    wall1->tileMap.loadTexture(16, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Tiles/16.png");
-
-    engine.addEntity(std::move(wall1));
-
-    std::vector<std::vector<int>> wall2_tilemat = {
-        {0}
-    };
-
-    auto wall2 = std::make_unique<StaticEntity>(
+    auto crate1 = std::make_unique<StaticEntity>(
         true,
-        sf::Vector2f(200, 0),
+        sf::Vector2f(450, 0),
         sf::Vector2f(0.0f, 0.0f),
         sf::Vector2f(0.0f, 1100.0f),
         0.0f,
@@ -93,19 +222,28 @@ int main() {
         0.0f,
         0.0f,
         0.0f,
-        sf::Vector2f(96, 96),
-        wall2_tilemat,
-        "crate"
+        sf::Vector2f(66, 52),
+        std::vector<std::vector<int>>{
+            {64}
+        },
+        "crate",
+        ref_texture
     );
+    crate1->addPhysics(EntityPhysics::applyGravity);
 
-    wall2->tileMap.loadTexture(0, "/home/navin/CLionProjects/Gengine/Assets/tileSet/png/Object/Crate.png");
-    wall2->addPhysics(EntityPhysics::applyGravity);
-
-    engine.addEntity(std::move(wall2));
+    engine.addEntity(std::move(crate1));
 
     engine.addEntryToCollisionHandler("pink_monster", "ground", CollisionBehaviour::ControllableToStaticCollision);
     engine.addEntryToCollisionHandler("pink_monster", "crate", CollisionBehaviour::ControllableToStaticCollision);
     engine.addEntryToCollisionHandler("crate", "ground", CollisionBehaviour::ControllableToStaticCollision);
+
+    engine.addEntryToCollisionHandler("pink_monster", "coin",
+        [&engine](Entity* a, Entity* b) {
+            CollisionBehaviour::ControllableToCollectibleCollision(a, b);
+            engine.gameState.increment<int>("score", 100);
+        });
+
+    engine.addCameraBehaviour([](Entity& player, sf::View& camera){ cameraBehaviour::cameraTracking(player, camera, 200.0f, 2000.0f); }, 11);
 
     engine.run();
 

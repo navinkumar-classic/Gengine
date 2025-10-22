@@ -25,12 +25,12 @@ ControllableEntity::ControllableEntity(
         const sf::Vector2f& scale,
         const string& entityTag
         ):
-        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
+        Entity(true, isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
         windowSize(windowSize),
         Sprite(frameWidth, frameHeight, frameDuration, scale)
 {
     setPreviousPosition(position);
-
+    Sprite.setPosition(position);
 }
 void ControllableEntity::update(float dt, Input& input) {
 

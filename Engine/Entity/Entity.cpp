@@ -7,6 +7,7 @@
 #include <utility>
 
 Entity::Entity(
+       bool isAnimated,
        bool isMovable,
        const sf::Vector2f& position,
        const sf::Vector2f& velocity,
@@ -28,7 +29,8 @@ Entity::Entity(
     jumpStrength(jumpStrength),
     acceleration(acceleration),
     deacceleration(deacceleration),
-    entityTag(entityTag){
+    entityTag(entityTag),
+    isAnimated(isAnimated){
 }
 
 //getters
@@ -80,6 +82,11 @@ string Entity::getEntityTag() const {
     return entityTag;
 }
 
+bool Entity::getIsAlive() const {
+    return isAlive;
+}
+
+
 // setters
 void Entity::setPosition(const sf::Vector2f& pos) {
     position = pos;
@@ -127,6 +134,10 @@ void Entity::setOnGround(bool onGround) {
 
 void Entity::setJump(bool jump) {
     Entity::jump = jump;
+}
+
+void Entity::setIsAlive(bool isAlive) {
+    Entity::isAlive = isAlive;
 }
 
 void Entity::applyMovement(float dt) {

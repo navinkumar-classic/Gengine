@@ -36,10 +36,10 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
 }
 */
 
-void CollisionBehaviour::ControllableToControllableCollision(Entity *a, Entity *b) {
-    a->setPosition(a->getPreviousPosition());
-    b->setPosition(b->getPreviousPosition());
+void CollisionBehaviour::ControllableToControllableCollision(Entity* a, Entity* b) {
+    // Get bounds, positions, velocities
 }
+
 
 void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
     // Current global bounds (SFML accounts for scale/flip here)
@@ -57,25 +57,25 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
     float aw = aBounds.width;
     float ah = aBounds.height;
 
-    // ---- ADD THIS ----
-    // Narrow the X hitbox to allow visual overlap.
-    // Example: sprite is 64x64, but real body is 48px wide.
-    const float hitboxNarrowing = 40.0f;   // total reduction (8px each side)
+    // ---- Narrow X hitbox for visual overlap ----
+    const float hitboxNarrowing = 40.0f;   // total reduction (20px each side)
     float effectiveWidth = aw - hitboxNarrowing;
     float halfWidth = effectiveWidth / 2.0f;
-    // ------------------
 
-    // Edges for current position (origin.x is centered, origin.y is top)
+    // ---- Compute edges using CENTER origin ----
+    float halfHeight = ah / 2.0f;
+
+    // Edges for current position
     float aCurrLeft   = aCurr.x - halfWidth;
     float aCurrRight  = aCurr.x + halfWidth;
-    float aCurrTop    = aCurr.y;
-    float aCurrBottom = aCurr.y + ah;
+    float aCurrTop    = aCurr.y - halfHeight;
+    float aCurrBottom = aCurr.y + halfHeight;
 
-    // Edges for previous position (use same narrowed size)
+    // Edges for previous position
     float aPrevLeft   = aPrev.x - halfWidth;
     float aPrevRight  = aPrev.x + halfWidth;
-    float aPrevTop    = aPrev.y;
-    float aPrevBottom = aPrev.y + ah;
+    float aPrevTop    = aPrev.y - halfHeight;
+    float aPrevBottom = aPrev.y + halfHeight;
 
     // Static block edges
     float bLeft   = bBounds.left;
@@ -98,7 +98,7 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
         a->setOnGround(true);
         a->setJump(false);
         a->setVerticalVelocity(0);
-        a->setPosition({ aCurr.x, bTop - ah });
+        a->setPosition({ aCurr.x, bTop - halfHeight });
         return;
     }
 
@@ -107,7 +107,7 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
 
     if (isMovingUp && wasBelow && nowHitsCeiling && overlapsX) {
         a->setVerticalVelocity(0);
-        a->setPosition({ aCurr.x, bBottom });
+        a->setPosition({ aCurr.x, bBottom + halfHeight });
         return;
     }
 
@@ -123,5 +123,9 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
         a->setHorizontalVelocity(0);
         return;
     }
+}
+
+void CollisionBehaviour::ControllableToCollectibleCollision(Entity* a, Entity* b) {
+    b->setIsAlive(false);
 }
 

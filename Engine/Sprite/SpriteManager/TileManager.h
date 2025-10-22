@@ -11,7 +11,7 @@
 
 class TileMap : public SpriteBase {
 public:
-    TileMap(float tileWidth, float tileHeight);
+    TileMap(float tileWidth, float tileHeight, const std::unordered_map<int, std::string>& ref_texture);
 
     // SpriteBase overrides
     void update(float dt) override;
@@ -22,7 +22,7 @@ public:
     // TileMap-specific
     void setMatrix(const std::vector<std::vector<int>>& mat);
     void loadTexture(int id, const std::string& filename);
-    void setOrgin(float x, float y);
+    void setOrigin(float x, float y);
 
 private:
     float m_tileWidth;
@@ -35,6 +35,8 @@ private:
 
     // Each tile ID maps to its own texture
     std::unordered_map<int, std::shared_ptr<sf::Texture>> m_textures;
+
+    const std::unordered_map<int, std::string>& ref_texture;
 
     void buildVertexArray();
 };

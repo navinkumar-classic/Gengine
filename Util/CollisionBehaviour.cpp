@@ -125,4 +125,7 @@ void CollisionBehaviour::ControllableToStaticCollision(Entity *a, Entity *b) {
     }
 }
 
+void CollisionBehaviour::ControllableToCollectibleCollision(Entity* a, Entity* b) {
+    b->setIsAlive(false);
+}
 

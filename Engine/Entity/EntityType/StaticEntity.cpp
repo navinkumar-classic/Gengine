@@ -19,7 +19,7 @@ StaticEntity::StaticEntity(
         const string& entityTag,
         const std::unordered_map<int, std::string>& ref_texture
         ):
-        Entity(isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
+        Entity(false, isMovable, position, velocity, gravity, maxSpeed, terminalVelocity, jumpStrength, acceleration, deacceleration, entityTag),
         tileMap(tileSize.x, tileSize.y, ref_texture)
 {
     const float new_x = position.x + tilemat[0].size()*tileSize.x/2.f;
@@ -39,7 +39,7 @@ StaticEntity::StaticEntity(
         const string& entityTag,
         const std::unordered_map<int, std::string>& ref_texture
         ):
-        Entity(false, position, sf::Vector2f(0.f,0.f), sf::Vector2f(0.f,0.f), 0.f, 0.f, 0.f, 0.f, 0.f, entityTag),
+        Entity(false, false, position, sf::Vector2f(0.f,0.f), sf::Vector2f(0.f,0.f), 0.f, 0.f, 0.f, 0.f, 0.f, entityTag),
         tileMap(tileSize.x, tileSize.y, ref_texture)
 {
     const float new_x = position.x + tilemat[0].size()*tileSize.x/2.f;

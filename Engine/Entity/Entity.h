@@ -10,6 +10,7 @@
 class Entity {
 public:
     Entity(
+        bool isAnimated,
         bool isMovable,
         const sf::Vector2f& position,
         const sf::Vector2f& velocity,
@@ -40,6 +41,7 @@ public:
     [[nodiscard]] bool getOnGround() const;
     [[nodiscard]] bool getJump() const;
     [[nodiscard]] string getEntityTag() const;
+    [[nodiscard]] bool getIsAlive() const;
 
     void setPosition(const sf::Vector2f& pos);
     void setPreviousPosition(const sf::Vector2f& pos);
@@ -53,12 +55,14 @@ public:
     void setDeacceleration(float deacceleration);
     void setOnGround(bool onGround);
     void setJump(bool jump);
+    void setIsAlive(bool isAlive);
 
     void applyMovement(float dt);
 
     void addPhysics(function<void(Entity&, Input&, float)> function);
 
     const bool isMovable;
+    const bool isAnimated;
     sf::Vector2f position;
 
 protected:
@@ -77,5 +81,6 @@ protected:
     bool onGround = false;
     bool jump = false;
     string entityTag;
+    bool isAlive = true;
 };
 

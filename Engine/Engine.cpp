@@ -7,11 +7,16 @@
 #include "Physics/Collision/Collision.h"
 #include <iostream>
 #include <utility>
-#include "Camera/CameraBehaviour.h"
 
-Engine::Engine(unsigned int width, unsigned int height):
+Engine::Engine(
+    const string& fontPath,
+    unsigned int width,
+    unsigned int height):
     window(sf::VideoMode(width, height), "SFML Test"),
-    camera(sf::FloatRect(0, 0, width, height)) {}
+    camera(sf::FloatRect(0, 0, width, height)) {
+
+    addFont("DEFAULT", fontPath);
+}
 
 void Engine::run() {
     while (isRunning) {
@@ -48,10 +53,25 @@ void Engine::processEvents(float dt) {
 
 void Engine::update(float dt) {
     for (auto* entity : movableEntities) {
+        if (entity->getIsAlive()) {
             entity->setPreviousPosition(entity->getPosition());
             entity->update(dt, input);
+        }
+    }
+
+    for (auto* entity : animatedEntities) {
+        if (entity->getIsAlive()) {
+            entity->setPreviousPosition(entity->getPosition());
+            entity->update(dt, input);
+        }
     }
     collision.collisionManager(entities, movableEntities);
+
+    for (auto& uiElement : uiElements) {
+        if (uiElement->getIsDynamic()) {
+            uiElement->update(dt, gameState);
+        }
+    }
 }
 
 void Engine::render() {
@@ -65,8 +85,17 @@ void Engine::render() {
     }
 
     window.setView(camera);
-    for (auto& entity : entities)
-        entity->render(window);
+    for (auto& entity : entities) {
+        if (entity->getIsAlive()) {
+            entity->render(window);
+        }
+    }
+
+    for (auto& uiElement : uiElements) {
+        if (uiElement->getIsVisible()) {
+            uiElement->render(window);
+        }
+    }
 
     window.display();
 }
@@ -75,7 +104,14 @@ void Engine::addEntity(std::unique_ptr<Entity> entity) {
     if (entity->isMovable) {
         movableEntities.push_back(entity.get());
     }
+    else if (entity->isAnimated) {
+        animatedEntities.push_back(entity.get());
+    }
     entities.push_back(std::move(entity));
+}
+
+void Engine::addUIElement(std::unique_ptr<UIElement> uiElement) {
+    uiElements.push_back(std::move(uiElement));
 }
 
 void Engine::bindAction(const string& action, sf::Keyboard::Key key) {
@@ -113,4 +149,20 @@ void Engine::setBackgroundTexture(const string& texturePath) {
 
 void Engine::removeBackgroundTexture() {
     backgroundSet = false;
+}
+
+void Engine::addFont(const string& key, const string& fontPath) {
+    sf::Font temp;
+    temp.loadFromFile(fontPath);
+    fonts[key] = temp;
+}
+
+const sf::Font& Engine::fetchFont(const string& key) {
+    auto it = fonts.find(key);
+    if (it != fonts.end()) {
+        return it->second;
+    }
+    std::cerr << "Failed to find font for key " << key << "\n";
+
+    return fonts["DEFAULT"];
 }

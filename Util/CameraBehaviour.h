@@ -3,7 +3,7 @@
 //
 #pragma once
 #include <SFML/Graphics/View.hpp>
-#include "../Entity/Entity.h"
+#include "../Engine/Entity/Entity.h"
 
 namespace cameraBehaviour {
     void cameraTracking(Entity& player, sf::View& camera, float margin, float worldWidth);

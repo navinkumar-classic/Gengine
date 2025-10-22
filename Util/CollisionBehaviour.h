@@ -9,5 +9,6 @@ namespace CollisionBehaviour {
 
     void ControllableToStaticCollision(Entity* a, Entity* b);
     void ControllableToControllableCollision(Entity* a, Entity* b);
+    void ControllableToCollectibleCollision(Entity* a, Entity* b);
 
 }

@@ -10,10 +10,11 @@
 void Collision::collisionManager(const std::vector<std::unique_ptr<Entity>>& entities,const std::vector<Entity*>& movableEntities) {
     for (size_t i = 0; i < movableEntities.size(); ++i) {
         Entity* entityA = movableEntities[i];
+        if (!entityA->getIsAlive()) continue;
         for (size_t j = 0; j < entities.size(); ++j) {
             Entity* entityB = entities[j].get();
 
-            if (entityA == entityB) continue;
+            if (entityA == entityB || !entityB->getIsAlive()) continue;
 
             if (std::find(movableEntities.begin(), movableEntities.begin() + i, entityB) != movableEntities.begin() + i)
                 continue;

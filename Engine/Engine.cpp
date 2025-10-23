@@ -72,6 +72,8 @@ void Engine::update(float dt) {
             uiElement->update(dt, gameState);
         }
     }
+
+    event.update(dt);
 }
 
 void Engine::render() {
@@ -100,7 +102,7 @@ void Engine::render() {
     window.display();
 }
 
-void Engine::addEntity(std::unique_ptr<Entity> entity) {
+size_t Engine::addEntity(std::unique_ptr<Entity> entity) {
     if (entity->isMovable) {
         movableEntities.push_back(entity.get());
     }
@@ -108,6 +110,8 @@ void Engine::addEntity(std::unique_ptr<Entity> entity) {
         animatedEntities.push_back(entity.get());
     }
     entities.push_back(std::move(entity));
+
+    return entities.size() - 1;
 }
 
 void Engine::addUIElement(std::unique_ptr<UIElement> uiElement) {
@@ -126,7 +130,7 @@ void Engine::addEntryToCollisionHandler(const string &a, const string &b, const 
     collision.addEntryToCollisionHandler(a, b, handler);
 }
 
-void Engine::addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, int entity_id) {
+void Engine::addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id) {
     cameraFunction = std::move(inputCameraFunction);
     trackingEntity = entities[entity_id].get();
 }
@@ -165,4 +169,9 @@ const sf::Font& Engine::fetchFont(const string& key) {
     std::cerr << "Failed to find font for key " << key << "\n";
 
     return fonts["DEFAULT"];
+}
+
+Entity* Engine::getEntity(size_t id) const {
+    if (id >= entities.size()) return nullptr;
+    return entities[id].get();
 }

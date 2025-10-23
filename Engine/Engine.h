@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "Input/Input.h"
 #include "Entity/Entity.h"
+#include "Event/EventManager.h"
 #include "GameState/GameState.h"
 #include "Physics/Collision/Collision.h"
 #include "UIElement/UIElement.h"
@@ -40,11 +41,11 @@ public:
      * @brief Adds a new entity to the engine's world.
      * @param entity A unique pointer to the entity to be added.
      */
-    void addEntity(std::unique_ptr<Entity> entity);
+    size_t addEntity(std::unique_ptr<Entity> entity);
 
     void addEntryToCollisionHandler(const string& a, const string& b, const std::function<void(Entity* a, Entity* b)>& handler);
 
-    void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, int entity_id);
+    void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id);
 
     void addUIElement(std::unique_ptr<UIElement> uiElement);
 
@@ -61,7 +62,11 @@ public:
 
     void removeBackgroundTexture();
 
+    Entity* getEntity(size_t id) const;
+
     GameState gameState;
+
+    EventManager event;
 
 private:
     /**

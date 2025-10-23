@@ -210,7 +210,7 @@ int main() {
     player->addPhysics(EntityPhysics::applyGravity);
     player->addPhysics([](Entity& entity, Input& input, float dt){EntityPhysics::applyDeacceleration(entity, input, dt, "RIGHT", "LEFT");});
 
-    engine.addEntity(std::move(player));
+    size_t playerId = engine.addEntity(std::move(player));
 
     auto crate1 = std::make_unique<StaticEntity>(
         true,
@@ -238,12 +238,20 @@ int main() {
     engine.addEntryToCollisionHandler("crate", "ground", CollisionBehaviour::ControllableToStaticCollision);
 
     engine.addEntryToCollisionHandler("pink_monster", "coin",
-        [&engine](Entity* a, Entity* b) {
+        [&engine, playerId](Entity* a, Entity* b) {
             CollisionBehaviour::ControllableToCollectibleCollision(a, b);
             engine.gameState.increment<int>("score", 100);
         });
 
-    engine.addCameraBehaviour([](Entity& player, sf::View& camera){ cameraBehaviour::cameraTracking(player, camera, 200.0f, 2000.0f); }, 11);
+    engine.event.defineOn("FallDown",
+        [&engine, playerId]() {
+            return engine.getEntity(playerId)->getPosition().y > 1000;
+        },
+        [&engine,playerId]() {
+            engine.getEntity(playerId)->setPosition(sf::Vector2f(0,0));
+        });
+
+    engine.addCameraBehaviour([](Entity& player, sf::View& camera){ cameraBehaviour::cameraTracking(player, camera, 200.0f, 2000.0f); }, playerId);
 
     engine.run();
 

@@ -5,7 +5,7 @@
 #include "Collision.h"
 #include <iostream>
 
-#include "../../../Util/CollisionBehaviour.h"
+#include "../../../Utility/CollisionBehaviour.h"
 
 void Collision::collisionManager(const std::vector<std::unique_ptr<Entity>>& entities,const std::vector<Entity*>& movableEntities) {
     for (size_t i = 0; i < movableEntities.size(); ++i) {

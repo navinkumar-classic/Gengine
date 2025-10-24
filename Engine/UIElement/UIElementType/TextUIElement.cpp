@@ -3,16 +3,15 @@
 //
 
 #include "TextUIElement.h"
-
-#include <iostream>
 #include <stack>
+
 TextUIElement::TextUIElement(
     const sf::Vector2f &position,
     const int characterSize,
-    const string &text,
+    const std::string &text,
     const sf::Font &font,
     const sf::Color &color,
-    bool isDynamic):
+    const bool isDynamic):
     UIElement(position, sf::Vector2f(0.f, 0.f), sf::Vector2f(0.f, 0.f), isDynamic),
     m_characterSize(characterSize), m_textString(text){
     m_text.setFont(font);
@@ -22,13 +21,11 @@ TextUIElement::TextUIElement(
     m_text.setPosition(position);
 }
 
-void TextUIElement::update(float dt, const GameState& game_state){
+void TextUIElement::update(float dt, const GameState& game_state, const Input& input){
     std::string output;
     std::stack<size_t> openTags;
 
-    for (size_t i = 0; i < m_textString.size(); ++i) {
-        char c = m_textString[i];
-
+    for (const char c : m_textString) {
         if (c == '<') {
             openTags.push(output.size());
         }
@@ -58,7 +55,7 @@ void TextUIElement::setPosition(const sf::Vector2f& inPosition) {
     m_text.setPosition(inPosition);
 }
 
-void TextUIElement::setText(const string& text) {
+void TextUIElement::setText(const std::string& text) {
     m_textString = text;
     m_text.setString(text);
 }
@@ -68,15 +65,6 @@ void TextUIElement::setCharacterSize(int characterSize) {
     m_text.setCharacterSize(characterSize);
 }
 
-
-
-
-
-
-//
-void TextUIElement::setSize(const sf::Vector2f& size) {
-
-}
-void TextUIElement::setScale(const sf::Vector2f& scale) {
-
+sf::FloatRect TextUIElement::getBounds() const {
+    return m_text.getGlobalBounds();
 }

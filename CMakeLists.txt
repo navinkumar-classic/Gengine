@@ -27,6 +27,7 @@ add_executable(Gengine
         Engine/Engine.cpp
         Engine/Scene/Scene.cpp
         Engine/Scene/SceneType/MenuScene.cpp
-        Engine/Scene/SceneType/PauseScene.cpp
-        test_engine.cpp)
+        test_engine.cpp
+        Engine/UIElement/UIElementType/ImageUIElement.h
+        Engine/UIElement/UIElementType/ImageUIElement.cpp)
 target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)

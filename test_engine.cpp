@@ -17,6 +17,8 @@
 #include "Utility/EntityPhysics.h"
 #include "Utility/CameraBehaviour.h"
 #include "Engine/Entity/EntityType/AnimatedStaticEntity.h"
+#include "Engine/Scene/SceneType/MenuScene.h"
+#include "Engine/UIElement/UIElementType/ImageUIElement.h"
 #include "Engine/UIElement/UIElementType/TextUIElement.h"
 
 
@@ -246,6 +248,8 @@ std::unique_ptr<GameScene> gg(Engine &engine) {
     }, playerId);
 
     scenePtr = nullptr;
+    scene->addEventToDelete("FallDown");
+
     return scene;
 }
 
@@ -288,26 +292,62 @@ int main() {
         return gg(engine);
     });
 
-    engine.addSceneFactory("pause", []() {
-        return std::make_unique<GameScene>(
+    engine.addSceneFactory("pause", [&engine]() {
+        auto menu = std::make_unique<MenuScene>(
             1200,
             800
         );
+
+        MenuScene *menuPtr = menu.get();
+
+        menu->addUIElement(std::move(
+            std::make_unique<TextUIElement>(
+                sf::Vector2f(100.f, 100.f),
+                32,
+                "Score: <score>",
+                engine.fetchFont("DEFAULT"),
+                sf::Color::White,
+                true
+            )
+        ));
+
+        size_t back_id = menu->addUIElement(std::move(
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(300.f, 100.f),
+                sf::Vector2f(77.f, 35.f),
+                sf::Vector2f(1.4f, 1.4f),
+                true,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Pause menu/BTN BACK.png"
+            )
+        ));
+
+        engine.event.defineOn("back_fn",[menuPtr, back_id]() {
+            if (menuPtr)
+                return menuPtr->getUIElement(back_id)->getIsPressed();
+            return false;
+        },
+        [&engine]() {
+            engine.popScene();
+        });
+
+        menu->addEventToDelete("back_fn");
+
+        return menu;
     });
 
     engine.switchScene("main");
 
-    engine.event.defineOn("pause",[&engine]() {
-        if (engine.input.wasActionPressed("PAUSE"))
-            return true;
-        return false;
-    },
-    [&engine]() {
-        if (engine.getCurrentSceneName() == "main")
-            engine.pushSwitchScene("pause");
-        else
-            engine.popScene();
-    });
+    engine.event.defineOn("pause", [&engine]() {
+                              if (engine.input.wasActionPressed("PAUSE"))
+                                  return true;
+                              return false;
+                          },
+                          [&engine]() {
+                              if (engine.getCurrentSceneName() == "main")
+                                  engine.pushSwitchScene("pause");
+                              else
+                                  engine.popScene();
+                          });
 
     engine.run();
 

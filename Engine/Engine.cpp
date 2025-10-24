@@ -4,6 +4,7 @@
 
 #include "Engine.h"
 #include <iostream>
+#include <utility>
 #include "Scene/Scene.h"
 #include "Scene/SceneType/GameScene.h"
 
@@ -50,7 +51,7 @@ void Engine::addSceneFactory(const std::string& name, std::function<std::unique_
 void Engine::switchScene(const std::string& name) {
 
     if (currentScene) {
-        currentScene->onExit();
+        currentScene->onExit(*this);
         currentScene.reset();
     }
 
@@ -58,6 +59,7 @@ void Engine::switchScene(const std::string& name) {
     if (it != sceneFactory.end()) {
         currentScene = it->second();
         currentSceneName = name;
+        currentScene->init();
     } else {
         std::cerr << "Scene not found: " << name << "\n";
     }
@@ -85,7 +87,7 @@ float Engine::clockRestart() {
 }
 
 void Engine::setRefTexture(std::unordered_map<int, std::string> inp_ref_texture) {
-    ref_texture = inp_ref_texture;
+    ref_texture = std::move(inp_ref_texture);
 }
 
 const std::unordered_map<int, std::string>& Engine::getRefTexture() const {
@@ -108,25 +110,31 @@ void Engine::processEngineEvents(float dt) {
         eventList.push_back(curEvent);
     }
 
-    input.updateEvent(eventList, dt);
+    input.updateEvent(eventList, window, dt);
     event.update(dt);
 }
 
 void Engine::pushSwitchScene(const string& name) {
-    currentScene->onPause();
+    currentScene->onPause(*this);
     sceneStack.emplace(currentSceneName, std::move(currentScene));
     switchScene(name);
 }
 
 void Engine::popScene() {
+    if (sceneStack.empty())
+        return;
+
     if (currentScene) {
-        currentScene->onExit();
+        currentScene->onExit(*this);
         currentScene.reset();
     }
 
     currentScene = std::move(sceneStack.top().second);
     currentSceneName = sceneStack.top().first;
     sceneStack.pop();
+
+    currentScene->onResume();
+
 }
 
 const std::string& Engine::getCurrentSceneName() {

@@ -28,7 +28,7 @@ public:
      * @param width Width of the window in pixels.
      * @param height Height of the window in pixels.
      */
-    GameScene(unsigned int width = 800, unsigned int height = 600);
+    explicit GameScene(unsigned int width, unsigned int height);
 
     /**
      * @brief Starts and runs the main game loop.
@@ -38,9 +38,11 @@ public:
      */
     void init() override;
 
-    void onExit() override;
+    void onResume() override;
 
-    void onPause() override;
+    void onExit(Engine& engine) override;
+
+    void onPause(Engine& engine) override;
 
     void update(Engine& engine, float dt) override;
 
@@ -50,13 +52,15 @@ public:
 
     void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id);
 
-    void addUIElement(std::unique_ptr<UIElement> uiElement);
+    size_t addUIElement(std::unique_ptr<UIElement> uiElement);
 
-    void setBackgroundTexture(const string& texturePath);
+    void setBackgroundTexture(const std::string& texturePath);
 
     void removeBackgroundTexture();
 
     Entity* getEntity(size_t id) const;
+
+    UIElement* getUIElement(size_t index) const;
 
 private:
 

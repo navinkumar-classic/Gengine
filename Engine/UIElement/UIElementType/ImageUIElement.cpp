@@ -50,13 +50,11 @@ void ImageUIElement::setTexture(const std::string& texturePath) {
     if (!texture.loadFromFile(texturePath)) {
         throw std::runtime_error("Failed to load texture: " + texturePath);
     }
+    sprite.setTexture(texture);
+    sprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(size.x), static_cast<int>(size.y)));
 
     sf::FloatRect bounds = sprite.getLocalBounds();
     sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-
-    sprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(size.x), static_cast<int>(size.y)));
-
-    sprite.setTexture(texture);
 }
 
 sf::FloatRect ImageUIElement::getBounds() const {

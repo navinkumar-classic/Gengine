@@ -60,6 +60,8 @@ void Engine::switchScene(const std::string& name) {
         currentScene = it->second();
         currentSceneName = name;
         currentScene->init();
+
+        std::cout << currentSceneName << " initialized\n";
     } else {
         std::cerr << "Scene not found: " << name << "\n";
     }
@@ -134,8 +136,16 @@ void Engine::popScene() {
     sceneStack.pop();
 
     currentScene->onResume();
-
 }
+
+void Engine::clearSceneStack() {
+    while (!sceneStack.empty()) {
+        sceneStack.top().second->onExit(*this);
+        sceneStack.top().second.reset();
+        sceneStack.pop();
+    }
+}
+
 
 const std::string& Engine::getCurrentSceneName() {
     return currentSceneName;

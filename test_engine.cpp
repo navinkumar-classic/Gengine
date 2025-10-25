@@ -230,7 +230,7 @@ std::unique_ptr<GameScene> gg(Engine &engine) {
     GameScene *scenePtr = scene.get();
 
     engine.collision.addEntryToCollisionHandler("pink_monster", "coin",
-                                                [scenePtr, &engine](Entity *a, Entity *b) {
+                                                [&engine](Entity *a, Entity *b) {
                                                     CollisionBehaviour::ControllableToCollectibleCollision(a, b);
                                                     engine.gameState.increment<int>("score", 100);
                                                 });
@@ -298,29 +298,49 @@ int main() {
             800
         );
 
-        MenuScene *menuPtr = menu.get();
-
         menu->addUIElement(std::move(
-            std::make_unique<TextUIElement>(
-                sf::Vector2f(100.f, 100.f),
-                32,
-                "Score: <score>",
-                engine.fetchFont("DEFAULT"),
-                sf::Color::White,
-                true
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(600.f, 400.f),
+                sf::Vector2f(146.f, 183.f),
+                sf::Vector2f(3.f, 3.f),
+                false,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Pause menu/PAUSE PRESET.png"
             )
         ));
 
+        MenuScene *menuPtr = menu.get();
+
         size_t back_id = menu->addUIElement(std::move(
             std::make_unique<ImageUIElement>(
-                sf::Vector2f(300.f, 100.f),
+                sf::Vector2f(600.f, 300.f),
                 sf::Vector2f(77.f, 35.f),
-                sf::Vector2f(1.4f, 1.4f),
+                sf::Vector2f(2.5f, 2.5f),
                 true,
                 "/home/navin/CLionProjects/Gengine/Assets/UI/Pause menu/BTN BACK.png"
             )
         ));
 
+        size_t menu_btn_id = menu->addUIElement(std::move(
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(600.f, 580.f),
+                sf::Vector2f(110.f, 35.f),
+                sf::Vector2f(2.5f, 2.5f),
+                true,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Pause menu/BTN MENU.png"
+            )
+        ));
+
+        size_t retry_btn_id = menu->addUIElement(std::move(
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(600.f, 420.f),
+                sf::Vector2f(77.f, 35.f),
+                sf::Vector2f(2.5f, 2.5f),
+                true,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Mission Failed/BTN Retry.png"
+            )
+        ));
+
+        /*
         engine.event.defineOn("back_fn",[menuPtr, back_id]() {
             if (menuPtr)
                 return menuPtr->getUIElement(back_id)->getIsPressed();
@@ -329,8 +349,19 @@ int main() {
         [&engine]() {
             engine.popScene();
         });
+        */
 
-        menu->addEventToDelete("back_fn");
+        engine.event.defineOn("retry_fn",[menuPtr, retry_btn_id]() {
+            if (menuPtr)
+                return menuPtr->getUIElement(retry_btn_id)->getIsPressed();
+            return false;
+        },
+        [&engine]() {
+            engine.popScene();
+        });
+
+        menu->addEventToDelete("retry_fn");
+        //menu->addEventToDelete("back_fn");
 
         return menu;
     });

@@ -5,6 +5,7 @@
 class Engine;
 #include <vector>
 #include <string>
+#include "../Event/EventManager.h"
 
 class Scene {
     public:

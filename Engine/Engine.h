@@ -41,6 +41,8 @@ public:
 
     void pushSwitchScene(const string &name);
 
+    void clearSceneStack();
+
     void popScene();
 
     float clockRestart();
@@ -65,5 +67,5 @@ private:
     std::unordered_map<std::string, std::function<std::unique_ptr<Scene>()> > sceneFactory;
     std::unique_ptr<Scene> currentScene;
     std::string currentSceneName;
-    std::stack<std::pair<std::string, std::unique_ptr<Scene> > > sceneStack;
+    std::stack<std::pair<std::string, std::unique_ptr<Scene>>> sceneStack;
 };

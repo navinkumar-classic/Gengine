@@ -18,8 +18,8 @@
 #include "Utility/CameraBehaviour.h"
 #include "Engine/Entity/EntityType/AnimatedStaticEntity.h"
 #include "Engine/Scene/SceneType/MenuScene.h"
-#include "Engine/UIElement/UIElementType/ImageUIElement.h"
-#include "Engine/UIElement/UIElementType/TextUIElement.h"
+#include "Engine/UI/UIElementType/ImageUIElement.h"
+#include "Engine/UI/UIElementType/TextUIElement.h"
 
 
 std::shared_ptr<GameScene> gg(Engine &engine) {

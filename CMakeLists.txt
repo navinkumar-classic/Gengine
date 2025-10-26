@@ -21,13 +21,13 @@ add_executable(Gengine
         Engine/Sprite/SpriteManager/TileManager.cpp
         Engine/Entity/EntityType/AnimatedStaticEntity.cpp
         Engine/GameState/GameState.cpp
-        Engine/UIElement/UIElement.cpp
-        Engine/UIElement/UIElementType/TextUIElement.cpp
+        Engine/UI/UIElement.cpp
+        Engine/UI/UIElementType/TextUIElement.cpp
         Engine/Event/EventManager.cpp
         Engine/Engine.cpp
         Engine/Scene/Scene.cpp
         Engine/Scene/SceneType/MenuScene.cpp
         test_engine.cpp
-        Engine/UIElement/UIElementType/ImageUIElement.h
-        Engine/UIElement/UIElementType/ImageUIElement.cpp)
+        Engine/UI/UIElementType/ImageUIElement.h
+        Engine/UI/UIElementType/ImageUIElement.cpp)
 target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)

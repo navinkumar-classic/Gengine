@@ -1,167 +1,36 @@
 //
-// Created by navin on 7/14/25.
+// Created by navin on 10/23/25.
 //
 
 #include "Engine.h"
-#include "Entity/Entity.h"
-#include "Physics/Collision/Collision.h"
 #include <iostream>
 #include <utility>
+#include "Scene/Scene.h"
+#include "Scene/SceneType/GameScene.h"
 
 Engine::Engine(
-    const string& fontPath,
     unsigned int width,
-    unsigned int height):
-    window(sf::VideoMode(width, height), "SFML Test"),
-    camera(sf::FloatRect(0, 0, width, height)) {
-
-    addFont("DEFAULT", fontPath);
+    unsigned int height,
+    const std::string &fontPath,
+    const std::string &title): window(sf::VideoMode(width, height), title){
+        addFont("DEFAULT", fontPath);
 }
 
-void Engine::run() {
-    while (isRunning) {
-        float dt = clock.restart().asSeconds();
-        processEvents(dt);
-        update(dt);
-        render();
-
-        input.reset();
-
-        if (cameraFunction) {
-            cameraFunction(*trackingEntity, camera);
-        }
-    }
+sf::RenderWindow& Engine::getWindow() {
+    return window;
 }
 
-void Engine::processEvents(float dt) {
-    sf::Event event{};
-    vector<sf::Event> events;
-
-    while (window.pollEvent(event)) {
-
-        if (event.type == sf::Event::Closed ||
-           (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Q)) {
-            isRunning = false;
-            window.close();
-           }
-
-        events.push_back(event);
-    }
-
-    input.updateEvent(events, dt);
+Input& Engine::getInput() {
+    return input;
 }
 
-void Engine::update(float dt) {
-    for (auto* entity : movableEntities) {
-        if (entity->getIsAlive()) {
-            entity->setPreviousPosition(entity->getPosition());
-            entity->update(dt, input);
-        }
-    }
-
-    for (auto* entity : animatedEntities) {
-        if (entity->getIsAlive()) {
-            entity->setPreviousPosition(entity->getPosition());
-            entity->update(dt, input);
-        }
-    }
-    collision.collisionManager(entities, movableEntities);
-
-    for (auto& uiElement : uiElements) {
-        if (uiElement->getIsDynamic()) {
-            uiElement->update(dt, gameState);
-        }
-    }
-
-    event.update(dt);
-}
-
-void Engine::render() {
-
-    if (backgroundSet) {
-        window.clear();
-        window.setView(window.getDefaultView());
-        window.draw(backgroundSprite);
-    } else {
-        window.clear(sf::Color::Black);
-    }
-
-    window.setView(camera);
-    for (auto& entity : entities) {
-        if (entity->getIsAlive()) {
-            entity->render(window);
-        }
-    }
-
-    for (auto& uiElement : uiElements) {
-        if (uiElement->getIsVisible()) {
-            uiElement->render(window);
-        }
-    }
-
-    window.display();
-}
-
-size_t Engine::addEntity(std::unique_ptr<Entity> entity) {
-    if (entity->isMovable) {
-        movableEntities.push_back(entity.get());
-    }
-    else if (entity->isAnimated) {
-        animatedEntities.push_back(entity.get());
-    }
-    entities.push_back(std::move(entity));
-
-    return entities.size() - 1;
-}
-
-void Engine::addUIElement(std::unique_ptr<UIElement> uiElement) {
-    uiElements.push_back(std::move(uiElement));
-}
-
-void Engine::bindAction(const string& action, sf::Keyboard::Key key) {
-    input.bindAction(action, key);
-}
-
-void Engine::setFrameRate(int frameRate) {
-    window.setFramerateLimit(frameRate);
-}
-
-void Engine::addEntryToCollisionHandler(const string &a, const string &b, const std::function<void(Entity *a, Entity *b)> &handler) {
-    collision.addEntryToCollisionHandler(a, b, handler);
-}
-
-void Engine::addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id) {
-    cameraFunction = std::move(inputCameraFunction);
-    trackingEntity = entities[entity_id].get();
-}
-
-void Engine::setBackgroundTexture(const string& texturePath) {
-    if (!backgroundTexture.loadFromFile(texturePath)) {
-        std::cerr << "Failed to load background.png\n";
-    } else {
-        backgroundSprite.setTexture(backgroundTexture);
-
-        sf::Vector2u texSize = backgroundTexture.getSize();
-        backgroundSprite.setScale(
-            float(window.getSize().x) / texSize.x,
-            float(window.getSize().y) / texSize.y
-        );
-    }
-
-    backgroundSet = true;
-}
-
-void Engine::removeBackgroundTexture() {
-    backgroundSet = false;
-}
-
-void Engine::addFont(const string& key, const string& fontPath) {
+void Engine::addFont(const std::string& key, const std::string& fontPath) {
     sf::Font temp;
     temp.loadFromFile(fontPath);
     fonts[key] = temp;
 }
 
-const sf::Font& Engine::fetchFont(const string& key) {
+const sf::Font& Engine::fetchFont(const std::string& key) {
     auto it = fonts.find(key);
     if (it != fonts.end()) {
         return it->second;
@@ -171,7 +40,117 @@ const sf::Font& Engine::fetchFont(const string& key) {
     return fonts["DEFAULT"];
 }
 
-Entity* Engine::getEntity(size_t id) const {
-    if (id >= entities.size()) return nullptr;
-    return entities[id].get();
+void Engine::setFrameRate(int frameRate) {
+    window.setFramerateLimit(frameRate);
+}
+
+void Engine::addSceneFactory(const std::string& name, std::function<std::shared_ptr<Scene>()> factory) {
+    sceneFactory[name] = std::move(factory);
+}
+
+void Engine::switchScene(const std::string& name) {
+
+    if (currentScene) {
+        currentScene->onExit(*this);
+        currentScene.reset();
+    }
+
+    auto it = sceneFactory.find(name);
+    if (it != sceneFactory.end()) {
+        currentScene = it->second();
+        currentSceneName = name;
+        currentScene->init();
+
+        std::cout << currentSceneName << " initialized\n";
+    } else {
+        std::cerr << "Scene not found: " << name << "\n";
+    }
+}
+
+void Engine::run() {
+    if (currentScene) {
+        while (isRunning) {
+            float dt = clockRestart();
+
+            processEngineEvents(dt);
+            currentScene->update(*this, dt);
+            currentScene->render(*this);
+
+            input.reset();
+        }
+    }
+    else {
+        std::cerr << "Scene not found\n";
+    }
+}
+
+float Engine::clockRestart() {
+    return clock.restart().asSeconds();
+}
+
+void Engine::setRefTexture(std::unordered_map<int, std::string> inp_ref_texture) {
+    ref_texture = std::move(inp_ref_texture);
+}
+
+const std::unordered_map<int, std::string>& Engine::getRefTexture() const {
+    return ref_texture;
+}
+
+void Engine::processEngineEvents(float dt) {
+
+    sf::Event curEvent{};
+    vector<sf::Event> eventList;
+
+    while (window.pollEvent(curEvent)) {
+
+        if (curEvent.type == sf::Event::Closed ||
+           (curEvent.type == sf::Event::KeyPressed && curEvent.key.code == sf::Keyboard::Q)) {
+            isRunning = false;
+            window.close();
+           }
+
+        eventList.push_back(curEvent);
+    }
+
+    input.updateEvent(eventList, window, dt);
+    event.update(dt);
+}
+
+void Engine::pushSwitchScene(const string& name) {
+    currentScene->onPause(*this);
+    sceneStack.emplace(currentSceneName, std::move(currentScene));
+    switchScene(name);
+}
+
+void Engine::popScene() {
+    if (sceneStack.empty())
+        return;
+
+    if (currentScene) {
+        currentScene->onExit(*this);
+        currentScene.reset();
+    }
+
+    currentScene = std::move(sceneStack.top().second);
+    currentSceneName = sceneStack.top().first;
+    sceneStack.pop();
+
+    currentScene->onResume();
+}
+
+void Engine::clearSceneStack() {
+    while (!sceneStack.empty()) {
+        sceneStack.top().second->onExit(*this);
+        sceneStack.top().second.reset();
+        sceneStack.pop();
+    }
+}
+
+const std::string& Engine::getCurrentSceneName() {
+    return currentSceneName;
+}
+
+void Engine::quitEngine() {
+    isRunning = false;
+    window.close();
 }

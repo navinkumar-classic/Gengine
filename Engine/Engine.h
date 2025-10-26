@@ -1,115 +1,74 @@
 //
-// Created by navin on 7/14/25.
+// Created by navin on 10/23/25.
 //
+
 #pragma once
-
+#include <functional>
 #include <memory>
+#include <stack>
+#include <string>
+#include <unordered_map>
 #include <SFML/Graphics.hpp>
-#include "Input/Input.h"
-#include "Entity/Entity.h"
-#include "Event/EventManager.h"
-#include "GameState/GameState.h"
-#include "Physics/Collision/Collision.h"
-#include "UIElement/UIElement.h"
 
-/**
- * @class Engine
- * @brief Central class that drives the game loop, rendering, and input/event handling.
- *
- * The Engine coordinates core subsystems: window creation, input processing,
- * entity updates, and rendering. It serves as the main runtime environment
- * for the game.
- */
+#include "GameState/GameState.h"
+#include "Input/Input.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneType/GameScene.h"
+#include  "Physics/Collision/Collision.h"
+
 class Engine {
 public:
-    /**
-     * @brief Creates a game engine with a given window size.
-     * @param width Width of the window in pixels.
-     * @param height Height of the window in pixels.
-     */
-    Engine(const string& fontPath, unsigned int width = 800, unsigned int height = 600);
+    Engine(unsigned int width, unsigned int height, const std::string &fontPath, const std::string &title);
 
-    /**
-     * @brief Starts and runs the main game loop.
-     *
-     * Continuously processes events, updates entity state,
-     * and renders frames until the engine is stopped.
-     */
     void run();
 
-    /**
-     * @brief Adds a new entity to the engine's world.
-     * @param entity A unique pointer to the entity to be added.
-     */
-    size_t addEntity(std::unique_ptr<Entity> entity);
+    sf::RenderWindow &getWindow();
 
-    void addEntryToCollisionHandler(const string& a, const string& b, const std::function<void(Entity* a, Entity* b)>& handler);
-
-    void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id);
-
-    void addUIElement(std::unique_ptr<UIElement> uiElement);
-
-    void addFont(const string& key, const string& fontPath);
-
-
-    const sf::Font& fetchFont(const string& key);
-
-    void bindAction(const string& action, sf::Keyboard::Key key);
+    Input &getInput();
 
     void setFrameRate(int frameRate);
 
-    void setBackgroundTexture(const string& texturePath);
+    void addFont(const std::string &key, const std::string &fontPath);
 
-    void removeBackgroundTexture();
+    const sf::Font &fetchFont(const std::string &key);
 
-    Entity* getEntity(size_t id) const;
+    void setRefTexture(std::unordered_map<int, std::string> ref_texture);
+
+    const std::unordered_map<int, std::string> &getRefTexture() const;
+
+    void addSceneFactory(const string &name, std::function<std::shared_ptr<Scene>()> factory);
+
+    void switchScene(const string &name);
+
+    void pushSwitchScene(const string &name);
+
+    void clearSceneStack();
+
+    void popScene();
+
+    float clockRestart();
+
+    const std::string &getCurrentSceneName();
+
+    void quitEngine();
 
     GameState gameState;
-
     EventManager event;
-
-private:
-    /**
-     * @brief Handles input events and stores the input state to be used in the update().
-     * @param dt Time elapsed since the last frame.
-     */
-    void processEvents(float dt);
-
-    /**
-     * @brief Updates the state of all entities in the engine.
-     *
-     * This method processes input, applies game logic, updates entity positions,
-     * and runs the collision system to handle interactions between entities.
-     *
-     * @param dt Time delta since the last frame (in seconds).
-     */
-    void update(float dt);
-
-    /**
-     * @brief Renders all visible entities to the window.
-     */
-    void render();
-
-    bool isRunning = true;
-
-    sf::RenderWindow window;
-    sf::View camera;
-    sf::Clock clock;
     Input input;
     Collision collision;
 
-    std::vector<std::unique_ptr<Entity>> entities;
-    std::vector<Entity*> movableEntities;
-    std::vector<Entity*> animatedEntities;
-    Entity* trackingEntity;
+private:
+    void processEngineEvents(float dt);
 
-    std::vector<std::unique_ptr<UIElement>> uiElements;
+    sf::Clock clock;
+    bool isRunning = true;
 
-    sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;
-    bool backgroundSet = false;
+    sf::RenderWindow window;
+    std::unordered_map<std::string, sf::Font> fonts;
+    std::unordered_map<int, std::string> ref_texture;
 
-    std::function<void(Entity&, sf::View&)> cameraFunction;
-
-    std::unordered_map<string, sf::Font> fonts;
+    std::unordered_map<std::string, std::function<std::shared_ptr<Scene>()> > sceneFactory;
+    std::shared_ptr<Scene> currentScene;
+    std::string currentSceneName;
+    std::stack<std::pair<std::string, std::shared_ptr<Scene>>> sceneStack;
 };

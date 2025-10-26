@@ -6,22 +6,28 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(SFML 2.5 REQUIRED COMPONENTS graphics window system)
 
-add_executable(Gengine main.cpp
-        Engine/Engine.cpp
+add_executable(Gengine
+        Engine/Scene/SceneType/GameScene.cpp
         Engine/Input/Input.cpp
         Engine/Entity/Entity.cpp
         Engine/Entity/EntityType/ControllableEntity.cpp
         Engine/Entity/EntityType/StaticEntity.cpp
         Engine/Physics/Collision/Collision.cpp
-        Util/Movement.cpp
-        Util/CollisionBehaviour.cpp
-        Util/EntityPhysics.cpp
-        Util/CameraBehaviour.cpp
+        Utility/Movement.cpp
+        Utility/CollisionBehaviour.cpp
+        Utility/EntityPhysics.cpp
+        Utility/CameraBehaviour.cpp
         Engine/Sprite/SpriteManager/AnimatedSprite.cpp
         Engine/Sprite/SpriteManager/TileManager.cpp
         Engine/Entity/EntityType/AnimatedStaticEntity.cpp
         Engine/GameState/GameState.cpp
         Engine/UIElement/UIElement.cpp
         Engine/UIElement/UIElementType/TextUIElement.cpp
-        Engine/Event/EventManager.cpp)
+        Engine/Event/EventManager.cpp
+        Engine/Engine.cpp
+        Engine/Scene/Scene.cpp
+        Engine/Scene/SceneType/MenuScene.cpp
+        test_engine.cpp
+        Engine/UIElement/UIElementType/ImageUIElement.h
+        Engine/UIElement/UIElementType/ImageUIElement.cpp)
 target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)

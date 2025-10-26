@@ -5,26 +5,29 @@
 #pragma once
 #include "../UIElement.h"
 #include "../../GameState/GameState.h"
+#include "../../Input/Input.h"
 
 class TextUIElement: public UIElement {
     public:
         TextUIElement(
             const sf::Vector2f& position,
             int characterSize,
-            const string& text,
+            const std::string& text,
             const sf::Font& font,
             const sf::Color& color,
             bool isDynamic);
 
-        void update(float dt, const GameState& game_state) override;
+        void update(float dt, const GameState& game_state, const Input& input) override;
         void render(sf::RenderWindow& window) override;
 
         void setPosition(const sf::Vector2f& position) override;
         void setCharacterSize(int size);
-        void setText(const string& text);
+        void setText(const std::string& text);
 
-        void setSize(const sf::Vector2f& size);
-        void setScale(const sf::Vector2f& scale);
+        sf::FloatRect getBounds() const override;
+        void setSize(const sf::Vector2f& size) override {};
+        void setScale(const sf::Vector2f &scale) override {};
+        bool getIsPressed() const override {return false;};
 
     private:
         sf::Text m_text;

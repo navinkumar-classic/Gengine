@@ -5,8 +5,8 @@
 #include "ControllableEntity.h"
 #include <utility>
 
-#include "../../../Util/Movement.h"
-#include "../../../Util/EntityPhysics.h"
+#include "../../../Utility/Movement.h"
+#include "../../../Utility/EntityPhysics.h"
 
 ControllableEntity::ControllableEntity(
         bool isMovable,

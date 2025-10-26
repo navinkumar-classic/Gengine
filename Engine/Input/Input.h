@@ -7,6 +7,7 @@
 #include <SFML/Window.hpp>
 #include <unordered_map>
 #include <string>
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -26,9 +27,10 @@ public:
      * such as presses, releases, and duration for held keys.
      *
      * @param events A list of SFML events polled from the window.
+     * @param window the render window
      * @param dt Delta time in seconds since the last frame.
      */
-    void updateEvent(const vector<sf::Event>& events, float dt);
+    void updateEvent(const vector<sf::Event>& events, const sf::RenderWindow& window, float dt);
 
     /**
      * @brief Resets all key state (pressed/released/held) for a new frame.
@@ -85,6 +87,14 @@ public:
      */
     sf::Keyboard::Key getKeyForAction(const string& action) const;
 
+    bool wasMousePressed(sf::Mouse::Button button) const;
+
+    bool wasMouseReleased(sf::Mouse::Button button) const;
+
+    bool isMouseHeld(sf::Mouse::Button button) const;
+
+    sf::Vector2<float> getMousePosition() const;
+
 private:
     unordered_map<sf::Keyboard::Key, bool> keyHeld;
     unordered_map<sf::Keyboard::Key, bool> keyPressed;
@@ -93,4 +103,10 @@ private:
 
     unordered_map<string, sf::Keyboard::Key> actionBindings;
     unordered_map<sf::Keyboard::Key, string> keyBindings;
+
+    unordered_map<sf::Mouse::Button, bool> mouseHeld;
+    unordered_map<sf::Mouse::Button, bool> mousePressed;
+    unordered_map<sf::Mouse::Button, bool> mouseReleased;
+
+    sf::Vector2i mousePosition = {0, 0};
 };

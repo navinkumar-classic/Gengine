@@ -5,6 +5,8 @@
 #include "Input.h"
 
 #include <iostream>
+#include <ranges>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 void Input::bindAction(const string& action, sf::Keyboard::Key key) {
         actionBindings.insert({action, key});
@@ -58,6 +60,31 @@ float Input::getHoldDuration(const string& action) const {
         return 0.0f;
 }
 
+bool Input::isMouseHeld(sf::Mouse::Button button) const {
+        if (mouseHeld.contains(button)) {
+                return mouseHeld.at(button);
+        }
+        return false;
+}
+
+bool Input::wasMousePressed(sf::Mouse::Button button) const {
+        if (mousePressed.contains(button)) {
+                return mousePressed.at(button);
+        }
+        return false;
+}
+
+bool Input::wasMouseReleased(sf::Mouse::Button button) const {
+        if (mouseReleased.contains(button)) {
+                return mouseReleased.at(button);
+        }
+        return false;
+}
+
+sf::Vector2<float> Input::getMousePosition() const {
+        return static_cast<sf::Vector2f>(mousePosition);
+}
+
 void Input::reset() {
         for (auto & key : keyReleased) {
                 if ( key.second) {
@@ -70,9 +97,15 @@ void Input::reset() {
                 keyPressed[key.first] = false;
                 keyReleased[key.first] = false;
         }
+
+        for (auto &state: mousePressed | views::values)
+                state = false;
+
+        for (auto &state: mouseReleased | views::values)
+                state = false;
 }
 
-void Input::updateEvent(const vector<sf::Event>& events, float dt) {
+void Input::updateEvent(const vector<sf::Event>& events, const sf::RenderWindow& window, const float dt) {
         for (auto& key : keyHeld) {
                 if (key.second) {
                         keyHoldDuration[key.first] += dt;
@@ -87,6 +120,24 @@ void Input::updateEvent(const vector<sf::Event>& events, float dt) {
                 if (event.type == sf::Event::KeyReleased && keyHeld[event.key.code] == true) {
                         keyHeld[event.key.code] = false;
                         keyReleased[event.key.code] = true;
+                }
+
+                if (event.type == sf::Event::MouseButtonPressed) {
+                        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                        mousePressed[event.mouseButton.button] = true;
+                        mouseHeld[event.mouseButton.button] = true;
+                        mousePosition = mousePos;
+                }
+
+                if (event.type == sf::Event::MouseButtonReleased) {
+                        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                        mouseHeld[event.mouseButton.button] = false;
+                        mouseReleased[event.mouseButton.button] = true;
+                        mousePosition = mousePos;
+                }
+
+                if (event.type == sf::Event::MouseMoved) {
+                        mousePosition = { event.mouseMove.x, event.mouseMove.y };
                 }
         }
 }

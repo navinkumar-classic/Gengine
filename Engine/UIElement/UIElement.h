@@ -5,8 +5,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "../Input/Input.h"
 #include "../GameState/GameState.h"
+#include "../Input/Input.h"
 
 class UIElement {
     public:
@@ -17,7 +17,7 @@ class UIElement {
             bool isDynamic);
         virtual ~UIElement() = default;
 
-        virtual void update(float dt, const GameState& game_state) = 0;
+        virtual void update(float dt, const GameState& game_state, const Input& input) = 0;
         virtual void render(sf::RenderWindow& window) = 0;
 
         [[nodiscard]] bool getIsVisible() const;
@@ -25,6 +25,9 @@ class UIElement {
         [[nodiscard]] sf::Vector2f getSize() const;
         [[nodiscard]] sf::Vector2f getScale() const;
         [[nodiscard]] bool getIsDynamic() const;
+
+        [[nodiscard]] virtual sf::FloatRect getBounds() const = 0;
+        [[nodiscard]] virtual bool getIsPressed() const = 0;
 
         virtual void setPosition(const sf::Vector2f& position) = 0;
         virtual void setSize(const sf::Vector2f& size) = 0;

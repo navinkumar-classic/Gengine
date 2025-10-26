@@ -30,9 +30,10 @@ void EventManager::deleteEvent(const std::string& name) {
 }
 
 void EventManager::update(float dt) {
+
     for (const std::string& todelete: eventsToDelete) {
         conditions.erase(todelete);
-        conditions.erase(todelete);
+        actions.erase(todelete);
     }
 
     eventsToDelete.clear();

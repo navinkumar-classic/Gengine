@@ -7,7 +7,7 @@
 
 #include "../../Engine.h"
 
-MenuScene::MenuScene(unsigned int width, unsigned int height) : width(width), height(height) {}
+MenuScene::MenuScene(unsigned int width, unsigned int height) : Scene(width, height) {}
 
 void MenuScene::init() {
     std::cout << "Initializing..." << std::endl;
@@ -62,35 +62,4 @@ void MenuScene::render(Engine& engine) {
     }
 
     window.display();
-}
-
-size_t MenuScene::addUIElement(std::unique_ptr<UIElement> uiElement) {
-    uiElements.push_back(std::move(uiElement));
-
-    return uiElements.size() - 1;
-}
-
-UIElement* MenuScene::getUIElement(size_t id) const {
-    if (id >= uiElements.size()) return nullptr;
-    return uiElements[id].get();
-}
-
-void MenuScene::setBackgroundTexture(const std::string &texturePath) {
-    if (!backgroundTexture.loadFromFile(texturePath)) {
-        std::cerr << "Failed to load background.png\n";
-    } else {
-        backgroundSprite.setTexture(backgroundTexture);
-
-        const sf::Vector2u texSize = backgroundTexture.getSize();
-        backgroundSprite.setScale(
-            static_cast<float>(width) / static_cast<float>(texSize.x),
-            static_cast<float>(height) / static_cast<float>(texSize.y)
-        );
-    }
-
-    backgroundSet = true;
-}
-
-void MenuScene::removeBackgroundTexture() {
-    backgroundSet = false;
 }

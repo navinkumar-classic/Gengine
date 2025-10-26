@@ -14,6 +14,7 @@
 #include "Input/Input.h"
 #include "Scene/Scene.h"
 #include "Scene/SceneType/GameScene.h"
+#include  "Physics/Collision/Collision.h"
 
 class Engine {
 public:
@@ -35,7 +36,7 @@ public:
 
     const std::unordered_map<int, std::string> &getRefTexture() const;
 
-    void addSceneFactory(const string &name, std::function<std::unique_ptr<Scene>()> factory);
+    void addSceneFactory(const string &name, std::function<std::shared_ptr<Scene>()> factory);
 
     void switchScene(const string &name);
 
@@ -48,6 +49,8 @@ public:
     float clockRestart();
 
     const std::string &getCurrentSceneName();
+
+    void quitEngine();
 
     GameState gameState;
     EventManager event;
@@ -64,8 +67,8 @@ private:
     std::unordered_map<std::string, sf::Font> fonts;
     std::unordered_map<int, std::string> ref_texture;
 
-    std::unordered_map<std::string, std::function<std::unique_ptr<Scene>()> > sceneFactory;
-    std::unique_ptr<Scene> currentScene;
+    std::unordered_map<std::string, std::function<std::shared_ptr<Scene>()> > sceneFactory;
+    std::shared_ptr<Scene> currentScene;
     std::string currentSceneName;
-    std::stack<std::pair<std::string, std::unique_ptr<Scene>>> sceneStack;
+    std::stack<std::pair<std::string, std::shared_ptr<Scene>>> sceneStack;
 };

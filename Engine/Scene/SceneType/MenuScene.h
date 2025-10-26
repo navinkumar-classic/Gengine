@@ -3,11 +3,8 @@
 //
 
 #pragma once
-#include <vector>
-#include <SFML/Graphics.hpp>
-#include <memory>
+
 #include "../Scene.h"
-#include "../../UIElement/UIElement.h"
 
 class MenuScene: public Scene {
     public:
@@ -25,21 +22,4 @@ class MenuScene: public Scene {
 
         void render(Engine& engine) override;
 
-        size_t addUIElement(std::unique_ptr<UIElement> uiElement);
-
-        UIElement* getUIElement(size_t index) const;
-
-        void setBackgroundTexture(const std::string& texturePath);
-
-        void removeBackgroundTexture();
-
-    private:
-        unsigned int width;
-        unsigned int height;
-
-        std::vector<std::unique_ptr<UIElement>> uiElements;
-
-        sf::Texture backgroundTexture;
-        sf::Sprite backgroundSprite;
-        bool backgroundSet = false;
 };

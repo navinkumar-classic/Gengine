@@ -22,8 +22,8 @@
 #include "Engine/UIElement/UIElementType/TextUIElement.h"
 
 
-std::unique_ptr<GameScene> gg(Engine &engine) {
-    auto scene = std::make_unique<GameScene>(
+std::shared_ptr<GameScene> gg(Engine &engine) {
+    auto scene = std::make_shared<GameScene>(
         1200,
         800
     );
@@ -227,7 +227,8 @@ std::unique_ptr<GameScene> gg(Engine &engine) {
                                                 CollisionBehaviour::ControllableToStaticCollision);
     engine.collision.addEntryToCollisionHandler("crate", "ground", CollisionBehaviour::ControllableToStaticCollision);
 
-    GameScene *scenePtr = scene.get();
+    auto scenePtr = std::weak_ptr<GameScene>(scene);
+    auto scene_uid = "scene_" + std::to_string(reinterpret_cast<uintptr_t>(scene.get()));
 
     engine.collision.addEntryToCollisionHandler("pink_monster", "coin",
                                                 [&engine](Entity *a, Entity *b) {
@@ -235,20 +236,24 @@ std::unique_ptr<GameScene> gg(Engine &engine) {
                                                     engine.gameState.increment<int>("score", 100);
                                                 });
 
-    engine.event.defineOn("FallDown",
+    engine.event.defineOn("FallDown" + scene_uid,
                           [scenePtr, playerId]() {
-                              return scenePtr->getEntity(playerId)->getPosition().y > 1000;
+                              if (auto shared = scenePtr.lock()) {
+                                  return shared->getEntity(playerId)->getPosition().y > 1000;
+                              }
+                              return false;
                           },
                           [scenePtr,playerId]() {
-                              scenePtr->getEntity(playerId)->setPosition(sf::Vector2f(0, 0));
+                              if (auto shared = scenePtr.lock()) {
+                                  shared->getEntity(playerId)->setPosition(sf::Vector2f(30, 0));
+                              }
                           });
 
     scene->addCameraBehaviour([](Entity &player, sf::View &camera) {
         cameraBehaviour::cameraTracking(player, camera, 200.0f, 2000.0f);
     }, playerId);
 
-    scenePtr = nullptr;
-    scene->addEventToDelete("FallDown");
+    scene->addEventToDelete("FallDown" + scene_uid);
 
     return scene;
 }
@@ -292,8 +297,94 @@ int main() {
         return gg(engine);
     });
 
+    engine.addSceneFactory("start", [&engine]() {
+        auto start = std::make_shared<MenuScene>(1200, 800);
+
+        start->setBackgroundTexture("/home/navin/CLionProjects/Gengine/Assets/swamp/Background/Background.png");
+
+        start->addUIElement(std::move(
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(600.f, 400.f),
+                sf::Vector2f(83.f, 55.f),
+                sf::Vector2f(11.f, 11.f),
+                true,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Bonus/Bonus 03.png"
+            )
+        ));
+
+        start->addUIElement(std::move(
+            std::make_unique<TextUIElement>(
+                sf::Vector2f(320.f, 150.f),
+                120,
+                "Swamp",
+                engine.fetchFont("DEFAULT"),
+                sf::Color::White,
+                false
+            )
+        ));
+
+        start->addUIElement(std::move(
+            std::make_unique<TextUIElement>(
+                sf::Vector2f(500.f, 300.f),
+                120,
+                "Monster",
+                engine.fetchFont("DEFAULT"),
+                sf::Color::White,
+                false
+            )
+        ));
+
+        size_t exit_id = start->addUIElement(std::move(
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(1007.f, 147.f),
+                sf::Vector2f(28.f, 27.f),
+                sf::Vector2f(2.f, 2.f),
+                true,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Main menu/BTN Exit.png"
+            )
+        ));
+
+        size_t back_id = start->addUIElement(std::move(
+            std::make_unique<ImageUIElement>(
+                sf::Vector2f(600.f, 550.f),
+                sf::Vector2f(200.f, 48.f),
+                sf::Vector2f(2.f, 2.f),
+                true,
+                "/home/navin/CLionProjects/Gengine/Assets/UI/Main menu/BTN PLAY.png"
+            )
+        ));
+
+        auto StartPtr = std::weak_ptr<MenuScene>(start);
+        auto start_uid = "scene_" + std::to_string(reinterpret_cast<uintptr_t>(start.get()));
+
+
+        engine.event.defineOn("play_fn" + start_uid, [StartPtr, back_id]() {
+                                  if (auto shared = StartPtr.lock())
+                                      return shared->getUIElement(back_id)->getIsPressed();
+                                  return false;
+                              },
+                              [&engine]() {
+                                  engine.clearSceneStack();
+                                  engine.switchScene("main");
+                              });
+
+        engine.event.defineOn("quit_fn" + start_uid, [StartPtr, exit_id]() {
+                                  if (auto shared = StartPtr.lock())
+                                      return shared->getUIElement(exit_id)->getIsPressed();
+                                  return false;
+                              },
+                              [&engine]() {
+                                  engine.quitEngine();
+                              });
+
+        start->addEventToDelete("play_fn" + start_uid);
+        start->addEventToDelete("quit_fn" + start_uid);
+
+        return start;
+    });
+
     engine.addSceneFactory("pause", [&engine]() {
-        auto menu = std::make_unique<MenuScene>(
+        auto menu = std::make_shared<MenuScene>(
             1200,
             800
         );
@@ -308,7 +399,7 @@ int main() {
             )
         ));
 
-        MenuScene *menuPtr = menu.get();
+        auto menuPtr = std::weak_ptr<MenuScene>(menu);
 
         size_t back_id = menu->addUIElement(std::move(
             std::make_unique<ImageUIElement>(
@@ -320,7 +411,7 @@ int main() {
             )
         ));
 
-        size_t menu_btn_id = menu->addUIElement(std::move(
+        size_t start_id = menu->addUIElement(std::move(
             std::make_unique<ImageUIElement>(
                 sf::Vector2f(600.f, 580.f),
                 sf::Vector2f(110.f, 35.f),
@@ -340,33 +431,45 @@ int main() {
             )
         ));
 
-        /*
-        engine.event.defineOn("back_fn",[menuPtr, back_id]() {
-            if (menuPtr)
-                return menuPtr->getUIElement(back_id)->getIsPressed();
-            return false;
-        },
-        [&engine]() {
-            engine.popScene();
-        });
-        */
+        auto menu_uid = "scene_" + std::to_string(reinterpret_cast<uintptr_t>(menu.get()));
 
-        engine.event.defineOn("retry_fn",[menuPtr, retry_btn_id]() {
-            if (menuPtr)
-                return menuPtr->getUIElement(retry_btn_id)->getIsPressed();
-            return false;
-        },
-        [&engine]() {
-            engine.popScene();
-        });
+        engine.event.defineOn("back_fn" + menu_uid, [menuPtr, back_id]() {
+                                  if (auto shared = menuPtr.lock())
+                                      return shared->getUIElement(back_id)->getIsPressed();
+                                  return false;
+                              },
+                              [&engine]() {
+                                  engine.popScene();
+                              });
 
-        menu->addEventToDelete("retry_fn");
-        //menu->addEventToDelete("back_fn");
+        engine.event.defineOn("retry_fn" + menu_uid, [menuPtr, retry_btn_id]() {
+                                  if (auto shared = menuPtr.lock())
+                                      return shared->getUIElement(retry_btn_id)->getIsPressed();
+                                  return false;
+                              },
+                              [&engine]() {
+                                  engine.clearSceneStack();
+                                  engine.switchScene("main");
+                              });
+
+        engine.event.defineOn("start_fn" + menu_uid, [menuPtr, start_id]() {
+                                  if (auto shared = menuPtr.lock())
+                                      return shared->getUIElement(start_id)->getIsPressed();
+                                  return false;
+                              },
+                              [&engine]() {
+                                  engine.clearSceneStack();
+                                  engine.switchScene("start");
+                              });
+
+        menu->addEventToDelete("retry_fn" + menu_uid);
+        menu->addEventToDelete("back_fn" + menu_uid);
+        menu->addEventToDelete("start_fn" + menu_uid);
 
         return menu;
     });
 
-    engine.switchScene("main");
+    engine.switchScene("start");
 
     engine.event.defineOn("pause", [&engine]() {
                               if (engine.input.wasActionPressed("PAUSE"))

@@ -13,7 +13,32 @@
 GameScene::GameScene(
     unsigned int width,
     unsigned int height) : camera(sf::FloatRect(0, 0, static_cast<float>(width), static_cast<float>(height))),
-                           trackingEntity(nullptr), width(width), height(height) {
+                           trackingEntity(nullptr), Scene(width, height){}
+
+void GameScene::init() {
+    std::cout << "Initializing..." << std::endl;
+}
+
+void GameScene::onResume() {
+    std::cout << "Resuming..." << std::endl;
+}
+
+void GameScene::onExit(Engine& engine) {
+    auto &window = engine.getWindow();
+
+    window.setView(window.getDefaultView());
+
+    for (const string& toDelete: eventsToDelete) {
+        engine.event.deleteEvent(toDelete);
+    }
+    std::cout << "Exiting..." << std::endl;
+}
+
+void GameScene::onPause(Engine& engine) {
+    auto &window = engine.getWindow();
+
+    window.setView(window.getDefaultView());
+    std::cout << "Pausing..." << std::endl;
 }
 
 void GameScene::update(Engine &engine, const float dt) {
@@ -83,69 +108,12 @@ size_t GameScene::addEntity(std::unique_ptr<Entity> entity) {
     return entities.size() - 1;
 }
 
-size_t GameScene::addUIElement(std::unique_ptr<UIElement> uiElement) {
-    uiElements.push_back(std::move(uiElement));
-
-    return uiElements.size() - 1;
-}
-
-void GameScene::addCameraBehaviour(std::function<void(Entity &, sf::View &)> inputCameraFunction, size_t entity_id) {
-    cameraFunction = std::move(inputCameraFunction);
-    trackingEntity = entities[entity_id].get();
-}
-
-void GameScene::setBackgroundTexture(const std::string &texturePath) {
-    if (!backgroundTexture.loadFromFile(texturePath)) {
-        std::cerr << "Failed to load background.png\n";
-    } else {
-        backgroundSprite.setTexture(backgroundTexture);
-
-        const sf::Vector2u texSize = backgroundTexture.getSize();
-        backgroundSprite.setScale(
-            static_cast<float>(width) / static_cast<float>(texSize.x),
-            static_cast<float>(height) / static_cast<float>(texSize.y)
-        );
-    }
-
-    backgroundSet = true;
-}
-
-void GameScene::removeBackgroundTexture() {
-    backgroundSet = false;
-}
-
 Entity *GameScene::getEntity(size_t id) const {
     if (id >= entities.size()) return nullptr;
     return entities[id].get();
 }
 
-UIElement* GameScene::getUIElement(size_t id) const {
-    if (id >= uiElements.size()) return nullptr;
-    return uiElements[id].get();
-}
-
-void GameScene::init() {
-    std::cout << "Initializing..." << std::endl;
-}
-
-void GameScene::onResume() {
-    std::cout << "Resuming..." << std::endl;
-}
-
-void GameScene::onExit(Engine& engine) {
-    auto &window = engine.getWindow();
-
-    window.setView(window.getDefaultView());
-
-    for (const string& toDelete: eventsToDelete) {
-        engine.event.deleteEvent(toDelete);
-    }
-    std::cout << "Exiting..." << std::endl;
-}
-
-void GameScene::onPause(Engine& engine) {
-    auto &window = engine.getWindow();
-
-    window.setView(window.getDefaultView());
-    std::cout << "Pausing..." << std::endl;
+void GameScene::addCameraBehaviour(std::function<void(Entity &, sf::View &)> inputCameraFunction, size_t entity_id) {
+    cameraFunction = std::move(inputCameraFunction);
+    trackingEntity = entities[entity_id].get();
 }

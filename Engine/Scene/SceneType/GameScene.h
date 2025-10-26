@@ -7,11 +7,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "../Scene.h"
-#include "../../Input/Input.h"
 #include "../../Entity/Entity.h"
 #include "../../Event/EventManager.h"
-#include "../../Physics/Collision/Collision.h"
-#include "../../UIElement/UIElement.h"
 
 /**
  * @class GameScene
@@ -50,22 +47,11 @@ public:
 
     size_t addEntity(std::unique_ptr<Entity> entity);
 
-    void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id);
-
-    size_t addUIElement(std::unique_ptr<UIElement> uiElement);
-
-    void setBackgroundTexture(const std::string& texturePath);
-
-    void removeBackgroundTexture();
-
     Entity* getEntity(size_t id) const;
 
-    UIElement* getUIElement(size_t index) const;
+    void addCameraBehaviour(std::function<void(Entity&, sf::View&)> inputCameraFunction, size_t entity_id);
 
 private:
-
-    unsigned int width;
-    unsigned int height;
 
     sf::View camera;
 
@@ -73,12 +59,6 @@ private:
     std::vector<Entity*> movableEntities;
     std::vector<Entity*> animatedEntities;
     Entity* trackingEntity;
-
-    std::vector<std::unique_ptr<UIElement>> uiElements;
-
-    sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;
-    bool backgroundSet = false;
 
     std::function<void(Entity&, sf::View&)> cameraFunction;
 

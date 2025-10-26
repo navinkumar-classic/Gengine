@@ -44,7 +44,7 @@ void Engine::setFrameRate(int frameRate) {
     window.setFramerateLimit(frameRate);
 }
 
-void Engine::addSceneFactory(const std::string& name, std::function<std::unique_ptr<Scene>()> factory) {
+void Engine::addSceneFactory(const std::string& name, std::function<std::shared_ptr<Scene>()> factory) {
     sceneFactory[name] = std::move(factory);
 }
 
@@ -146,7 +146,11 @@ void Engine::clearSceneStack() {
     }
 }
 
-
 const std::string& Engine::getCurrentSceneName() {
     return currentSceneName;
+}
+
+void Engine::quitEngine() {
+    isRunning = false;
+    window.close();
 }

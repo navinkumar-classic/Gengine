@@ -30,20 +30,20 @@ public:
         const string& entityTag
         );
 
-    void update(float dt, Input& input) override;
+    void update(float dt, InputManager& input) override;
     void render(sf::RenderWindow& window) override;
     void applyMovementToShape() override;
 
     sf::FloatRect getBounds() const override;
 
-    void addAction(string action, const function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func);
+    void addAction(string action, const function<void(ControllableEntity& entity, InputManager& input, string action, float dt)>& func);
     void clearActions();
 
     AnimatedSprite Sprite;
 
 private:
 
-    std::vector<std::pair<string, function<void(ControllableEntity& entity, Input& input, string action, float dt)>>> action;
+    std::vector<std::pair<string, function<void(ControllableEntity& entity, InputManager& input, string action, float dt)>>> action;
     sf::Vector2u windowSize;
 
 };

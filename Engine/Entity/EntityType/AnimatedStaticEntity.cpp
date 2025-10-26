@@ -47,7 +47,7 @@ void AnimatedStaticEntity::render(sf::RenderWindow& window) {
     Sprite.draw(window);
 }
 
-void AnimatedStaticEntity::update(float dt, Input& input) {
+void AnimatedStaticEntity::update(float dt, InputManager& input) {
     for (const auto& physicsFunction : physics) {
         physicsFunction(*this, input, dt);
     }

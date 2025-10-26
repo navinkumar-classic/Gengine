@@ -5,7 +5,7 @@
 #include "Movement.h"
 #include <iostream>
 
-void Movement::moveLeft(ControllableEntity& entity, Input& input, string action, float dt){
+void Movement::moveLeft(ControllableEntity& entity, InputManager& input, string action, float dt){
     if (input.isActionHeld(action)) {
         entity.setHorizontalVelocity(entity.getVelocity().x - entity.getAcceleration() * dt);
         if (entity.getVelocity().x < -entity.getMaxSpeed())
@@ -17,7 +17,7 @@ void Movement::moveLeft(ControllableEntity& entity, Input& input, string action,
     }
 }
 
-void Movement::moveRight(ControllableEntity& entity, Input& input, string action, float dt) {
+void Movement::moveRight(ControllableEntity& entity, InputManager& input, string action, float dt) {
     if (input.isActionHeld(action)) {
         entity.setHorizontalVelocity(entity.getVelocity().x + entity.getAcceleration() * dt);
         if (entity.getVelocity().x > entity.getMaxSpeed())
@@ -30,7 +30,7 @@ void Movement::moveRight(ControllableEntity& entity, Input& input, string action
     }
 }
 
-void Movement::moveJump(ControllableEntity& entity, Input& input, string action, float dt) {
+void Movement::moveJump(ControllableEntity& entity, InputManager& input, string action, float dt) {
     if (input.wasActionPressed(action) && entity.getOnGround()) {
         entity.setVerticalVelocity(entity.getJumpStrength());
         entity.setOnGround(false);

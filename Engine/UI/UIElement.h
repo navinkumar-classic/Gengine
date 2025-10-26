@@ -6,7 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../GameState/GameState.h"
-#include "../Input/Input.h"
+#include "../Input/InputManager.h"
 
 class UIElement {
     public:
@@ -17,7 +17,7 @@ class UIElement {
             bool isDynamic);
         virtual ~UIElement() = default;
 
-        virtual void update(float dt, const GameState& game_state, const Input& input) = 0;
+        virtual void update(float dt, const GameState& game_state, const InputManager& input) = 0;
         virtual void render(sf::RenderWindow& window) = 0;
 
         [[nodiscard]] bool getIsVisible() const;

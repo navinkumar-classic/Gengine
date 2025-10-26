@@ -5,7 +5,7 @@
 #include "EntityPhysics.h"
 #include "../Engine/Entity/EntityType/ControllableEntity.h"
 
-void EntityPhysics::applyGravity(Entity& entity, Input& input, float dt) {
+void EntityPhysics::applyGravity(Entity& entity, InputManager& input, float dt) {
     if (entity.getVelocity().y < 0) {
         entity.setVerticalVelocity(entity.getVelocity().y + 2 * entity.getGravity().y * dt);
     }
@@ -15,7 +15,7 @@ void EntityPhysics::applyGravity(Entity& entity, Input& input, float dt) {
     //entity.setOnGround(false);
 }
 
-void EntityPhysics::applyDeacceleration(Entity& entity, Input& input, float dt, string action1, string action2) {
+void EntityPhysics::applyDeacceleration(Entity& entity, InputManager& input, float dt, string action1, string action2) {
     bool movingLeft = input.isActionHeld(action1);
     bool movingRight = input.isActionHeld(action2);
 

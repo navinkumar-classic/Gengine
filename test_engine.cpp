@@ -195,7 +195,7 @@ std::shared_ptr<GameScene> gg(Engine &engine) {
                               8);
 
     player->addPhysics(EntityPhysics::applyGravity);
-    player->addPhysics([](Entity &entity, Input &input, float dt) {
+    player->addPhysics([](Entity &entity, InputManager &input, float dt) {
         EntityPhysics::applyDeacceleration(entity, input, dt, "RIGHT", "LEFT");
     });
 
@@ -255,6 +255,8 @@ std::shared_ptr<GameScene> gg(Engine &engine) {
 
     scene->addEventToDelete("FallDown" + scene_uid);
 
+    engine.music.playMusic("level");
+
     return scene;
 }
 
@@ -292,6 +294,10 @@ int main() {
     engine.input.bindAction("LEFT", sf::Keyboard::A);
     engine.input.bindAction("UP", sf::Keyboard::Space);
     engine.input.bindAction("PAUSE", sf::Keyboard::P);
+
+    engine.music.loadMusic("menu", "/home/navin/CLionProjects/Gengine/Assets/music/8 Bit Japan.wav");
+    engine.music.loadMusic("level", "/home/navin/CLionProjects/Gengine/Assets/music/My Love.wav");
+    engine.music.loadSoundEffect("jump", "/home/navin/CLionProjects/Gengine/Assets/SFX/8bit-jump1.wav");
 
     engine.addSceneFactory("main", [&engine]() {
         return gg(engine);
@@ -380,6 +386,9 @@ int main() {
         start->addEventToDelete("play_fn" + start_uid);
         start->addEventToDelete("quit_fn" + start_uid);
 
+        engine.music.resumeMusic();
+        engine.music.playMusic("menu");
+
         return start;
     });
 
@@ -466,6 +475,8 @@ int main() {
         menu->addEventToDelete("back_fn" + menu_uid);
         menu->addEventToDelete("start_fn" + menu_uid);
 
+        engine.music.pauseMusic();
+
         return menu;
     });
 
@@ -481,6 +492,16 @@ int main() {
                                   engine.pushSwitchScene("pause");
                               else
                                   engine.popScene();
+                          });
+
+    engine.event.defineOn("jump_music", [&engine]() {
+                              if (engine.input.wasActionPressed("UP") && engine.getCurrentSceneName() == "main") {
+                                  return true;
+                              }
+                              return false;
+                          },
+                          [&engine]() {
+                              engine.music.playSoundEffect("jump");
                           });
 
     engine.run();

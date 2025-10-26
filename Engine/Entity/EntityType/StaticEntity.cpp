@@ -56,7 +56,7 @@ void StaticEntity::render(sf::RenderWindow& window) {
     tileMap.draw(window);
 }
 
-void StaticEntity::update(float dt, Input& input) {
+void StaticEntity::update(float dt, InputManager& input) {
     for (const auto& physicsFunction : physics) {
         physicsFunction(*this, input, dt);
     }

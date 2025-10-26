@@ -4,11 +4,11 @@ project(Gengine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-find_package(SFML 2.5 REQUIRED COMPONENTS graphics window system)
+find_package(SFML 2.5 REQUIRED COMPONENTS graphics window system audio)
 
 add_executable(Gengine
         Engine/Scene/SceneType/GameScene.cpp
-        Engine/Input/Input.cpp
+        Engine/Input/InputManager.cpp
         Engine/Entity/Entity.cpp
         Engine/Entity/EntityType/ControllableEntity.cpp
         Engine/Entity/EntityType/StaticEntity.cpp
@@ -28,6 +28,6 @@ add_executable(Gengine
         Engine/Scene/Scene.cpp
         Engine/Scene/SceneType/MenuScene.cpp
         test_engine.cpp
-        Engine/UI/UIElementType/ImageUIElement.h
-        Engine/UI/UIElementType/ImageUIElement.cpp)
-target_link_libraries(Gengine sfml-graphics sfml-window sfml-system)
+        Engine/UI/UIElementType/ImageUIElement.cpp
+        Engine/Music/MusicManager.cpp)
+target_link_libraries(Gengine sfml-graphics sfml-window sfml-system sfml-audio)

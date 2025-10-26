@@ -5,7 +5,7 @@
 #pragma once
 #include <functional>
 #include <SFML/Graphics.hpp>
-#include "../Input/Input.h"
+#include "../Input/InputManager.h"
 
 class Entity {
 public:
@@ -24,7 +24,7 @@ public:
         );
     virtual ~Entity() = default;
 
-    virtual void update(float dt, Input& input) = 0;
+    virtual void update(float dt, InputManager& input) = 0;
     virtual void render(sf::RenderWindow& window) = 0;
     [[nodiscard]] virtual sf::FloatRect getBounds() const = 0;
     virtual void applyMovementToShape() = 0;
@@ -59,14 +59,14 @@ public:
 
     void applyMovement(float dt);
 
-    void addPhysics(function<void(Entity&, Input&, float)> function);
+    void addPhysics(function<void(Entity&, InputManager&, float)> function);
 
     const bool isMovable;
     const bool isAnimated;
     sf::Vector2f position;
 
 protected:
-    vector<function<void(Entity&, Input&, float)>> physics;
+    vector<function<void(Entity&, InputManager&, float)>> physics;
     sf::Vector2f previousPosition;
 
     sf::Vector2f velocity;

@@ -18,7 +18,7 @@ using namespace std;
  * a key is pressed, released, or held. It also allows mapping strings
  * (actions) to specific keys, enabling flexible control schemes.
  */
-class Input {
+class InputManager {
 public:
     /**
      * @brief Updates input state based on a list of SFML events.

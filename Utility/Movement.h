@@ -4,11 +4,11 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Engine/Input/Input.h"
+#include "../Engine/Input/InputManager.h"
 #include "../Engine/Entity/EntityType/ControllableEntity.h"
 
 namespace Movement {
-    void moveLeft(ControllableEntity& entity, Input& input, string action, float dt);
-    void moveRight(ControllableEntity& entity, Input& input, string action, float dt);
-    void moveJump(ControllableEntity& entity, Input& input, string action, float dt);
+    void moveLeft(ControllableEntity& entity, InputManager& input, string action, float dt);
+    void moveRight(ControllableEntity& entity, InputManager& input, string action, float dt);
+    void moveJump(ControllableEntity& entity, InputManager& input, string action, float dt);
 };

@@ -11,7 +11,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "GameState/GameState.h"
-#include "Input/Input.h"
+#include "Input/InputManager.h"
+#include "Music/MusicManager.h"
 #include "Scene/Scene.h"
 #include "Scene/SceneType/GameScene.h"
 #include  "Physics/Collision/Collision.h"
@@ -24,7 +25,7 @@ public:
 
     sf::RenderWindow &getWindow();
 
-    Input &getInput();
+    InputManager &getInput();
 
     void setFrameRate(int frameRate);
 
@@ -53,9 +54,14 @@ public:
     void quitEngine();
 
     GameState gameState;
+
     EventManager event;
-    Input input;
+
+    InputManager input;
+
     Collision collision;
+
+    MusicManager music;
 
 private:
     void processEngineEvents(float dt);

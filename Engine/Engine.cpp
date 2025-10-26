@@ -20,7 +20,7 @@ sf::RenderWindow& Engine::getWindow() {
     return window;
 }
 
-Input& Engine::getInput() {
+InputManager& Engine::getInput() {
     return input;
 }
 
@@ -103,8 +103,7 @@ void Engine::processEngineEvents(float dt) {
 
     while (window.pollEvent(curEvent)) {
 
-        if (curEvent.type == sf::Event::Closed ||
-           (curEvent.type == sf::Event::KeyPressed && curEvent.key.code == sf::Keyboard::Q)) {
+        if (curEvent.type == sf::Event::Closed) {
             isRunning = false;
             window.close();
            }
@@ -114,6 +113,7 @@ void Engine::processEngineEvents(float dt) {
 
     input.updateEvent(eventList, window, dt);
     event.update(dt);
+    music.update();
 }
 
 void Engine::pushSwitchScene(const string& name) {

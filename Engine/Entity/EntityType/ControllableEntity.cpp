@@ -32,7 +32,7 @@ ControllableEntity::ControllableEntity(
     setPreviousPosition(position);
     Sprite.setPosition(position);
 }
-void ControllableEntity::update(float dt, Input& input) {
+void ControllableEntity::update(float dt, InputManager& input) {
 
     for (const auto& action : action) {
         action.second(*this, input, action.first, dt);
@@ -57,7 +57,7 @@ void ControllableEntity::applyMovementToShape() {
     Sprite.setPosition(position);
 }
 
-void ControllableEntity::addAction(string action, const function<void(ControllableEntity& entity, Input& input, string action, float dt)>& func) {
+void ControllableEntity::addAction(string action, const function<void(ControllableEntity& entity, InputManager& input, string action, float dt)>& func) {
     ControllableEntity::action.emplace_back(action, func);
 }
 

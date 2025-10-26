@@ -144,7 +144,7 @@ void Entity::applyMovement(float dt) {
     position += velocity * dt;
 }
 
-void Entity::addPhysics(function<void(Entity& entity, Input& input, float dt)> function) {
+void Entity::addPhysics(function<void(Entity& entity, InputManager& input, float dt)> function) {
     physics.emplace_back(function);
 }
 

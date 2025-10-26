@@ -4,7 +4,7 @@
 
 #pragma once
 #include "../UIElement.h"
-#include "../../Input/Input.h"
+#include "../../Input/InputManager.h"
 
 class ImageUIElement: public UIElement {
     public:
@@ -15,7 +15,7 @@ class ImageUIElement: public UIElement {
             bool isDynamic,
             const std::string& texturePath);
 
-        void update(float dt, const GameState& game_state, const Input& input) override;
+        void update(float dt, const GameState& game_state, const InputManager& input) override;
         void render(sf::RenderWindow& window) override;
 
         void setPosition(const sf::Vector2f &position) override;

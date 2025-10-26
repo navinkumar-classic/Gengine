@@ -5,7 +5,7 @@
 #pragma once
 #include "../UIElement.h"
 #include "../../GameState/GameState.h"
-#include "../../Input/Input.h"
+#include "../../Input/InputManager.h"
 
 class TextUIElement: public UIElement {
     public:
@@ -17,7 +17,7 @@ class TextUIElement: public UIElement {
             const sf::Color& color,
             bool isDynamic);
 
-        void update(float dt, const GameState& game_state, const Input& input) override;
+        void update(float dt, const GameState& game_state, const InputManager& input) override;
         void render(sf::RenderWindow& window) override;
 
         void setPosition(const sf::Vector2f& position) override;

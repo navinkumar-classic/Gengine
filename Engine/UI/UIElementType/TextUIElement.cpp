@@ -21,7 +21,7 @@ TextUIElement::TextUIElement(
     m_text.setPosition(position);
 }
 
-void TextUIElement::update(float dt, const GameState& game_state, const Input& input){
+void TextUIElement::update(float dt, const GameState& game_state, const InputManager& input){
     std::string output;
     std::stack<size_t> openTags;
 

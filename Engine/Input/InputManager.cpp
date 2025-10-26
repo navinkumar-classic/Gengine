@@ -2,13 +2,13 @@
 // Created by navin on 7/14/25.
 //
 
-#include "Input.h"
+#include "InputManager.h"
 
 #include <iostream>
 #include <ranges>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-void Input::bindAction(const string& action, sf::Keyboard::Key key) {
+void InputManager::bindAction(const string& action, sf::Keyboard::Key key) {
         actionBindings.insert({action, key});
         keyBindings.insert({key, action});
 
@@ -18,7 +18,7 @@ void Input::bindAction(const string& action, sf::Keyboard::Key key) {
         keyHoldDuration.insert({key, 0.0f});
 }
 
-sf::Keyboard::Key Input::getKeyForAction(const string& action) const {
+sf::Keyboard::Key InputManager::getKeyForAction(const string& action) const {
         if (actionBindings.contains(action)) {
                 return actionBindings.at(action);
         }
@@ -26,7 +26,7 @@ sf::Keyboard::Key Input::getKeyForAction(const string& action) const {
         return sf::Keyboard::Key::Unknown;
 }
 
-bool Input::isActionHeld(const string& action) const {
+bool InputManager::isActionHeld(const string& action) const {
         if (actionBindings.contains(action)) {
                 if (keyHeld.contains(actionBindings.at(action))) {
                         return keyHeld.at(actionBindings.at(action));
@@ -35,7 +35,7 @@ bool Input::isActionHeld(const string& action) const {
         return false;
 }
 
-bool Input::wasActionPressed(const string& action) const {
+bool InputManager::wasActionPressed(const string& action) const {
         if (actionBindings.contains(action)) {
                 if (keyPressed.contains(actionBindings.at(action))) {
                         return keyPressed.at(actionBindings.at(action));
@@ -44,7 +44,7 @@ bool Input::wasActionPressed(const string& action) const {
         return false;
 }
 
-bool Input::wasActionReleased(const string& action) const {
+bool InputManager::wasActionReleased(const string& action) const {
         if (actionBindings.contains(action)) {
                 if (keyReleased.contains(actionBindings.at(action))) {
                         return keyReleased.at(actionBindings.at(action));
@@ -53,39 +53,39 @@ bool Input::wasActionReleased(const string& action) const {
         return false;
 }
 
-float Input::getHoldDuration(const string& action) const {
+float InputManager::getHoldDuration(const string& action) const {
         if (actionBindings.contains(action)) {
                 return keyHoldDuration.at(actionBindings.at(action));
         }
         return 0.0f;
 }
 
-bool Input::isMouseHeld(sf::Mouse::Button button) const {
+bool InputManager::isMouseHeld(sf::Mouse::Button button) const {
         if (mouseHeld.contains(button)) {
                 return mouseHeld.at(button);
         }
         return false;
 }
 
-bool Input::wasMousePressed(sf::Mouse::Button button) const {
+bool InputManager::wasMousePressed(sf::Mouse::Button button) const {
         if (mousePressed.contains(button)) {
                 return mousePressed.at(button);
         }
         return false;
 }
 
-bool Input::wasMouseReleased(sf::Mouse::Button button) const {
+bool InputManager::wasMouseReleased(sf::Mouse::Button button) const {
         if (mouseReleased.contains(button)) {
                 return mouseReleased.at(button);
         }
         return false;
 }
 
-sf::Vector2<float> Input::getMousePosition() const {
+sf::Vector2<float> InputManager::getMousePosition() const {
         return static_cast<sf::Vector2f>(mousePosition);
 }
 
-void Input::reset() {
+void InputManager::reset() {
         for (auto & key : keyReleased) {
                 if ( key.second) {
                         keyHoldDuration[key.first] = 0.0f;
@@ -105,7 +105,7 @@ void Input::reset() {
                 state = false;
 }
 
-void Input::updateEvent(const vector<sf::Event>& events, const sf::RenderWindow& window, const float dt) {
+void InputManager::updateEvent(const vector<sf::Event>& events, const sf::RenderWindow& window, const float dt) {
         for (auto& key : keyHeld) {
                 if (key.second) {
                         keyHoldDuration[key.first] += dt;

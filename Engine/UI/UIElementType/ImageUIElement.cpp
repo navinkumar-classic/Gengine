@@ -18,7 +18,7 @@ ImageUIElement::ImageUIElement(
     sprite.setScale(scale);
 }
 
-void ImageUIElement::update(float dt, const GameState& game_state, const Input& input) {
+void ImageUIElement::update(float dt, const GameState& game_state, const InputManager& input) {
     isPressed = false;
     if (input.wasMousePressed(sf::Mouse::Left)) {
         if (sprite.getGlobalBounds().contains(input.getMousePosition())) {

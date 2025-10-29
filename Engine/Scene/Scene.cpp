@@ -46,3 +46,7 @@ UIElement* Scene::getUIElement(size_t id) const {
     if (id >= uiElements.size()) return nullptr;
     return uiElements[id].get();
 }
+
+std::string Scene::getSceneUID() {
+    return "scene_" + std::to_string(reinterpret_cast<uintptr_t>(this));
+}

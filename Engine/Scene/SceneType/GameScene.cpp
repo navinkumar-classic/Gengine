@@ -45,14 +45,14 @@ void GameScene::update(Engine &engine, const float dt) {
     for (auto *entity: movableEntities) {
         if (entity->getIsAlive()) {
             entity->setPreviousPosition(entity->getPosition());
-            entity->update(dt, engine.input);
+            entity->update(dt, engine);
         }
     }
 
     for (auto *entity: animatedEntities) {
         if (entity->getIsAlive()) {
             entity->setPreviousPosition(entity->getPosition());
-            entity->update(dt, engine.input);
+            entity->update(dt, engine);
         }
     }
 

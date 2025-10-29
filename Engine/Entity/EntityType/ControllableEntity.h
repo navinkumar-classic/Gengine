@@ -8,6 +8,7 @@
 #include "../Entity.h"
 #include <vector>
 
+#include "../../Music/MusicManager.h"
 #include "../../Sprite/SpriteManager/AnimatedSprite.h"
 
 class ControllableEntity : public Entity {
@@ -30,20 +31,20 @@ public:
         const string& entityTag
         );
 
-    void update(float dt, InputManager& input) override;
+    void update(float dt, Engine& engine) override;
     void render(sf::RenderWindow& window) override;
     void applyMovementToShape() override;
 
     sf::FloatRect getBounds() const override;
 
-    void addAction(string action, const function<void(ControllableEntity& entity, InputManager& input, string action, float dt)>& func);
+    void addAction(string action, const function<void(ControllableEntity& entity, InputManager& input, MusicManager& music, string action, float dt)>& func);
     void clearActions();
 
     AnimatedSprite Sprite;
 
 private:
 
-    std::vector<std::pair<string, function<void(ControllableEntity& entity, InputManager& input, string action, float dt)>>> action;
+    std::vector<std::pair<string, function<void(ControllableEntity& entity, InputManager& input, MusicManager& music, string action, float dt)>>> action;
     sf::Vector2u windowSize;
 
 };

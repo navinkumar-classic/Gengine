@@ -7,6 +7,7 @@
 
 #include "../../../Utility/Movement.h"
 #include "../../../Utility/EntityPhysics.h"
+#include "../../Engine.h"
 
 ControllableEntity::ControllableEntity(
         bool isMovable,
@@ -32,14 +33,14 @@ ControllableEntity::ControllableEntity(
     setPreviousPosition(position);
     Sprite.setPosition(position);
 }
-void ControllableEntity::update(float dt, InputManager& input) {
+void ControllableEntity::update(float dt, Engine& engine) {
 
     for (const auto& action : action) {
-        action.second(*this, input, action.first, dt);
+        action.second(*this, engine.input, engine.music, action.first, dt);
     }
 
     for (const auto& physicsFunction : physics) {
-        physicsFunction(*this, input, dt);
+        physicsFunction(*this, engine.input, dt);
     }
 
     applyMovement(dt);
@@ -57,7 +58,7 @@ void ControllableEntity::applyMovementToShape() {
     Sprite.setPosition(position);
 }
 
-void ControllableEntity::addAction(string action, const function<void(ControllableEntity& entity, InputManager& input, string action, float dt)>& func) {
+void ControllableEntity::addAction(string action, const function<void(ControllableEntity& entity, InputManager& input, MusicManager& music, string action, float dt)>& func) {
     ControllableEntity::action.emplace_back(action, func);
 }
 

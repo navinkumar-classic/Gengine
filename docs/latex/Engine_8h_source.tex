@@ -3,38 +3,84 @@
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{//}}
-\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ navin\ on\ 7/14/25.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ navin\ on\ 10/23/25.}}
 \DoxyCodeLine{00003\ \textcolor{comment}{//}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Input/Input.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Entity/Entity.h"{}}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEngine}{Engine}}\ \{}
-\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classEngine}{Engine}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width\ =\ 800,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height\ =\ 600);}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}GameState/GameState.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}Input/InputManager.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}Music/MusicManager.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}Scene/Scene.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}Scene/SceneType/GameScene.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ \ "{}Physics/Collision/Collision.h"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEngine}{Engine}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classEngine}{Engine}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height,\ \textcolor{keyword}{const}\ std::string\ \&fontPath,\ \textcolor{keyword}{const}\ std::string\ \&title);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ run();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ sf::RenderWindow\ \&getWindow();}
 \DoxyCodeLine{00027\ }
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc}{run}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classInputManager}{InputManager}}\ \&getInput();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ setFrameRate(\textcolor{keywordtype}{int}\ frameRate);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ addFont(\textcolor{keyword}{const}\ std::string\ \&key,\ \textcolor{keyword}{const}\ std::string\ \&fontPath);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ sf::Font\ \&fetchFont(\textcolor{keyword}{const}\ std::string\ \&key);}
 \DoxyCodeLine{00035\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEngine_a1dba6509783a9a6522e19d936e921b83}{addEntity}}(std::unique\_ptr<Entity>\ entity);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ setRefTexture(std::unordered\_map<int,\ std::string>\ ref\_texture);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ std::unordered\_map<int,\ std::string>\ \&getRefTexture()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ addSceneFactory(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&name,\ std::function<std::shared\_ptr<Scene>()>\ factory);}
 \DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ processEvents(\textcolor{keywordtype}{float}\ dt);}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ dt);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ switchScene(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&name);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ pushSwitchScene(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&name);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ clearSceneStack();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ popScene();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{float}\ clockRestart();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&getCurrentSceneName();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ quitEngine();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classGameState}{GameState}}\ gameState;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classEventManager}{EventManager}}\ event;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classInputManager}{InputManager}}\ input;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classCollision}{Collision}}\ collision;}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRunning\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classMusicManager}{MusicManager}}\ music;}
 \DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ sf::RenderWindow\ window;}
-\DoxyCodeLine{00067\ \ \ \ \ sf::View\ camera;}
-\DoxyCodeLine{00068\ \ \ \ \ sf::Clock\ clock;}
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classInput}{Input}}\ input;}
-\DoxyCodeLine{00070\ \ \ \ \ std::vector<std::unique\_ptr<Entity>>\ entities;}
-\DoxyCodeLine{00071\ \ \ \ \ std::vector<Entity*>\ movableEntities;}
-\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ processEngineEvents(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ sf::Clock\ clock;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRunning\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ sf::RenderWindow\ window;}
+\DoxyCodeLine{00073\ \ \ \ \ std::unordered\_map<std::string,\ sf::Font>\ fonts;}
+\DoxyCodeLine{00074\ \ \ \ \ std::unordered\_map<int,\ std::string>\ ref\_texture;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ std::unordered\_map<std::string,\ std::function<std::shared\_ptr<Scene>()>\ >\ sceneFactory;}
+\DoxyCodeLine{00077\ \ \ \ \ std::shared\_ptr<Scene>\ currentScene;}
+\DoxyCodeLine{00078\ \ \ \ \ std::string\ currentSceneName;}
+\DoxyCodeLine{00079\ \ \ \ \ std::stack<std::pair<std::string,\ std::shared\_ptr<Scene>>>\ sceneStack;}
+\DoxyCodeLine{00080\ \};}
 
 \end{DoxyCode}

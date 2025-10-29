@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['reset_0',['reset',['../classInput.html#a8bec96dd53baf5ec754c199af3c957c8',1,'Input']]],
-  ['run_1',['run',['../classEngine.html#a1a210cf30d6bd330b3649439ecd6d6cc',1,'Engine']]]
+  ['wasactionpressed_0',['wasActionPressed',['../classInputManager.html#a9ad70de604882761e3778166877be961',1,'InputManager']]],
+  ['wasactionreleased_1',['wasActionReleased',['../classInputManager.html#af899dd7fc741c151d589a5f3802577a1',1,'InputManager']]]
 ];

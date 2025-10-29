@@ -2,76 +2,81 @@
 \hypertarget{classEngine}{}\label{classEngine}\index{Engine@{Engine}}
 
 
-Central class that drives the game loop, rendering, and input/event handling.  
-
-
-
-
-{\ttfamily \#include $<$Engine.\+h$>$}
-
+Collaboration diagram for Engine\+:
+% FIG 0
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classEngine_a801405dfa82b992c4bcbaf7a881f6d72}{Engine}} (unsigned int width=800, unsigned int height=600)
-\begin{DoxyCompactList}\small\item\em Creates a game engine with a given window size. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc}{run}} ()
-\begin{DoxyCompactList}\small\item\em Starts and runs the main game loop. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classEngine_a1dba6509783a9a6522e19d936e921b83}{add\+Entity}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ entity)
-\begin{DoxyCompactList}\small\item\em Adds a new entity to the engine\textquotesingle{}s world. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-Central class that drives the game loop, rendering, and input/event handling. 
-
-The \doxylink{classEngine}{Engine} coordinates core subsystems\+: window creation, input processing, entity updates, and rendering. It serves as the main runtime environment for the game. 
-
-\doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classEngine_a801405dfa82b992c4bcbaf7a881f6d72}\label{classEngine_a801405dfa82b992c4bcbaf7a881f6d72} 
-\index{Engine@{Engine}!Engine@{Engine}}
-\index{Engine@{Engine}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{Engine()}{Engine()}}
-{\footnotesize\ttfamily Engine\+::\+Engine (\begin{DoxyParamCaption}\item[{unsigned int}]{width = {\ttfamily 800},  }\item[{unsigned int}]{height = {\ttfamily 600} }\end{DoxyParamCaption})}
-
-
-
-Creates a game engine with a given window size. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em width} & Width of the window in pixels. \\
-\hline
-{\em height} & Height of the window in pixels. \\
-\hline
-\end{DoxyParams}
-
-
-\doxysubsection{Member Function Documentation}
-\Hypertarget{classEngine_a1dba6509783a9a6522e19d936e921b83}\label{classEngine_a1dba6509783a9a6522e19d936e921b83} 
-\index{Engine@{Engine}!addEntity@{addEntity}}
-\index{addEntity@{addEntity}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{addEntity()}{addEntity()}}
-{\footnotesize\ttfamily void Engine\+::add\+Entity (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$}]{entity }\end{DoxyParamCaption})}
-
-
-
-Adds a new entity to the engine\textquotesingle{}s world. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em entity} & A unique pointer to the entity to be added. \\
-\hline
-\end{DoxyParams}
+\Hypertarget{classEngine_ab9333f17ce0982e8bd2f3e1fec5ebdf3}\label{classEngine_ab9333f17ce0982e8bd2f3e1fec5ebdf3} 
+{\bfseries Engine} (unsigned int width, unsigned int height, const std\+::string \&font\+Path, const std\+::string \&title)
+\item 
 \Hypertarget{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc}\label{classEngine_a1a210cf30d6bd330b3649439ecd6d6cc} 
-\index{Engine@{Engine}!run@{run}}
-\index{run@{run}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{run()}{run()}}
-{\footnotesize\ttfamily void Engine\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+void {\bfseries run} ()
+\item 
+\Hypertarget{classEngine_a9b5c4af9bd08bd8d454a79d443970faa}\label{classEngine_a9b5c4af9bd08bd8d454a79d443970faa} 
+sf\+::\+Render\+Window \& {\bfseries get\+Window} ()
+\item 
+\Hypertarget{classEngine_a5c306cbc903aafdba9a137d2a5a9f3af}\label{classEngine_a5c306cbc903aafdba9a137d2a5a9f3af} 
+\mbox{\hyperlink{classInputManager}{Input\+Manager}} \& {\bfseries get\+Input} ()
+\item 
+\Hypertarget{classEngine_a7a97900dc79c4cc47f70d5899c55b954}\label{classEngine_a7a97900dc79c4cc47f70d5899c55b954} 
+void {\bfseries set\+Frame\+Rate} (int frame\+Rate)
+\item 
+\Hypertarget{classEngine_a591c50e483cb6bb96efbd2e39fffb45a}\label{classEngine_a591c50e483cb6bb96efbd2e39fffb45a} 
+void {\bfseries add\+Font} (const std\+::string \&key, const std\+::string \&font\+Path)
+\item 
+\Hypertarget{classEngine_af7d4f487d38b142626a3b6fc36fe27b3}\label{classEngine_af7d4f487d38b142626a3b6fc36fe27b3} 
+const sf\+::\+Font \& {\bfseries fetch\+Font} (const std\+::string \&key)
+\item 
+\Hypertarget{classEngine_a843c740a6514fb719df34ea1ff95562f}\label{classEngine_a843c740a6514fb719df34ea1ff95562f} 
+void {\bfseries set\+Ref\+Texture} (std\+::unordered\+\_\+map$<$ int, std\+::string $>$ ref\+\_\+texture)
+\item 
+\Hypertarget{classEngine_a81eff50cdf55996c541cee9a0712782e}\label{classEngine_a81eff50cdf55996c541cee9a0712782e} 
+const std\+::unordered\+\_\+map$<$ int, std\+::string $>$ \& {\bfseries get\+Ref\+Texture} () const
+\item 
+\Hypertarget{classEngine_a8994e35c6c0816d7f98e479359933a56}\label{classEngine_a8994e35c6c0816d7f98e479359933a56} 
+void {\bfseries add\+Scene\+Factory} (const string \&name, std\+::function$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classScene}{Scene}} $>$()$>$ factory)
+\item 
+\Hypertarget{classEngine_ac50be8723ef9e484aa2be2aca913be8e}\label{classEngine_ac50be8723ef9e484aa2be2aca913be8e} 
+void {\bfseries switch\+Scene} (const string \&name)
+\item 
+\Hypertarget{classEngine_a38f790cd959c71418bbd12ab1acc5517}\label{classEngine_a38f790cd959c71418bbd12ab1acc5517} 
+void {\bfseries push\+Switch\+Scene} (const string \&name)
+\item 
+\Hypertarget{classEngine_a0b659d75f3f5f6d84e12e7303a703471}\label{classEngine_a0b659d75f3f5f6d84e12e7303a703471} 
+void {\bfseries clear\+Scene\+Stack} ()
+\item 
+\Hypertarget{classEngine_a1ed8627a7142b324d95eebca7391440e}\label{classEngine_a1ed8627a7142b324d95eebca7391440e} 
+void {\bfseries pop\+Scene} ()
+\item 
+\Hypertarget{classEngine_a98da67caa248b28abff4b7c75f6a3b54}\label{classEngine_a98da67caa248b28abff4b7c75f6a3b54} 
+float {\bfseries clock\+Restart} ()
+\item 
+\Hypertarget{classEngine_a4b4d7061928cd70f8508c139e08a9943}\label{classEngine_a4b4d7061928cd70f8508c139e08a9943} 
+const std\+::string \& {\bfseries get\+Current\+Scene\+Name} ()
+\item 
+\Hypertarget{classEngine_a395c6d95d523af32a4a6aba41a7f4928}\label{classEngine_a395c6d95d523af32a4a6aba41a7f4928} 
+void {\bfseries quit\+Engine} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEngine_a56f416bb62e61b12939b3a32296f30d8}\label{classEngine_a56f416bb62e61b12939b3a32296f30d8} 
+\mbox{\hyperlink{classGameState}{Game\+State}} {\bfseries game\+State}
+\item 
+\Hypertarget{classEngine_a3871a0defa51c0d4001acc223cf75328}\label{classEngine_a3871a0defa51c0d4001acc223cf75328} 
+\mbox{\hyperlink{classEventManager}{Event\+Manager}} {\bfseries event}
+\item 
+\Hypertarget{classEngine_ad9060dddd56265c020f14b582c5fce67}\label{classEngine_ad9060dddd56265c020f14b582c5fce67} 
+\mbox{\hyperlink{classInputManager}{Input\+Manager}} {\bfseries input}
+\item 
+\Hypertarget{classEngine_a3f8d4795cd8f5e545ef493ea8ff786b4}\label{classEngine_a3f8d4795cd8f5e545ef493ea8ff786b4} 
+\mbox{\hyperlink{classCollision}{Collision}} {\bfseries collision}
+\item 
+\Hypertarget{classEngine_ad251645b186a110cfb997557579ebd52}\label{classEngine_ad251645b186a110cfb997557579ebd52} 
+\mbox{\hyperlink{classMusicManager}{Music\+Manager}} {\bfseries music}
+\end{DoxyCompactItemize}
 
-
-
-Starts and runs the main game loop. 
-
-Continuously processes events, updates entity state, and renders frames until the engine is stopped. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

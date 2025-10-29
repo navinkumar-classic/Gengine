@@ -8,7 +8,7 @@
 #include "../Engine/Entity/EntityType/ControllableEntity.h"
 
 namespace Movement {
-    void moveLeft(ControllableEntity& entity, InputManager& input, string action, float dt);
-    void moveRight(ControllableEntity& entity, InputManager& input, string action, float dt);
-    void moveJump(ControllableEntity& entity, InputManager& input, string action, float dt);
+    void moveLeft(ControllableEntity& entity, InputManager& input, MusicManager& music, const string& action, float dt);
+    void moveRight(ControllableEntity& entity, InputManager& input, MusicManager& music, const string& action, float dt);
+    void moveJump(ControllableEntity& entity, InputManager& input, MusicManager& music, const string& action, float dt);
 };

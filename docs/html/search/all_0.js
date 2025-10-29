@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['addentity_0',['addEntity',['../classEngine.html#a1dba6509783a9a6522e19d936e921b83',1,'Engine']]]
+  ['animatedsprite_0',['AnimatedSprite',['../classAnimatedSprite.html',1,'']]],
+  ['animatedstaticentity_1',['AnimatedStaticEntity',['../classAnimatedStaticEntity.html',1,'']]]
 ];

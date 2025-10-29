@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['collision_0',['Collision',['../classCollision.html',1,'']]],
-  ['controllableentity_1',['ControllableEntity',['../classControllableEntity.html',1,'']]]
+  ['animatedsprite_0',['AnimatedSprite',['../classAnimatedSprite.html',1,'']]],
+  ['animatedstaticentity_1',['AnimatedStaticEntity',['../classAnimatedStaticEntity.html',1,'']]]
 ];

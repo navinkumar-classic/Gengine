@@ -6,6 +6,7 @@
 #include <functional>
 #include <SFML/Graphics.hpp>
 #include "../Input/InputManager.h"
+class Engine;
 
 class Entity {
 public:
@@ -24,7 +25,7 @@ public:
         );
     virtual ~Entity() = default;
 
-    virtual void update(float dt, InputManager& input) = 0;
+    virtual void update(float dt, Engine& engine) = 0;
     virtual void render(sf::RenderWindow& window) = 0;
     [[nodiscard]] virtual sf::FloatRect getBounds() const = 0;
     virtual void applyMovementToShape() = 0;

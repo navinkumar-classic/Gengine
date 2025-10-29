@@ -15,7 +15,9 @@ class TextUIElement: public UIElement {
             const std::string& text,
             const sf::Font& font,
             const sf::Color& color,
-            bool isDynamic);
+            bool isDynamic,
+            int pad_len,
+            char pad_char);
 
         void update(float dt, const GameState& game_state, const InputManager& input) override;
         void render(sf::RenderWindow& window) override;
@@ -29,8 +31,14 @@ class TextUIElement: public UIElement {
         void setScale(const sf::Vector2f &scale) override {};
         bool getIsPressed() const override {return false;};
 
+        std::string leftPad(const std::string& str, int width, char padChar);
+
     private:
         sf::Text m_text;
         int m_characterSize;
         std::string m_textString;
+
+        // temp
+        int pad_len;
+        char pad_char;
 };

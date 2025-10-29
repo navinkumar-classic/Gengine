@@ -7,11 +7,11 @@ Inheritance diagram for Entity\+:
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classEntity_ae9d2d39d62a7991c30d945d22308ef71}\label{classEntity_ae9d2d39d62a7991c30d945d22308ef71} 
-{\bfseries Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration)
+\Hypertarget{classEntity_a33827c7889b5288d243822f405f26d76}\label{classEntity_a33827c7889b5288d243822f405f26d76} 
+{\bfseries Entity} (bool is\+Animated, bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration, const string \&entity\+Tag)
 \item 
-\Hypertarget{classEntity_aff0bfb1615d07eb866c22972dca75d6a}\label{classEntity_aff0bfb1615d07eb866c22972dca75d6a} 
-virtual void {\bfseries update} (float dt, \mbox{\hyperlink{classInput}{Input}} \&input)=0
+\Hypertarget{classEntity_afaaf32c8020d8b7742291bcce586b5fd}\label{classEntity_afaaf32c8020d8b7742291bcce586b5fd} 
+virtual void {\bfseries update} (float dt, \mbox{\hyperlink{classInputManager}{Input\+Manager}} \&input)=0
 \item 
 \Hypertarget{classEntity_a72987d370ecd59d57972060aa8f37c4c}\label{classEntity_a72987d370ecd59d57972060aa8f37c4c} 
 virtual void {\bfseries render} (sf\+::\+Render\+Window \&window)=0
@@ -55,6 +55,12 @@ bool {\bfseries get\+On\+Ground} () const
 \Hypertarget{classEntity_a941084fb686ea0eaedf4e60463a8ad22}\label{classEntity_a941084fb686ea0eaedf4e60463a8ad22} 
 bool {\bfseries get\+Jump} () const
 \item 
+\Hypertarget{classEntity_a7cd3f1c5ccab96bb4411e9c7d1e72842}\label{classEntity_a7cd3f1c5ccab96bb4411e9c7d1e72842} 
+string {\bfseries get\+Entity\+Tag} () const
+\item 
+\Hypertarget{classEntity_a3409196775744d611dbd3b705cb92c8f}\label{classEntity_a3409196775744d611dbd3b705cb92c8f} 
+bool {\bfseries get\+Is\+Alive} () const
+\item 
 \Hypertarget{classEntity_a5000a9a577ead655c7ff89afe6eb9f04}\label{classEntity_a5000a9a577ead655c7ff89afe6eb9f04} 
 void {\bfseries set\+Position} (const sf\+::\+Vector2f \&pos)
 \item 
@@ -91,26 +97,32 @@ void {\bfseries set\+On\+Ground} (bool on\+Ground)
 \Hypertarget{classEntity_ab11bc8b701a833e324981f59df63956b}\label{classEntity_ab11bc8b701a833e324981f59df63956b} 
 void {\bfseries set\+Jump} (bool jump)
 \item 
+\Hypertarget{classEntity_afdd29f9911c799abbbf1cc0d768ff754}\label{classEntity_afdd29f9911c799abbbf1cc0d768ff754} 
+void {\bfseries set\+Is\+Alive} (bool is\+Alive)
+\item 
 \Hypertarget{classEntity_a8073690324409ca2e05516388ed8d542}\label{classEntity_a8073690324409ca2e05516388ed8d542} 
 void {\bfseries apply\+Movement} (float dt)
 \item 
-\Hypertarget{classEntity_aac0fcd66b308d9812d7cc9250e723f8d}\label{classEntity_aac0fcd66b308d9812d7cc9250e723f8d} 
-void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ function)
+\Hypertarget{classEntity_a4f00efcbf96be621f4ec693efad4ae04}\label{classEntity_a4f00efcbf96be621f4ec693efad4ae04} 
+void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInputManager}{Input\+Manager}} \&, float)$>$ function)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{classEntity_a902c584c5bc5a55daf6986018cac4b2e}\label{classEntity_a902c584c5bc5a55daf6986018cac4b2e} 
 const bool {\bfseries is\+Movable}
+\item 
+\Hypertarget{classEntity_a0f7637954524b025887ebcb3543bb66e}\label{classEntity_a0f7637954524b025887ebcb3543bb66e} 
+const bool {\bfseries is\+Animated}
+\item 
+\Hypertarget{classEntity_afc349ec89c2bffef70bf6a1d95603154}\label{classEntity_afc349ec89c2bffef70bf6a1d95603154} 
+sf\+::\+Vector2f {\bfseries position}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classEntity_a2147cde6c845ba96f245b0138b3b0bbe}\label{classEntity_a2147cde6c845ba96f245b0138b3b0bbe} 
-vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ $>$ {\bfseries physics}
-\item 
-\Hypertarget{classEntity_afc349ec89c2bffef70bf6a1d95603154}\label{classEntity_afc349ec89c2bffef70bf6a1d95603154} 
-sf\+::\+Vector2f {\bfseries position}
+\Hypertarget{classEntity_ac10c0aee3e58cc5dc2e2e783114b4ff0}\label{classEntity_ac10c0aee3e58cc5dc2e2e783114b4ff0} 
+vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInputManager}{Input\+Manager}} \&, float)$>$ $>$ {\bfseries physics}
 \item 
 \Hypertarget{classEntity_a012d5a8fdb0496dd40c6bff390202e0f}\label{classEntity_a012d5a8fdb0496dd40c6bff390202e0f} 
 sf\+::\+Vector2f {\bfseries previous\+Position}
@@ -141,6 +153,12 @@ bool {\bfseries on\+Ground} = false
 \item 
 \Hypertarget{classEntity_acf4f533113701385a2dde3b5302d63e2}\label{classEntity_acf4f533113701385a2dde3b5302d63e2} 
 bool {\bfseries jump} = false
+\item 
+\Hypertarget{classEntity_a3f66e38c6f1e733cf509986b03ebbf2e}\label{classEntity_a3f66e38c6f1e733cf509986b03ebbf2e} 
+string {\bfseries entity\+Tag}
+\item 
+\Hypertarget{classEntity_aaec4e8bc2d18e138454553a8df94ac20}\label{classEntity_aaec4e8bc2d18e138454553a8df94ac20} 
+bool {\bfseries is\+Alive} = true
 \end{DoxyCompactItemize}
 
 

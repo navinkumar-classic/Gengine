@@ -32,7 +32,7 @@ public:
         const string& spriteFile,
         int num_sprites);
 
-    void update(float dt, InputManager& input) override;
+    void update(float dt, Engine& engine) override;
     void render(sf::RenderWindow& window) override;
     void applyMovementToShape() override;
 

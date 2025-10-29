@@ -30,7 +30,7 @@ public:
         const string& entityTag,
         const std::unordered_map<int, std::string>& ref_texture);
 
-    void update(float dt, InputManager& input) override;
+    void update(float dt, Engine& engine) override;
     void render(sf::RenderWindow& window) override;
     void applyMovementToShape() override;
 

@@ -9,11 +9,20 @@ Static class responsible for detecting and handling collisions between entities.
 
 {\ttfamily \#include $<$Collision.\+h$>$}
 
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCollision_a59f358995cb245cd90f47b36a0de1648}{collision\+Manager}} (const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ $>$ \&entities, const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&movable\+Entities)
+\begin{DoxyCompactList}\small\item\em Detects and processes collisions between movable and other entities. \end{DoxyCompactList}\item 
+\Hypertarget{classCollision_a8d74be7c0d196025bf76eaff6318b60b}\label{classCollision_a8d74be7c0d196025bf76eaff6318b60b} 
+void {\bfseries add\+Entry\+To\+Collision\+Handler} (const string \&a, const string \&b, const std\+::function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*})$>$ \&handler)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{classCollision_a6b2b1bb5fe6cc1359e2f478d31ce73e7}{detect\+Collision}} (const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ $>$ \&entities, const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&movable\+Entities)
-\begin{DoxyCompactList}\small\item\em Detects and processes collisions between movable and other entities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\Hypertarget{classCollision_ab759e21dde047cd54a6c94dc02eede61}\label{classCollision_ab759e21dde047cd54a6c94dc02eede61} 
+static string {\bfseries make\+Key} (const string \&a, const string \&b)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -22,11 +31,11 @@ Static class responsible for detecting and handling collisions between entities.
 The \doxylink{classCollision}{Collision} system performs broad and narrow phase collision detection among game entities. Only movable entities are tested against all others. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classCollision_a6b2b1bb5fe6cc1359e2f478d31ce73e7}\label{classCollision_a6b2b1bb5fe6cc1359e2f478d31ce73e7} 
-\index{Collision@{Collision}!detectCollision@{detectCollision}}
-\index{detectCollision@{detectCollision}!Collision@{Collision}}
-\doxysubsubsection{\texorpdfstring{detectCollision()}{detectCollision()}}
-{\footnotesize\ttfamily void Collision\+::detect\+Collision (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ $>$ \&}]{entities,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&}]{movable\+Entities }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\Hypertarget{classCollision_a59f358995cb245cd90f47b36a0de1648}\label{classCollision_a59f358995cb245cd90f47b36a0de1648} 
+\index{Collision@{Collision}!collisionManager@{collisionManager}}
+\index{collisionManager@{collisionManager}!Collision@{Collision}}
+\doxysubsubsection{\texorpdfstring{collisionManager()}{collisionManager()}}
+{\footnotesize\ttfamily void Collision\+::collision\+Manager (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ $>$ \&}]{entities,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&}]{movable\+Entities }\end{DoxyParamCaption})}
 
 
 
@@ -45,5 +54,5 @@ This method loops through all movable entities and checks for overlaps with othe
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Engine/\+Physics\+System/\+Collision/Collision.\+h\item 
-Engine/\+Physics\+System/\+Collision/Collision.\+cpp\end{DoxyCompactItemize}
+Engine/\+Physics/\+Collision/Collision.\+h\item 
+Engine/\+Physics/\+Collision/Collision.\+cpp\end{DoxyCompactItemize}

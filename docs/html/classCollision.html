@@ -70,6 +70,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classCollision-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Collision Class Reference</div></div>
@@ -81,27 +82,33 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="Collision_8h_source.html">Collision.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a59f358995cb245cd90f47b36a0de1648" id="r_a59f358995cb245cd90f47b36a0de1648"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollision.html#a59f358995cb245cd90f47b36a0de1648">collisionManager</a> (const std::vector&lt; std::unique_ptr&lt; <a class="el" href="classEntity.html">Entity</a> &gt; &gt; &amp;entities, const std::vector&lt; <a class="el" href="classEntity.html">Entity</a> * &gt; &amp;movableEntities)</td></tr>
+<tr class="memdesc:a59f358995cb245cd90f47b36a0de1648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects and processes collisions between movable and other entities.  <br /></td></tr>
+<tr class="separator:a59f358995cb245cd90f47b36a0de1648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d74be7c0d196025bf76eaff6318b60b" id="r_a8d74be7c0d196025bf76eaff6318b60b"><td class="memItemLeft" align="right" valign="top"><a id="a8d74be7c0d196025bf76eaff6318b60b" name="a8d74be7c0d196025bf76eaff6318b60b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addEntryToCollisionHandler</b> (const string &amp;a, const string &amp;b, const std::function&lt; void(<a class="el" href="classEntity.html">Entity</a> *, <a class="el" href="classEntity.html">Entity</a> *)&gt; &amp;handler)</td></tr>
+<tr class="separator:a8d74be7c0d196025bf76eaff6318b60b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6b2b1bb5fe6cc1359e2f478d31ce73e7" id="r_a6b2b1bb5fe6cc1359e2f478d31ce73e7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollision.html#a6b2b1bb5fe6cc1359e2f478d31ce73e7">detectCollision</a> (const std::vector&lt; std::unique_ptr&lt; <a class="el" href="classEntity.html">Entity</a> &gt; &gt; &amp;entities, const std::vector&lt; <a class="el" href="classEntity.html">Entity</a> * &gt; &amp;movableEntities)</td></tr>
-<tr class="memdesc:a6b2b1bb5fe6cc1359e2f478d31ce73e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects and processes collisions between movable and other entities.  <br /></td></tr>
-<tr class="separator:a6b2b1bb5fe6cc1359e2f478d31ce73e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab759e21dde047cd54a6c94dc02eede61" id="r_ab759e21dde047cd54a6c94dc02eede61"><td class="memItemLeft" align="right" valign="top"><a id="ab759e21dde047cd54a6c94dc02eede61" name="ab759e21dde047cd54a6c94dc02eede61"></a>
+static string&#160;</td><td class="memItemRight" valign="bottom"><b>makeKey</b> (const string &amp;a, const string &amp;b)</td></tr>
+<tr class="separator:ab759e21dde047cd54a6c94dc02eede61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Static class responsible for detecting and handling collisions between entities. </p>
 <p>The <a class="el" href="classCollision.html" title="Static class responsible for detecting and handling collisions between entities.">Collision</a> system performs broad and narrow phase collision detection among game entities. Only movable entities are tested against all others. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6b2b1bb5fe6cc1359e2f478d31ce73e7" name="a6b2b1bb5fe6cc1359e2f478d31ce73e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b2b1bb5fe6cc1359e2f478d31ce73e7">&#9670;&#160;</a></span>detectCollision()</h2>
+<a id="a59f358995cb245cd90f47b36a0de1648" name="a59f358995cb245cd90f47b36a0de1648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59f358995cb245cd90f47b36a0de1648">&#9670;&#160;</a></span>collisionManager()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Collision::detectCollision </td>
+          <td class="memname">void Collision::collisionManager </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="classEntity.html">Entity</a> &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>entities</em>, </td>
@@ -118,11 +125,6 @@ Static Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Detects and processes collisions between movable and other entities. </p>
@@ -138,8 +140,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Engine/PhysicsSystem/Collision/<a class="el" href="Collision_8h_source.html">Collision.h</a></li>
-<li>Engine/PhysicsSystem/Collision/<b>Collision.cpp</b></li>
+<li>Engine/Physics/Collision/<a class="el" href="Collision_8h_source.html">Collision.h</a></li>
+<li>Engine/Physics/Collision/<b>Collision.cpp</b></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -8,6 +8,8 @@
 #include "../../Entity/Entity.h"
 #include <SFML/System/Vector2.hpp>
 
+#include "../../Music/MusicManager.h"
+
 /**
  * @brief Static class responsible for detecting and handling collisions between entities.
  *
@@ -26,7 +28,7 @@ public:
      * @param movableEntities Subset of entities that can move and are considered for collision resolution.
      */
     void collisionManager(const std::vector<std::unique_ptr<Entity>>& entities,
-                                const std::vector<Entity*>& movableEntities);
+                            const std::vector<Entity*>& movableEntities);
 
     static string makeKey(const string& a, const string& b);
 

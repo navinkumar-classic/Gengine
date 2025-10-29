@@ -71,6 +71,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classStaticEntity-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">StaticEntity Class Reference</div></div>
 </div><!--header-->
@@ -88,11 +89,14 @@ Collaboration diagram for StaticEntity:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae8f7e586fac20cc5cbb5836ad3082465" id="r_ae8f7e586fac20cc5cbb5836ad3082465"><td class="memItemLeft" align="right" valign="top"><a id="ae8f7e586fac20cc5cbb5836ad3082465" name="ae8f7e586fac20cc5cbb5836ad3082465"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>StaticEntity</b> (bool isMovable, const sf::Vector2f &amp;position, const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;gravity, float maxSpeed, float terminalVelocity, float jumpStrength, float acceleration, float deacceleration, const sf::Vector2f &amp;size, const sf::Color &amp;color=sf::Color::Red)</td></tr>
-<tr class="separator:ae8f7e586fac20cc5cbb5836ad3082465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30b363942fe72d23dd0db0ff08110d8c" id="r_a30b363942fe72d23dd0db0ff08110d8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticEntity.html#a30b363942fe72d23dd0db0ff08110d8c">update</a> (float dt, <a class="el" href="classInput.html">Input</a> &amp;input) override</td></tr>
-<tr class="separator:a30b363942fe72d23dd0db0ff08110d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab23daf792f5a81d8f2bd7c7a4afd6cc4" id="r_ab23daf792f5a81d8f2bd7c7a4afd6cc4"><td class="memItemLeft" align="right" valign="top"><a id="ab23daf792f5a81d8f2bd7c7a4afd6cc4" name="ab23daf792f5a81d8f2bd7c7a4afd6cc4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StaticEntity</b> (bool isMovable, const sf::Vector2f &amp;position, const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;gravity, float maxSpeed, float terminalVelocity, float jumpStrength, float acceleration, float deacceleration, const sf::Vector2f &amp;tileSize, const std::vector&lt; std::vector&lt; int &gt; &gt; &amp;tilemat, const string &amp;entityTag, const std::unordered_map&lt; int, std::string &gt; &amp;ref_texture)</td></tr>
+<tr class="separator:ab23daf792f5a81d8f2bd7c7a4afd6cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae73f4385afad2119d010dffd9c0d211c" id="r_ae73f4385afad2119d010dffd9c0d211c"><td class="memItemLeft" align="right" valign="top"><a id="ae73f4385afad2119d010dffd9c0d211c" name="ae73f4385afad2119d010dffd9c0d211c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StaticEntity</b> (const sf::Vector2f &amp;position, const sf::Vector2f &amp;tileSize, const std::vector&lt; std::vector&lt; int &gt; &gt; &amp;tilemat, const string &amp;entityTag, const std::unordered_map&lt; int, std::string &gt; &amp;ref_texture)</td></tr>
+<tr class="separator:ae73f4385afad2119d010dffd9c0d211c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0cb34f53094c4d4ed1aecb51bf8c9a9" id="r_ae0cb34f53094c4d4ed1aecb51bf8c9a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticEntity.html#ae0cb34f53094c4d4ed1aecb51bf8c9a9">update</a> (float dt, <a class="el" href="classInputManager.html">InputManager</a> &amp;input) override</td></tr>
+<tr class="separator:ae0cb34f53094c4d4ed1aecb51bf8c9a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef111c93baa30489323daff2a0be8a75" id="r_aef111c93baa30489323daff2a0be8a75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticEntity.html#aef111c93baa30489323daff2a0be8a75">render</a> (sf::RenderWindow &amp;window) override</td></tr>
 <tr class="separator:aef111c93baa30489323daff2a0be8a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcff3de09b9048bc27fba8de54b7d996" id="r_adcff3de09b9048bc27fba8de54b7d996"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticEntity.html#adcff3de09b9048bc27fba8de54b7d996">applyMovementToShape</a> () override</td></tr>
@@ -100,9 +104,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac48632dcbceb4567c60770eaa8d52b09" id="r_ac48632dcbceb4567c60770eaa8d52b09"><td class="memItemLeft" align="right" valign="top">sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticEntity.html#ac48632dcbceb4567c60770eaa8d52b09">getBounds</a> () const override</td></tr>
 <tr class="separator:ac48632dcbceb4567c60770eaa8d52b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classEntity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classEntity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classEntity.html">Entity</a></td></tr>
-<tr class="memitem:ae9d2d39d62a7991c30d945d22308ef71 inherit pub_methods_classEntity" id="r_ae9d2d39d62a7991c30d945d22308ef71"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (bool isMovable, const sf::Vector2f &amp;position, const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;gravity, float maxSpeed, float terminalVelocity, float jumpStrength, float acceleration, float deacceleration)</td></tr>
-<tr class="separator:ae9d2d39d62a7991c30d945d22308ef71 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33827c7889b5288d243822f405f26d76 inherit pub_methods_classEntity" id="r_a33827c7889b5288d243822f405f26d76"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (bool isAnimated, bool isMovable, const sf::Vector2f &amp;position, const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;gravity, float maxSpeed, float terminalVelocity, float jumpStrength, float acceleration, float deacceleration, const string &amp;entityTag)</td></tr>
+<tr class="separator:a33827c7889b5288d243822f405f26d76 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11d7f8fde1e714c76a20b69793fa157c inherit pub_methods_classEntity" id="r_a11d7f8fde1e714c76a20b69793fa157c"><td class="memItemLeft" align="right" valign="top">
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="separator:a11d7f8fde1e714c76a20b69793fa157c inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +140,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>getOnGround</b> () co
 <tr class="memitem:a941084fb686ea0eaedf4e60463a8ad22 inherit pub_methods_classEntity" id="r_a941084fb686ea0eaedf4e60463a8ad22"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>getJump</b> () const</td></tr>
 <tr class="separator:a941084fb686ea0eaedf4e60463a8ad22 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cd3f1c5ccab96bb4411e9c7d1e72842 inherit pub_methods_classEntity" id="r_a7cd3f1c5ccab96bb4411e9c7d1e72842"><td class="memItemLeft" align="right" valign="top">
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getEntityTag</b> () const</td></tr>
+<tr class="separator:a7cd3f1c5ccab96bb4411e9c7d1e72842 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3409196775744d611dbd3b705cb92c8f inherit pub_methods_classEntity" id="r_a3409196775744d611dbd3b705cb92c8f"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIsAlive</b> () const</td></tr>
+<tr class="separator:a3409196775744d611dbd3b705cb92c8f inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5000a9a577ead655c7ff89afe6eb9f04 inherit pub_methods_classEntity" id="r_a5000a9a577ead655c7ff89afe6eb9f04"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const sf::Vector2f &amp;pos)</td></tr>
 <tr class="separator:a5000a9a577ead655c7ff89afe6eb9f04 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,26 +182,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setOnGround</b> (bool
 <tr class="memitem:ab11bc8b701a833e324981f59df63956b inherit pub_methods_classEntity" id="r_ab11bc8b701a833e324981f59df63956b"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setJump</b> (bool jump)</td></tr>
 <tr class="separator:ab11bc8b701a833e324981f59df63956b inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd29f9911c799abbbf1cc0d768ff754 inherit pub_methods_classEntity" id="r_afdd29f9911c799abbbf1cc0d768ff754"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsAlive</b> (bool isAlive)</td></tr>
+<tr class="separator:afdd29f9911c799abbbf1cc0d768ff754 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8073690324409ca2e05516388ed8d542 inherit pub_methods_classEntity" id="r_a8073690324409ca2e05516388ed8d542"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>applyMovement</b> (float dt)</td></tr>
 <tr class="separator:a8073690324409ca2e05516388ed8d542 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac0fcd66b308d9812d7cc9250e723f8d inherit pub_methods_classEntity" id="r_aac0fcd66b308d9812d7cc9250e723f8d"><td class="memItemLeft" align="right" valign="top">
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addPhysics</b> (function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInput.html">Input</a> &amp;, float)&gt; function)</td></tr>
-<tr class="separator:aac0fcd66b308d9812d7cc9250e723f8d inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f00efcbf96be621f4ec693efad4ae04 inherit pub_methods_classEntity" id="r_a4f00efcbf96be621f4ec693efad4ae04"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addPhysics</b> (function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInputManager.html">InputManager</a> &amp;, float)&gt; function)</td></tr>
+<tr class="separator:a4f00efcbf96be621f4ec693efad4ae04 inherit pub_methods_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a51b8a275931d36767b19c558a3deed73" id="r_a51b8a275931d36767b19c558a3deed73"><td class="memItemLeft" align="right" valign="top"><a id="a51b8a275931d36767b19c558a3deed73" name="a51b8a275931d36767b19c558a3deed73"></a>
+<a class="el" href="classTileMap.html">TileMap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>tileMap</b></td></tr>
+<tr class="separator:a51b8a275931d36767b19c558a3deed73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classEntity"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classEntity')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classEntity.html">Entity</a></td></tr>
 <tr class="memitem:a902c584c5bc5a55daf6986018cac4b2e inherit pub_attribs_classEntity" id="r_a902c584c5bc5a55daf6986018cac4b2e"><td class="memItemLeft" align="right" valign="top">
 const bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMovable</b></td></tr>
 <tr class="separator:a902c584c5bc5a55daf6986018cac4b2e inherit pub_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classEntity"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classEntity')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classEntity.html">Entity</a></td></tr>
-<tr class="memitem:a2147cde6c845ba96f245b0138b3b0bbe inherit pro_attribs_classEntity" id="r_a2147cde6c845ba96f245b0138b3b0bbe"><td class="memItemLeft" align="right" valign="top">
-vector&lt; function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInput.html">Input</a> &amp;, float)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>physics</b></td></tr>
-<tr class="separator:a2147cde6c845ba96f245b0138b3b0bbe inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc349ec89c2bffef70bf6a1d95603154 inherit pro_attribs_classEntity" id="r_afc349ec89c2bffef70bf6a1d95603154"><td class="memItemLeft" align="right" valign="top">
+<tr class="memitem:a0f7637954524b025887ebcb3543bb66e inherit pub_attribs_classEntity" id="r_a0f7637954524b025887ebcb3543bb66e"><td class="memItemLeft" align="right" valign="top">
+const bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAnimated</b></td></tr>
+<tr class="separator:a0f7637954524b025887ebcb3543bb66e inherit pub_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc349ec89c2bffef70bf6a1d95603154 inherit pub_attribs_classEntity" id="r_afc349ec89c2bffef70bf6a1d95603154"><td class="memItemLeft" align="right" valign="top">
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
-<tr class="separator:afc349ec89c2bffef70bf6a1d95603154 inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:afc349ec89c2bffef70bf6a1d95603154 inherit pub_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classEntity"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classEntity')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classEntity.html">Entity</a></td></tr>
+<tr class="memitem:ac10c0aee3e58cc5dc2e2e783114b4ff0 inherit pro_attribs_classEntity" id="r_ac10c0aee3e58cc5dc2e2e783114b4ff0"><td class="memItemLeft" align="right" valign="top">
+vector&lt; function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInputManager.html">InputManager</a> &amp;, float)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>physics</b></td></tr>
+<tr class="separator:ac10c0aee3e58cc5dc2e2e783114b4ff0 inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a012d5a8fdb0496dd40c6bff390202e0f inherit pro_attribs_classEntity" id="r_a012d5a8fdb0496dd40c6bff390202e0f"><td class="memItemLeft" align="right" valign="top">
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>previousPosition</b></td></tr>
 <tr class="separator:a012d5a8fdb0496dd40c6bff390202e0f inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,6 +244,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>onGround</b> = false<
 <tr class="memitem:acf4f533113701385a2dde3b5302d63e2 inherit pro_attribs_classEntity" id="r_acf4f533113701385a2dde3b5302d63e2"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>jump</b> = false</td></tr>
 <tr class="separator:acf4f533113701385a2dde3b5302d63e2 inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f66e38c6f1e733cf509986b03ebbf2e inherit pro_attribs_classEntity" id="r_a3f66e38c6f1e733cf509986b03ebbf2e"><td class="memItemLeft" align="right" valign="top">
+string&#160;</td><td class="memItemRight" valign="bottom"><b>entityTag</b></td></tr>
+<tr class="separator:a3f66e38c6f1e733cf509986b03ebbf2e inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaec4e8bc2d18e138454553a8df94ac20 inherit pro_attribs_classEntity" id="r_aaec4e8bc2d18e138454553a8df94ac20"><td class="memItemLeft" align="right" valign="top">
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b> = true</td></tr>
+<tr class="separator:aaec4e8bc2d18e138454553a8df94ac20 inherit pro_attribs_classEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="adcff3de09b9048bc27fba8de54b7d996" name="adcff3de09b9048bc27fba8de54b7d996"></a>
@@ -306,8 +334,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>jump</b> = false</td>
 
 </div>
 </div>
-<a id="a30b363942fe72d23dd0db0ff08110d8c" name="a30b363942fe72d23dd0db0ff08110d8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30b363942fe72d23dd0db0ff08110d8c">&#9670;&#160;</a></span>update()</h2>
+<a id="ae0cb34f53094c4d4ed1aecb51bf8c9a9" name="ae0cb34f53094c4d4ed1aecb51bf8c9a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0cb34f53094c4d4ed1aecb51bf8c9a9">&#9670;&#160;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -324,7 +352,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>jump</b> = false</td>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classInput.html">Input</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classInputManager.html">InputManager</a> &amp;&#160;</td>
           <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>

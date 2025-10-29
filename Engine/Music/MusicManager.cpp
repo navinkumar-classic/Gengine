@@ -53,6 +53,18 @@ void MusicManager::resumeMusic() const {
         currentMusic->play();
 }
 
+sf::Sound* MusicManager::getAvailableSound() {
+    // Reuse stopped sounds to avoid growing indefinitely
+    for (auto& s : activeSounds) {
+        if (s.getStatus() == sf::Sound::Stopped)
+            return &s;
+    }
+
+    // Otherwise create a new one
+    activeSounds.emplace_back();
+    return &activeSounds.back();
+}
+
 void MusicManager::playSoundEffect(const std::string& name) {
     auto it = soundBuffers.find(name);
     if (it == soundBuffers.end()) {
@@ -60,16 +72,18 @@ void MusicManager::playSoundEffect(const std::string& name) {
         return;
     }
 
-    activeSounds.emplace_back();
-    sf::Sound& sound = activeSounds.back();
-    sound.setBuffer(it->second);
-    sound.play();
+    sf::Sound* sound = getAvailableSound();
+    sound->setBuffer(it->second);
+    sound->setVolume(100.0f);
+    sound->play();
 }
 
 void MusicManager::update() {
-    activeSounds.erase(
-        std::remove_if(activeSounds.begin(), activeSounds.end(),
-            [](const sf::Sound& s) { return s.getStatus() == sf::Sound::Stopped; }),
-        activeSounds.end()
-    );
+    // Optional with sound pooling, but still clean up if needed
+    for (auto it = activeSounds.begin(); it != activeSounds.end();) {
+        if (it->getStatus() == sf::Sound::Stopped)
+            it = activeSounds.erase(it);
+        else
+            ++it;
+    }
 }

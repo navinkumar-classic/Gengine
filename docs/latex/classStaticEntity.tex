@@ -11,10 +11,13 @@ Collaboration diagram for Static\+Entity\+:
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classStaticEntity_ae8f7e586fac20cc5cbb5836ad3082465}\label{classStaticEntity_ae8f7e586fac20cc5cbb5836ad3082465} 
-{\bfseries Static\+Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration, const sf\+::\+Vector2f \&size, const sf\+::\+Color \&color=sf\+::\+Color\+::\+Red)
+\Hypertarget{classStaticEntity_ab23daf792f5a81d8f2bd7c7a4afd6cc4}\label{classStaticEntity_ab23daf792f5a81d8f2bd7c7a4afd6cc4} 
+{\bfseries Static\+Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration, const sf\+::\+Vector2f \&tile\+Size, const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&tilemat, const string \&entity\+Tag, const std\+::unordered\+\_\+map$<$ int, std\+::string $>$ \&ref\+\_\+texture)
 \item 
-void \mbox{\hyperlink{classStaticEntity_a30b363942fe72d23dd0db0ff08110d8c}{update}} (float dt, \mbox{\hyperlink{classInput}{Input}} \&input) override
+\Hypertarget{classStaticEntity_ae73f4385afad2119d010dffd9c0d211c}\label{classStaticEntity_ae73f4385afad2119d010dffd9c0d211c} 
+{\bfseries Static\+Entity} (const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&tile\+Size, const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&tilemat, const string \&entity\+Tag, const std\+::unordered\+\_\+map$<$ int, std\+::string $>$ \&ref\+\_\+texture)
+\item 
+void \mbox{\hyperlink{classStaticEntity_ae0cb34f53094c4d4ed1aecb51bf8c9a9}{update}} (float dt, \mbox{\hyperlink{classInputManager}{Input\+Manager}} \&input) override
 \item 
 void \mbox{\hyperlink{classStaticEntity_aef111c93baa30489323daff2a0be8a75}{render}} (sf\+::\+Render\+Window \&window) override
 \item 
@@ -25,7 +28,7 @@ sf\+::\+Float\+Rect \mbox{\hyperlink{classStaticEntity_ac48632dcbceb4567c60770ea
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Entity} (bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration)
+{\bfseries Entity} (bool is\+Animated, bool is\+Movable, const sf\+::\+Vector2f \&position, const sf\+::\+Vector2f \&velocity, const sf\+::\+Vector2f \&gravity, float max\+Speed, float terminal\+Velocity, float jump\+Strength, float acceleration, float deacceleration, const string \&entity\+Tag)
 \item 
 sf\+::\+Vector2f {\bfseries get\+Position} () const
 \item 
@@ -48,6 +51,10 @@ float {\bfseries get\+Deacceleration} () const
 bool {\bfseries get\+On\+Ground} () const
 \item 
 bool {\bfseries get\+Jump} () const
+\item 
+string {\bfseries get\+Entity\+Tag} () const
+\item 
+bool {\bfseries get\+Is\+Alive} () const
 \item 
 void {\bfseries set\+Position} (const sf\+::\+Vector2f \&pos)
 \item 
@@ -73,22 +80,32 @@ void {\bfseries set\+On\+Ground} (bool on\+Ground)
 \item 
 void {\bfseries set\+Jump} (bool jump)
 \item 
+void {\bfseries set\+Is\+Alive} (bool is\+Alive)
+\item 
 void {\bfseries apply\+Movement} (float dt)
 \item 
-void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ function)
+void {\bfseries add\+Physics} (function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInputManager}{Input\+Manager}} \&, float)$>$ function)
 \end{DoxyCompactItemize}
-\doxysubsubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStaticEntity_a51b8a275931d36767b19c558a3deed73}\label{classStaticEntity_a51b8a275931d36767b19c558a3deed73} 
+\mbox{\hyperlink{classTileMap}{Tile\+Map}} {\bfseries tile\+Map}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
 \begin{DoxyCompactItemize}
 \item 
 const bool {\bfseries is\+Movable}
+\item 
+const bool {\bfseries is\+Animated}
+\item 
+sf\+::\+Vector2f {\bfseries position}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
 \begin{DoxyCompactItemize}
 \item 
-vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInput}{Input}} \&, float)$>$ $>$ {\bfseries physics}
-\item 
-sf\+::\+Vector2f {\bfseries position}
+vector$<$ function$<$ void(\mbox{\hyperlink{classEntity}{Entity}} \&, \mbox{\hyperlink{classInputManager}{Input\+Manager}} \&, float)$>$ $>$ {\bfseries physics}
 \item 
 sf\+::\+Vector2f {\bfseries previous\+Position}
 \item 
@@ -109,6 +126,10 @@ float {\bfseries deacceleration}
 bool {\bfseries on\+Ground} = false
 \item 
 bool {\bfseries jump} = false
+\item 
+string {\bfseries entity\+Tag}
+\item 
+bool {\bfseries is\+Alive} = true
 \end{DoxyCompactItemize}
 
 
@@ -143,11 +164,11 @@ Implements \mbox{\hyperlink{classEntity}{Entity}}.
 
 Implements \mbox{\hyperlink{classEntity}{Entity}}.
 
-\Hypertarget{classStaticEntity_a30b363942fe72d23dd0db0ff08110d8c}\label{classStaticEntity_a30b363942fe72d23dd0db0ff08110d8c} 
+\Hypertarget{classStaticEntity_ae0cb34f53094c4d4ed1aecb51bf8c9a9}\label{classStaticEntity_ae0cb34f53094c4d4ed1aecb51bf8c9a9} 
 \index{StaticEntity@{StaticEntity}!update@{update}}
 \index{update@{update}!StaticEntity@{StaticEntity}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void Static\+Entity\+::update (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\mbox{\hyperlink{classInput}{Input}} \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Static\+Entity\+::update (\begin{DoxyParamCaption}\item[{float}]{dt,  }\item[{\mbox{\hyperlink{classInputManager}{Input\+Manager}} \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 

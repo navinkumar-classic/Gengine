@@ -12,47 +12,44 @@
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../Entity.h"{}}}
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
 \DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classControllableEntity}{ControllableEntity}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEntity}{Entity}}\ \{}
-\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{classControllableEntity}{ControllableEntity}}(}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isMovable,}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ position,}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ velocity,}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ gravity,}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ maxSpeed,}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ terminalVelocity,}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ jumpStrength,}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ acceleration,}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ deacceleration,}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ sf::Vector2u\ windowSize,}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Color\&\ color\ =\ sf::Color::Green}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ );}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ dt,\ \mbox{\hyperlink{classInput}{Input}}\&\ input)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ render(sf::RenderWindow\&\ window)\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ applyMovementToShape()\ \textcolor{keyword}{override};}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \ \ sf::FloatRect\ getBounds()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../../Sprite/SpriteManager/AnimatedSprite.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classControllableEntity}{ControllableEntity}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEntity}{Entity}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classControllableEntity}{ControllableEntity}}(}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isMovable,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ position,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ velocity,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ gravity,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ maxSpeed,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ terminalVelocity,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ jumpStrength,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ acceleration,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ deacceleration,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ sf::Vector2u\ windowSize,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ frameWidth,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ frameHeight,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ frameDuration,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Vector2f\&\ scale,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ entityTag}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ );}
 \DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ addAction(\textcolor{keywordtype}{string}\ action,\ \textcolor{keyword}{const}\ function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{classControllableEntity}{ControllableEntity}}\&\ entity,\ \mbox{\hyperlink{classInput}{Input}}\&\ input,\ \textcolor{keywordtype}{string}\ action,\ \textcolor{keywordtype}{float}\ dt)>\&\ func);}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ clearActions();}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ std::vector<std::pair<string,\ function<void(\mbox{\hyperlink{classControllableEntity}{ControllableEntity}}\&\ entity,\ \mbox{\hyperlink{classInput}{Input}}\&\ input,\ \textcolor{keywordtype}{string}\ action,\ \textcolor{keywordtype}{float}\ dt)>>>\ action;}
-\DoxyCodeLine{00039\ \ \ \ \ sf::RectangleShape\ shape;}
-\DoxyCodeLine{00040\ \ \ \ \ sf::Color\ color;}
-\DoxyCodeLine{00041\ \ \ \ \ sf::Vector2u\ windowSize;}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ sf::Sprite\ sprite;}
-\DoxyCodeLine{00044\ \ \ \ \ sf::Texture\ texture;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ dt,\ \mbox{\hyperlink{classInputManager}{InputManager}}\&\ input)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ render(sf::RenderWindow\&\ window)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ applyMovementToShape()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ sf::FloatRect\ getBounds()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ addAction(\textcolor{keywordtype}{string}\ action,\ \textcolor{keyword}{const}\ function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{classControllableEntity}{ControllableEntity}}\&\ entity,\ \mbox{\hyperlink{classInputManager}{InputManager}}\&\ input,\ \textcolor{keywordtype}{string}\ action,\ \textcolor{keywordtype}{float}\ dt)>\&\ func);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ clearActions();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classAnimatedSprite}{AnimatedSprite}}\ Sprite;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ currentFrame\ =\ 0;}
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ totalFrames\ =\ 6;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ total\ animation\ frames}}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ frameDuration\ =\ 0.1f;\ \ \ \textcolor{comment}{//\ seconds\ per\ frame}}
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{float}\ frameTimer\ =\ 0.f;}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ sf::Vector2i\ frameSize\ =\ \{32,\ 32\};}
-\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<std::pair<string,\ function<void(\mbox{\hyperlink{classControllableEntity}{ControllableEntity}}\&\ entity,\ \mbox{\hyperlink{classInputManager}{InputManager}}\&\ input,\ \textcolor{keywordtype}{string}\ action,\ \textcolor{keywordtype}{float}\ dt)>>>\ action;}
+\DoxyCodeLine{00047\ \ \ \ \ sf::Vector2u\ windowSize;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \};}
 
 \end{DoxyCode}

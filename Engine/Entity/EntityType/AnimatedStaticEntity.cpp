@@ -3,6 +3,7 @@
 //
 
 #include "AnimatedStaticEntity.h"
+#include "../../Engine.h"
 
 AnimatedStaticEntity::AnimatedStaticEntity(
         bool isMovable,
@@ -47,9 +48,9 @@ void AnimatedStaticEntity::render(sf::RenderWindow& window) {
     Sprite.draw(window);
 }
 
-void AnimatedStaticEntity::update(float dt, InputManager& input) {
+void AnimatedStaticEntity::update(float dt, Engine& engine) {
     for (const auto& physicsFunction : physics) {
-        physicsFunction(*this, input, dt);
+        physicsFunction(*this, engine.input, dt);
     }
 
     applyMovement(dt);

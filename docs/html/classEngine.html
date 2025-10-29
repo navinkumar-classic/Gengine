@@ -71,116 +71,89 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classEngine-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Engine Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Central class that drives the game loop, rendering, and input/event handling.  
- <a href="classEngine.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="Engine_8h_source.html">Engine.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Engine:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEngine__coll__graph.png" border="0" usemap="#aEngine_coll__map" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a801405dfa82b992c4bcbaf7a881f6d72" id="r_a801405dfa82b992c4bcbaf7a881f6d72"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a801405dfa82b992c4bcbaf7a881f6d72">Engine</a> (unsigned int width=800, unsigned int height=600)</td></tr>
-<tr class="memdesc:a801405dfa82b992c4bcbaf7a881f6d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a game engine with a given window size.  <br /></td></tr>
-<tr class="separator:a801405dfa82b992c4bcbaf7a881f6d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a210cf30d6bd330b3649439ecd6d6cc" id="r_a1a210cf30d6bd330b3649439ecd6d6cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a1a210cf30d6bd330b3649439ecd6d6cc">run</a> ()</td></tr>
-<tr class="memdesc:a1a210cf30d6bd330b3649439ecd6d6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts and runs the main game loop.  <br /></td></tr>
+<tr class="memitem:ab9333f17ce0982e8bd2f3e1fec5ebdf3" id="r_ab9333f17ce0982e8bd2f3e1fec5ebdf3"><td class="memItemLeft" align="right" valign="top"><a id="ab9333f17ce0982e8bd2f3e1fec5ebdf3" name="ab9333f17ce0982e8bd2f3e1fec5ebdf3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Engine</b> (unsigned int width, unsigned int height, const std::string &amp;fontPath, const std::string &amp;title)</td></tr>
+<tr class="separator:ab9333f17ce0982e8bd2f3e1fec5ebdf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a210cf30d6bd330b3649439ecd6d6cc" id="r_a1a210cf30d6bd330b3649439ecd6d6cc"><td class="memItemLeft" align="right" valign="top"><a id="a1a210cf30d6bd330b3649439ecd6d6cc" name="a1a210cf30d6bd330b3649439ecd6d6cc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
 <tr class="separator:a1a210cf30d6bd330b3649439ecd6d6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dba6509783a9a6522e19d936e921b83" id="r_a1dba6509783a9a6522e19d936e921b83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a1dba6509783a9a6522e19d936e921b83">addEntity</a> (std::unique_ptr&lt; <a class="el" href="classEntity.html">Entity</a> &gt; entity)</td></tr>
-<tr class="memdesc:a1dba6509783a9a6522e19d936e921b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new entity to the engine's world.  <br /></td></tr>
-<tr class="separator:a1dba6509783a9a6522e19d936e921b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5c4af9bd08bd8d454a79d443970faa" id="r_a9b5c4af9bd08bd8d454a79d443970faa"><td class="memItemLeft" align="right" valign="top"><a id="a9b5c4af9bd08bd8d454a79d443970faa" name="a9b5c4af9bd08bd8d454a79d443970faa"></a>
+sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getWindow</b> ()</td></tr>
+<tr class="separator:a9b5c4af9bd08bd8d454a79d443970faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c306cbc903aafdba9a137d2a5a9f3af" id="r_a5c306cbc903aafdba9a137d2a5a9f3af"><td class="memItemLeft" align="right" valign="top"><a id="a5c306cbc903aafdba9a137d2a5a9f3af" name="a5c306cbc903aafdba9a137d2a5a9f3af"></a>
+<a class="el" href="classInputManager.html">InputManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInput</b> ()</td></tr>
+<tr class="separator:a5c306cbc903aafdba9a137d2a5a9f3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a97900dc79c4cc47f70d5899c55b954" id="r_a7a97900dc79c4cc47f70d5899c55b954"><td class="memItemLeft" align="right" valign="top"><a id="a7a97900dc79c4cc47f70d5899c55b954" name="a7a97900dc79c4cc47f70d5899c55b954"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFrameRate</b> (int frameRate)</td></tr>
+<tr class="separator:a7a97900dc79c4cc47f70d5899c55b954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591c50e483cb6bb96efbd2e39fffb45a" id="r_a591c50e483cb6bb96efbd2e39fffb45a"><td class="memItemLeft" align="right" valign="top"><a id="a591c50e483cb6bb96efbd2e39fffb45a" name="a591c50e483cb6bb96efbd2e39fffb45a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addFont</b> (const std::string &amp;key, const std::string &amp;fontPath)</td></tr>
+<tr class="separator:a591c50e483cb6bb96efbd2e39fffb45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7d4f487d38b142626a3b6fc36fe27b3" id="r_af7d4f487d38b142626a3b6fc36fe27b3"><td class="memItemLeft" align="right" valign="top"><a id="af7d4f487d38b142626a3b6fc36fe27b3" name="af7d4f487d38b142626a3b6fc36fe27b3"></a>
+const sf::Font &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>fetchFont</b> (const std::string &amp;key)</td></tr>
+<tr class="separator:af7d4f487d38b142626a3b6fc36fe27b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a843c740a6514fb719df34ea1ff95562f" id="r_a843c740a6514fb719df34ea1ff95562f"><td class="memItemLeft" align="right" valign="top"><a id="a843c740a6514fb719df34ea1ff95562f" name="a843c740a6514fb719df34ea1ff95562f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRefTexture</b> (std::unordered_map&lt; int, std::string &gt; ref_texture)</td></tr>
+<tr class="separator:a843c740a6514fb719df34ea1ff95562f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81eff50cdf55996c541cee9a0712782e" id="r_a81eff50cdf55996c541cee9a0712782e"><td class="memItemLeft" align="right" valign="top"><a id="a81eff50cdf55996c541cee9a0712782e" name="a81eff50cdf55996c541cee9a0712782e"></a>
+const std::unordered_map&lt; int, std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRefTexture</b> () const</td></tr>
+<tr class="separator:a81eff50cdf55996c541cee9a0712782e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8994e35c6c0816d7f98e479359933a56" id="r_a8994e35c6c0816d7f98e479359933a56"><td class="memItemLeft" align="right" valign="top"><a id="a8994e35c6c0816d7f98e479359933a56" name="a8994e35c6c0816d7f98e479359933a56"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addSceneFactory</b> (const string &amp;name, std::function&lt; std::shared_ptr&lt; <a class="el" href="classScene.html">Scene</a> &gt;()&gt; factory)</td></tr>
+<tr class="separator:a8994e35c6c0816d7f98e479359933a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50be8723ef9e484aa2be2aca913be8e" id="r_ac50be8723ef9e484aa2be2aca913be8e"><td class="memItemLeft" align="right" valign="top"><a id="ac50be8723ef9e484aa2be2aca913be8e" name="ac50be8723ef9e484aa2be2aca913be8e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>switchScene</b> (const string &amp;name)</td></tr>
+<tr class="separator:ac50be8723ef9e484aa2be2aca913be8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f790cd959c71418bbd12ab1acc5517" id="r_a38f790cd959c71418bbd12ab1acc5517"><td class="memItemLeft" align="right" valign="top"><a id="a38f790cd959c71418bbd12ab1acc5517" name="a38f790cd959c71418bbd12ab1acc5517"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pushSwitchScene</b> (const string &amp;name)</td></tr>
+<tr class="separator:a38f790cd959c71418bbd12ab1acc5517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b659d75f3f5f6d84e12e7303a703471" id="r_a0b659d75f3f5f6d84e12e7303a703471"><td class="memItemLeft" align="right" valign="top"><a id="a0b659d75f3f5f6d84e12e7303a703471" name="a0b659d75f3f5f6d84e12e7303a703471"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clearSceneStack</b> ()</td></tr>
+<tr class="separator:a0b659d75f3f5f6d84e12e7303a703471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed8627a7142b324d95eebca7391440e" id="r_a1ed8627a7142b324d95eebca7391440e"><td class="memItemLeft" align="right" valign="top"><a id="a1ed8627a7142b324d95eebca7391440e" name="a1ed8627a7142b324d95eebca7391440e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>popScene</b> ()</td></tr>
+<tr class="separator:a1ed8627a7142b324d95eebca7391440e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98da67caa248b28abff4b7c75f6a3b54" id="r_a98da67caa248b28abff4b7c75f6a3b54"><td class="memItemLeft" align="right" valign="top"><a id="a98da67caa248b28abff4b7c75f6a3b54" name="a98da67caa248b28abff4b7c75f6a3b54"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>clockRestart</b> ()</td></tr>
+<tr class="separator:a98da67caa248b28abff4b7c75f6a3b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b4d7061928cd70f8508c139e08a9943" id="r_a4b4d7061928cd70f8508c139e08a9943"><td class="memItemLeft" align="right" valign="top"><a id="a4b4d7061928cd70f8508c139e08a9943" name="a4b4d7061928cd70f8508c139e08a9943"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentSceneName</b> ()</td></tr>
+<tr class="separator:a4b4d7061928cd70f8508c139e08a9943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395c6d95d523af32a4a6aba41a7f4928" id="r_a395c6d95d523af32a4a6aba41a7f4928"><td class="memItemLeft" align="right" valign="top"><a id="a395c6d95d523af32a4a6aba41a7f4928" name="a395c6d95d523af32a4a6aba41a7f4928"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>quitEngine</b> ()</td></tr>
+<tr class="separator:a395c6d95d523af32a4a6aba41a7f4928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a56f416bb62e61b12939b3a32296f30d8" id="r_a56f416bb62e61b12939b3a32296f30d8"><td class="memItemLeft" align="right" valign="top"><a id="a56f416bb62e61b12939b3a32296f30d8" name="a56f416bb62e61b12939b3a32296f30d8"></a>
+<a class="el" href="classGameState.html">GameState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gameState</b></td></tr>
+<tr class="separator:a56f416bb62e61b12939b3a32296f30d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3871a0defa51c0d4001acc223cf75328" id="r_a3871a0defa51c0d4001acc223cf75328"><td class="memItemLeft" align="right" valign="top"><a id="a3871a0defa51c0d4001acc223cf75328" name="a3871a0defa51c0d4001acc223cf75328"></a>
+<a class="el" href="classEventManager.html">EventManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>event</b></td></tr>
+<tr class="separator:a3871a0defa51c0d4001acc223cf75328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9060dddd56265c020f14b582c5fce67" id="r_ad9060dddd56265c020f14b582c5fce67"><td class="memItemLeft" align="right" valign="top"><a id="ad9060dddd56265c020f14b582c5fce67" name="ad9060dddd56265c020f14b582c5fce67"></a>
+<a class="el" href="classInputManager.html">InputManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>input</b></td></tr>
+<tr class="separator:ad9060dddd56265c020f14b582c5fce67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8d4795cd8f5e545ef493ea8ff786b4" id="r_a3f8d4795cd8f5e545ef493ea8ff786b4"><td class="memItemLeft" align="right" valign="top"><a id="a3f8d4795cd8f5e545ef493ea8ff786b4" name="a3f8d4795cd8f5e545ef493ea8ff786b4"></a>
+<a class="el" href="classCollision.html">Collision</a>&#160;</td><td class="memItemRight" valign="bottom"><b>collision</b></td></tr>
+<tr class="separator:a3f8d4795cd8f5e545ef493ea8ff786b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad251645b186a110cfb997557579ebd52" id="r_ad251645b186a110cfb997557579ebd52"><td class="memItemLeft" align="right" valign="top"><a id="ad251645b186a110cfb997557579ebd52" name="ad251645b186a110cfb997557579ebd52"></a>
+<a class="el" href="classMusicManager.html">MusicManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>music</b></td></tr>
+<tr class="separator:ad251645b186a110cfb997557579ebd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Central class that drives the game loop, rendering, and input/event handling. </p>
-<p>The <a class="el" href="classEngine.html" title="Central class that drives the game loop, rendering, and input/event handling.">Engine</a> coordinates core subsystems: window creation, input processing, entity updates, and rendering. It serves as the main runtime environment for the game. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a801405dfa82b992c4bcbaf7a881f6d72" name="a801405dfa82b992c4bcbaf7a881f6d72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a801405dfa82b992c4bcbaf7a881f6d72">&#9670;&#160;</a></span>Engine()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Engine::Engine </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>width</em> = <code>800</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>height</em> = <code>600</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates a game engine with a given window size. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">width</td><td>Width of the window in pixels. </td></tr>
-    <tr><td class="paramname">height</td><td>Height of the window in pixels. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1dba6509783a9a6522e19d936e921b83" name="a1dba6509783a9a6522e19d936e921b83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dba6509783a9a6522e19d936e921b83">&#9670;&#160;</a></span>addEntity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Engine::addEntity </td>
-          <td>(</td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classEntity.html">Entity</a> &gt;&#160;</td>
-          <td class="paramname"><em>entity</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Adds a new entity to the engine's world. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">entity</td><td>A unique pointer to the entity to be added. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1a210cf30d6bd330b3649439ecd6d6cc" name="a1a210cf30d6bd330b3649439ecd6d6cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a210cf30d6bd330b3649439ecd6d6cc">&#9670;&#160;</a></span>run()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Engine::run </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Starts and runs the main game loop. </p>
-<p>Continuously processes events, updates entity state, and renders frames until the engine is stopped. </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Engine/<a class="el" href="Engine_8h_source.html">Engine.h</a></li>
 <li>Engine/<b>Engine.cpp</b></li>

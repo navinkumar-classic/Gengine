@@ -5,7 +5,7 @@
 #include "Movement.h"
 #include <iostream>
 
-void Movement::moveLeft(ControllableEntity& entity, InputManager& input, string action, float dt){
+void Movement::moveLeft(ControllableEntity& entity, InputManager& input, MusicManager& music, const string& action, float dt){
     if (input.isActionHeld(action)) {
         entity.setHorizontalVelocity(entity.getVelocity().x - entity.getAcceleration() * dt);
         if (entity.getVelocity().x < -entity.getMaxSpeed())
@@ -17,7 +17,7 @@ void Movement::moveLeft(ControllableEntity& entity, InputManager& input, string 
     }
 }
 
-void Movement::moveRight(ControllableEntity& entity, InputManager& input, string action, float dt) {
+void Movement::moveRight(ControllableEntity& entity, InputManager& input, MusicManager& music, const string& action, float dt) {
     if (input.isActionHeld(action)) {
         entity.setHorizontalVelocity(entity.getVelocity().x + entity.getAcceleration() * dt);
         if (entity.getVelocity().x > entity.getMaxSpeed())
@@ -30,13 +30,14 @@ void Movement::moveRight(ControllableEntity& entity, InputManager& input, string
     }
 }
 
-void Movement::moveJump(ControllableEntity& entity, InputManager& input, string action, float dt) {
+void Movement::moveJump(ControllableEntity& entity, InputManager& input, MusicManager& music, const string& action, float dt) {
     if (input.wasActionPressed(action) && entity.getOnGround()) {
         entity.setVerticalVelocity(entity.getJumpStrength());
         entity.setOnGround(false);
         entity.setJump(true);
         if (entity.Sprite.getCurrentAction() != "JUMP")
             entity.Sprite.setTextureToSprite("JUMP");
+        music.playSoundEffect("jump");
     }
     if (entity.getOnGround() == false && entity.getJump() && !input.isActionHeld(action)) {
         entity.setVerticalVelocity(entity.getVelocity().y * 0.5f);

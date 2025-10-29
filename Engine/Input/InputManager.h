@@ -1,6 +1,3 @@
-//
-// Created by navin on 7/14/25.
-//
 
 #pragma once
 
@@ -86,6 +83,7 @@ public:
      * @return The associated SFML keyboard key.
      */
     sf::Keyboard::Key getKeyForAction(const string& action) const;
+
 
     bool wasMousePressed(sf::Mouse::Button button) const;
 

@@ -4,6 +4,7 @@
 
 #pragma once
 #include "../Engine/Entity/Entity.h"
+#include "../Engine/Music/MusicManager.h"
 
 namespace CollisionBehaviour {
 

@@ -1,5 +1,5 @@
 \doxysection{Collision.\+h}
-\hypertarget{Collision_8h_source}{}\label{Collision_8h_source}\index{Engine/PhysicsSystem/Collision/Collision.h@{Engine/PhysicsSystem/Collision/Collision.h}}
+\hypertarget{Collision_8h_source}{}\label{Collision_8h_source}\index{Engine/Physics/Collision/Collision.h@{Engine/Physics/Collision/Collision.h}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{//}}
@@ -14,13 +14,19 @@
 \DoxyCodeLine{00010\ }
 \DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollision}{Collision}}\ \{}
 \DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCollision_a6b2b1bb5fe6cc1359e2f478d31ce73e7}{detectCollision}}(\textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Entity>>\&\ entities,}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCollision_a59f358995cb245cd90f47b36a0de1648}{collisionManager}}(\textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Entity>>\&\ entities,}
 \DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Entity*>\&\ movableEntities);}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ checkCollision(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity}{Entity}}*\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity}{Entity}}*\ b);}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ handleCollision(\mbox{\hyperlink{classEntity}{Entity}}*\ a,\ \mbox{\hyperlink{classEntity}{Entity}}*\ b);}
-\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{string}\ makeKey(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ b);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ addEntryToCollisionHandler(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ b,\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{classEntity}{Entity}}*,\ \mbox{\hyperlink{classEntity}{Entity}}*)>\&\ handler);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ checkCollision(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity}{Entity}}*\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity}{Entity}}*\ b);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ handleCollision(\mbox{\hyperlink{classEntity}{Entity}}*\ a,\ \mbox{\hyperlink{classEntity}{Entity}}*\ b);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ std::unordered\_map<std::string,\ std::function<void(\mbox{\hyperlink{classEntity}{Entity}}*,\ \mbox{\hyperlink{classEntity}{Entity}}*)>>\ collisionHandlerMap;}
+\DoxyCodeLine{00059\ \};}
 
 \end{DoxyCode}

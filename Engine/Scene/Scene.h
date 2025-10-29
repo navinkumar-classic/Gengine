@@ -30,6 +30,8 @@ class Scene {
         size_t addUIElement(std::unique_ptr<UIElement> uiElement);
         UIElement* getUIElement(size_t index) const;
 
+        std::string getSceneUID();
+
     protected:
         unsigned int width;
         unsigned int height;

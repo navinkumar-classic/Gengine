@@ -85,12 +85,12 @@ Inheritance diagram for Entity:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae9d2d39d62a7991c30d945d22308ef71" id="r_ae9d2d39d62a7991c30d945d22308ef71"><td class="memItemLeft" align="right" valign="top"><a id="ae9d2d39d62a7991c30d945d22308ef71" name="ae9d2d39d62a7991c30d945d22308ef71"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (bool isMovable, const sf::Vector2f &amp;position, const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;gravity, float maxSpeed, float terminalVelocity, float jumpStrength, float acceleration, float deacceleration)</td></tr>
-<tr class="separator:ae9d2d39d62a7991c30d945d22308ef71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff0bfb1615d07eb866c22972dca75d6a" id="r_aff0bfb1615d07eb866c22972dca75d6a"><td class="memItemLeft" align="right" valign="top"><a id="aff0bfb1615d07eb866c22972dca75d6a" name="aff0bfb1615d07eb866c22972dca75d6a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float dt, <a class="el" href="classInput.html">Input</a> &amp;input)=0</td></tr>
-<tr class="separator:aff0bfb1615d07eb866c22972dca75d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33827c7889b5288d243822f405f26d76" id="r_a33827c7889b5288d243822f405f26d76"><td class="memItemLeft" align="right" valign="top"><a id="a33827c7889b5288d243822f405f26d76" name="a33827c7889b5288d243822f405f26d76"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (bool isAnimated, bool isMovable, const sf::Vector2f &amp;position, const sf::Vector2f &amp;velocity, const sf::Vector2f &amp;gravity, float maxSpeed, float terminalVelocity, float jumpStrength, float acceleration, float deacceleration, const string &amp;entityTag)</td></tr>
+<tr class="separator:a33827c7889b5288d243822f405f26d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaaf32c8020d8b7742291bcce586b5fd" id="r_afaaf32c8020d8b7742291bcce586b5fd"><td class="memItemLeft" align="right" valign="top"><a id="afaaf32c8020d8b7742291bcce586b5fd" name="afaaf32c8020d8b7742291bcce586b5fd"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (float dt, <a class="el" href="classInputManager.html">InputManager</a> &amp;input)=0</td></tr>
+<tr class="separator:afaaf32c8020d8b7742291bcce586b5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72987d370ecd59d57972060aa8f37c4c" id="r_a72987d370ecd59d57972060aa8f37c4c"><td class="memItemLeft" align="right" valign="top"><a id="a72987d370ecd59d57972060aa8f37c4c" name="a72987d370ecd59d57972060aa8f37c4c"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow &amp;window)=0</td></tr>
 <tr class="separator:a72987d370ecd59d57972060aa8f37c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +133,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>getOnGround</b> () co
 <tr class="memitem:a941084fb686ea0eaedf4e60463a8ad22" id="r_a941084fb686ea0eaedf4e60463a8ad22"><td class="memItemLeft" align="right" valign="top"><a id="a941084fb686ea0eaedf4e60463a8ad22" name="a941084fb686ea0eaedf4e60463a8ad22"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>getJump</b> () const</td></tr>
 <tr class="separator:a941084fb686ea0eaedf4e60463a8ad22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cd3f1c5ccab96bb4411e9c7d1e72842" id="r_a7cd3f1c5ccab96bb4411e9c7d1e72842"><td class="memItemLeft" align="right" valign="top"><a id="a7cd3f1c5ccab96bb4411e9c7d1e72842" name="a7cd3f1c5ccab96bb4411e9c7d1e72842"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getEntityTag</b> () const</td></tr>
+<tr class="separator:a7cd3f1c5ccab96bb4411e9c7d1e72842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3409196775744d611dbd3b705cb92c8f" id="r_a3409196775744d611dbd3b705cb92c8f"><td class="memItemLeft" align="right" valign="top"><a id="a3409196775744d611dbd3b705cb92c8f" name="a3409196775744d611dbd3b705cb92c8f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>getIsAlive</b> () const</td></tr>
+<tr class="separator:a3409196775744d611dbd3b705cb92c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5000a9a577ead655c7ff89afe6eb9f04" id="r_a5000a9a577ead655c7ff89afe6eb9f04"><td class="memItemLeft" align="right" valign="top"><a id="a5000a9a577ead655c7ff89afe6eb9f04" name="a5000a9a577ead655c7ff89afe6eb9f04"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const sf::Vector2f &amp;pos)</td></tr>
 <tr class="separator:a5000a9a577ead655c7ff89afe6eb9f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,27 +175,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setOnGround</b> (bool
 <tr class="memitem:ab11bc8b701a833e324981f59df63956b" id="r_ab11bc8b701a833e324981f59df63956b"><td class="memItemLeft" align="right" valign="top"><a id="ab11bc8b701a833e324981f59df63956b" name="ab11bc8b701a833e324981f59df63956b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setJump</b> (bool jump)</td></tr>
 <tr class="separator:ab11bc8b701a833e324981f59df63956b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd29f9911c799abbbf1cc0d768ff754" id="r_afdd29f9911c799abbbf1cc0d768ff754"><td class="memItemLeft" align="right" valign="top"><a id="afdd29f9911c799abbbf1cc0d768ff754" name="afdd29f9911c799abbbf1cc0d768ff754"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setIsAlive</b> (bool isAlive)</td></tr>
+<tr class="separator:afdd29f9911c799abbbf1cc0d768ff754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8073690324409ca2e05516388ed8d542" id="r_a8073690324409ca2e05516388ed8d542"><td class="memItemLeft" align="right" valign="top"><a id="a8073690324409ca2e05516388ed8d542" name="a8073690324409ca2e05516388ed8d542"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>applyMovement</b> (float dt)</td></tr>
 <tr class="separator:a8073690324409ca2e05516388ed8d542"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac0fcd66b308d9812d7cc9250e723f8d" id="r_aac0fcd66b308d9812d7cc9250e723f8d"><td class="memItemLeft" align="right" valign="top"><a id="aac0fcd66b308d9812d7cc9250e723f8d" name="aac0fcd66b308d9812d7cc9250e723f8d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addPhysics</b> (function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInput.html">Input</a> &amp;, float)&gt; function)</td></tr>
-<tr class="separator:aac0fcd66b308d9812d7cc9250e723f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f00efcbf96be621f4ec693efad4ae04" id="r_a4f00efcbf96be621f4ec693efad4ae04"><td class="memItemLeft" align="right" valign="top"><a id="a4f00efcbf96be621f4ec693efad4ae04" name="a4f00efcbf96be621f4ec693efad4ae04"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addPhysics</b> (function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInputManager.html">InputManager</a> &amp;, float)&gt; function)</td></tr>
+<tr class="separator:a4f00efcbf96be621f4ec693efad4ae04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a902c584c5bc5a55daf6986018cac4b2e" id="r_a902c584c5bc5a55daf6986018cac4b2e"><td class="memItemLeft" align="right" valign="top"><a id="a902c584c5bc5a55daf6986018cac4b2e" name="a902c584c5bc5a55daf6986018cac4b2e"></a>
 const bool&#160;</td><td class="memItemRight" valign="bottom"><b>isMovable</b></td></tr>
 <tr class="separator:a902c584c5bc5a55daf6986018cac4b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a2147cde6c845ba96f245b0138b3b0bbe" id="r_a2147cde6c845ba96f245b0138b3b0bbe"><td class="memItemLeft" align="right" valign="top"><a id="a2147cde6c845ba96f245b0138b3b0bbe" name="a2147cde6c845ba96f245b0138b3b0bbe"></a>
-vector&lt; function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInput.html">Input</a> &amp;, float)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>physics</b></td></tr>
-<tr class="separator:a2147cde6c845ba96f245b0138b3b0bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7637954524b025887ebcb3543bb66e" id="r_a0f7637954524b025887ebcb3543bb66e"><td class="memItemLeft" align="right" valign="top"><a id="a0f7637954524b025887ebcb3543bb66e" name="a0f7637954524b025887ebcb3543bb66e"></a>
+const bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAnimated</b></td></tr>
+<tr class="separator:a0f7637954524b025887ebcb3543bb66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc349ec89c2bffef70bf6a1d95603154" id="r_afc349ec89c2bffef70bf6a1d95603154"><td class="memItemLeft" align="right" valign="top"><a id="afc349ec89c2bffef70bf6a1d95603154" name="afc349ec89c2bffef70bf6a1d95603154"></a>
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
 <tr class="separator:afc349ec89c2bffef70bf6a1d95603154"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac10c0aee3e58cc5dc2e2e783114b4ff0" id="r_ac10c0aee3e58cc5dc2e2e783114b4ff0"><td class="memItemLeft" align="right" valign="top"><a id="ac10c0aee3e58cc5dc2e2e783114b4ff0" name="ac10c0aee3e58cc5dc2e2e783114b4ff0"></a>
+vector&lt; function&lt; void(<a class="el" href="classEntity.html">Entity</a> &amp;, <a class="el" href="classInputManager.html">InputManager</a> &amp;, float)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>physics</b></td></tr>
+<tr class="separator:ac10c0aee3e58cc5dc2e2e783114b4ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a012d5a8fdb0496dd40c6bff390202e0f" id="r_a012d5a8fdb0496dd40c6bff390202e0f"><td class="memItemLeft" align="right" valign="top"><a id="a012d5a8fdb0496dd40c6bff390202e0f" name="a012d5a8fdb0496dd40c6bff390202e0f"></a>
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>previousPosition</b></td></tr>
 <tr class="separator:a012d5a8fdb0496dd40c6bff390202e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,6 +232,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>onGround</b> = false<
 <tr class="memitem:acf4f533113701385a2dde3b5302d63e2" id="r_acf4f533113701385a2dde3b5302d63e2"><td class="memItemLeft" align="right" valign="top"><a id="acf4f533113701385a2dde3b5302d63e2" name="acf4f533113701385a2dde3b5302d63e2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>jump</b> = false</td></tr>
 <tr class="separator:acf4f533113701385a2dde3b5302d63e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f66e38c6f1e733cf509986b03ebbf2e" id="r_a3f66e38c6f1e733cf509986b03ebbf2e"><td class="memItemLeft" align="right" valign="top"><a id="a3f66e38c6f1e733cf509986b03ebbf2e" name="a3f66e38c6f1e733cf509986b03ebbf2e"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>entityTag</b></td></tr>
+<tr class="separator:a3f66e38c6f1e733cf509986b03ebbf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaec4e8bc2d18e138454553a8df94ac20" id="r_aaec4e8bc2d18e138454553a8df94ac20"><td class="memItemLeft" align="right" valign="top"><a id="aaec4e8bc2d18e138454553a8df94ac20" name="aaec4e8bc2d18e138454553a8df94ac20"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAlive</b> = true</td></tr>
+<tr class="separator:aaec4e8bc2d18e138454553a8df94ac20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Engine/Entity/<a class="el" href="Entity_8h_source.html">Entity.h</a></li>

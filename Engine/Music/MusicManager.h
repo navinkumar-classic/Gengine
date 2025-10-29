@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include <list>
 #include <SFML/Audio.hpp>
 #include <string>
 #include <unordered_map>
@@ -28,5 +29,6 @@ private:
     std::unordered_map<std::string, sf::SoundBuffer> soundBuffers;
 
     std::unique_ptr<sf::Music> currentMusic;
-    std::vector<sf::Sound> activeSounds;
+    std::list<sf::Sound> activeSounds;
+    sf::Sound* getAvailableSound();
 };

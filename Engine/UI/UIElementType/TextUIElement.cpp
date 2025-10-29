@@ -4,6 +4,9 @@
 
 #include "TextUIElement.h"
 #include <stack>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 TextUIElement::TextUIElement(
     const sf::Vector2f &position,
@@ -11,9 +14,11 @@ TextUIElement::TextUIElement(
     const std::string &text,
     const sf::Font &font,
     const sf::Color &color,
-    const bool isDynamic):
+    const bool isDynamic,
+    int pad_len,
+    char pad_char):
     UIElement(position, sf::Vector2f(0.f, 0.f), sf::Vector2f(0.f, 0.f), isDynamic),
-    m_characterSize(characterSize), m_textString(text){
+    m_characterSize(characterSize), m_textString(text), pad_len(pad_len), pad_char(pad_char){
     m_text.setFont(font);
     m_text.setString(text);
     m_text.setCharacterSize(characterSize);
@@ -42,7 +47,7 @@ void TextUIElement::update(float dt, const GameState& game_state, const InputMan
         }
     }
 
-    m_text.setString(output);
+    m_text.setString(leftPad(output, pad_len, pad_char));
 
 }
 
@@ -57,7 +62,7 @@ void TextUIElement::setPosition(const sf::Vector2f& inPosition) {
 
 void TextUIElement::setText(const std::string& text) {
     m_textString = text;
-    m_text.setString(text);
+    m_text.setString(leftPad(text, pad_len, pad_char));
 }
 
 void TextUIElement::setCharacterSize(int characterSize) {
@@ -68,3 +73,10 @@ void TextUIElement::setCharacterSize(int characterSize) {
 sf::FloatRect TextUIElement::getBounds() const {
     return m_text.getGlobalBounds();
 }
+
+std::string TextUIElement::leftPad(const std::string& str, int width, char padChar) {
+    std::ostringstream oss;
+    oss << std::setw(width) << std::setfill(padChar) << str;
+    return oss.str();
+}
+

@@ -3,6 +3,8 @@
 //
 
 #include "StaticEntity.h"
+#include "../Entity.h"
+#include "../../Engine.h"
 
 StaticEntity::StaticEntity(
         bool isMovable,
@@ -56,9 +58,9 @@ void StaticEntity::render(sf::RenderWindow& window) {
     tileMap.draw(window);
 }
 
-void StaticEntity::update(float dt, InputManager& input) {
+void StaticEntity::update(float dt, Engine& engine) {
     for (const auto& physicsFunction : physics) {
-        physicsFunction(*this, input, dt);
+        physicsFunction(*this, engine.input, dt);
     }
 
     applyMovement(dt);

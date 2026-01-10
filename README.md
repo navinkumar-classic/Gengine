@@ -1,6 +1,6 @@
 # Gengine
 
-Gengine is a **general-purpose 2D game engine written in modern C++**, focused on **rule-driven gameplay** and **clean engine architecture**. It is designed to support **card games, board-style games, and other rule-heavy 2D games**, where game logic is defined as data rather than hard-coded behavior.
+This project involves the design and development of a general-purpose 2D game engine built using C++. The engine is designed to provide a modular and reusable framework that simplifies the development of 2D games by abstracting common functionalities such as rendering, input handling, game loop management, collision detection, and entity management.
 
 ## Project Status
 
